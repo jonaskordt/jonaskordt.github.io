@@ -1,0 +1,18 @@
+$offset: 10px;
+$half-offset: ($offset / 2);
+
+$blur: 15px;
+
+@mixin shadow {
+  box-shadow: $offset $offset $blur #d1d9e6, (-$offset) (-$offset) $blur #ffffff;
+}
+
+@mixin hover-shadow {
+  box-shadow: $half-offset $half-offset $blur #d1d9e6,
+    (-$half-offset) (-$half-offset) $blur #ffffff;
+}
+
+@mixin active-shadow {
+  box-shadow: $half-offset $half-offset $blur #d1d9e6 inset,
+    (-$half-offset) (-$half-offset) $blur #ffffff inset;
+}
