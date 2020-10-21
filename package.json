@@ -30,12 +30,11 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": [
-      "tslint --fix -p .",
-      "prettier --write",
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
       "git add"
     ],
-    "src/**/*.{js,jsx,json}": [
+    "src/**/*.{json}": [
       "prettier --write",
       "git add"
     ]
