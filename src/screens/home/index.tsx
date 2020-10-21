@@ -1,10 +1,12 @@
 import React from "react";
 
+import Screen from "../../components/screen";
+
 const Home: React.FC = () => {
   return (
-    <div>
+    <Screen>
       <p>Home</p>
-    </div>
+    </Screen>
   );
 };
 

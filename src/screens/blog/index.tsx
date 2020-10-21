@@ -1,6 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
+import Screen from "../../components/screen";
+
 interface IBlogParams {
   blogId: string;
 }
@@ -8,9 +10,9 @@ interface IBlogParams {
 const Blog: React.FC = () => {
   const { blogId } = useParams<IBlogParams>();
   return (
-    <div>
+    <Screen>
       <p>Blog {blogId}</p>
-    </div>
+    </Screen>
   );
 };
 

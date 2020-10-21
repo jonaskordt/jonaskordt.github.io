@@ -1,6 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
+import Screen from "../../components/screen";
+
 interface IProjectParams {
   projectId: string;
 }
@@ -8,9 +10,9 @@ interface IProjectParams {
 const Project: React.FC = () => {
   const { projectId } = useParams<IProjectParams>();
   return (
-    <div>
+    <Screen>
       <p>Project {projectId}</p>
-    </div>
+    </Screen>
   );
 };
 
