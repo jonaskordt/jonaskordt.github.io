@@ -1,0 +1,29 @@
+@import "../../../theme/colors.scss";
+
+.default {
+  align-items: center;
+  border-bottom: 1px solid $foreground_color;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+}
+
+.container {
+  flex-shrink: 0;
+  margin: 10px;
+  text-align: left;
+}
+
+.name_container {
+  @extend .container;
+
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 260px;
+}
+
+.portrait_container {
+  @extend .container;
+}
