@@ -1,6 +1,6 @@
 import React from "react";
 
-import CV from "../../components/home/cv";
+import CVCard from "../../components/home/cvCard";
 import Header from "../../components/home/header";
 import Summary from "../../components/home/summary";
 import Screen from "../../components/screen";
@@ -13,7 +13,7 @@ const Home: React.FC = () => {
       <div className={presets.container}>
         <Summary />
         <div className={presets.cv_container}>
-          <CV />
+          <CVCard />
         </div>
       </div>
     </Screen>

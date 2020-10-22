@@ -22,5 +22,7 @@ module.exports = {
   rules: {
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/interactive-supports-focus": "off",
   },
 };

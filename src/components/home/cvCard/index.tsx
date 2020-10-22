@@ -1,12 +1,12 @@
 import React from "react";
 
 import Card from "../card";
-import presets from "./cv.module.scss";
-import CVProps from "./cv.props";
+import presets from "./cvCard.module.scss";
+import CVProps from "./cvCard.props";
 
-const CV: React.FC<CVProps> = (props) => {
+const CVCard: React.FC<CVProps> = (props) => {
   return (
-    <Card {...props}>
+    <Card to="/cv" {...props}>
       <div className={presets.container}>
         <p className={presets.c}>C</p>
         <p className={presets.v}>V</p>
@@ -19,4 +19,4 @@ const CV: React.FC<CVProps> = (props) => {
   );
 };
 
-export default CV;
+export default CVCard;

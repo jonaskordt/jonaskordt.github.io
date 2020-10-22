@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Blog from "./screens/blog";
+import CV from "./screens/cv";
 import Home from "./screens/home";
 import Project from "./screens/project";
 
@@ -14,6 +15,9 @@ const App: React.FC = () => {
         </Route>
         <Route path="/blogs/:blogId">
           <Blog />
+        </Route>
+        <Route path="/cv">
+          <CV />
         </Route>
         <Route path="/">
           <Home />
