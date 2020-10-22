@@ -1,0 +1,59 @@
+@import "../../../theme/colors.scss";
+
+.container {
+  height: 100px;
+  margin-bottom: 10px;
+  position: relative;
+  top: -20px;
+  width: 300px;
+}
+
+.first {
+  font-size: 80px;
+  font-weight: 600;
+}
+
+.c {
+  @extend .first;
+}
+
+.v {
+  @extend .first;
+  left: 26px;
+  position: relative;
+  top: -56px;
+}
+
+.dim {
+  opacity: 0.3;
+}
+
+.rest {
+  @extend .dim;
+
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 15px;
+  position: relative;
+}
+
+.urriculum {
+  @extend .rest;
+
+  left: 55px;
+  top: -150px;
+}
+
+.itae {
+  @extend .rest;
+
+  left: 80px;
+  top: -135px;
+}
+
+.co_header {
+  @extend .dim;
+
+  font-size: small;
+  margin-bottom: 5px;
+}

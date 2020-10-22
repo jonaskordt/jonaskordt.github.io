@@ -1,25 +1,4 @@
 @import "../../../theme/colors.scss";
-@import "../../../theme/shadows.scss";
-
-.default {
-  @include shadow;
-
-  align-items: flex-start;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-  padding: 20px;
-  transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s;
-}
-
-.default:hover {
-  @include hover-shadow;
-}
-
-.default:active {
-  @include active-shadow;
-}
 
 .heading {
   border-bottom: 1px solid $foreground-color;
