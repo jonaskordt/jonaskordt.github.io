@@ -16,6 +16,7 @@ const Home: React.FC = () => {
           <CVCard />
         </div>
       </div>
+      <p>Projects coming soon...</p>
     </Screen>
   );
 };

@@ -5,7 +5,7 @@ import Screen from "../../components/screen";
 const CV: React.FC = () => {
   return (
     <Screen>
-      <p>CV</p>
+      <p>CV coming soon...</p>
     </Screen>
   );
 };
