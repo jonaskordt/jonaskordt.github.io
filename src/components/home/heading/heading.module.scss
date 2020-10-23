@@ -1,7 +1,11 @@
-@import "../../../theme/colors.scss";
+@import "../../../theme";
 
 .default {
   font-size: 35px;
   font-weight: 700;
   margin-bottom: 30px;
+
+  @include for-phone-only {
+    font-size: 25px;
+  }
 }

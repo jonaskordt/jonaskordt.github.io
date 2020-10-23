@@ -1,6 +1,10 @@
-@import "../../../theme/colors.scss";
+@import "../../../theme/media.scss";
 
 .default {
   font-size: 50px;
   font-weight: 700;
+
+  @include for-phone-only {
+    font-size: 45px;
+  }
 }
