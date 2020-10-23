@@ -1,20 +1,25 @@
 @import "../../theme";
 
 .container {
-  align-items: flex-start;
-  border-bottom: 1px solid $border-color;
   display: flex;
   flex-shrink: 0;
-  flex-wrap: wrap;
-  justify-content: space-between;
   margin: 0px 50px 0px;
-  padding-bottom: 20px;
-  padding-top: 20px;
   
   @include for-phone-only {
     margin: 0px 10px 0px;
   }
+}
 
+.upper_container {
+  @extend .container;
+
+  align-items: flex-start;
+  border-bottom: 1px solid $border-color;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  
   > div {
     margin: 20px;
 
@@ -22,6 +27,13 @@
       margin: 10px;
     }
   }
+}
+
+.lower_container {
+  @extend .container;
+
+  flex-direction: column;
+  padding: 20px;
 }
 
 .cv_container {
