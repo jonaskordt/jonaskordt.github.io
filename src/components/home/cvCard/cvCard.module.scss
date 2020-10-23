@@ -1,4 +1,4 @@
-@import "../../../theme/colors.scss";
+@import "../../../theme";
 
 .container {
   height: 100px;
@@ -6,11 +6,16 @@
   position: relative;
   top: -20px;
   width: 300px;
+
+  @include for-phone-only {
+    width: 270px;
+  }
 }
 
 .first {
   font-size: 80px;
   font-weight: 600;
+  max-width: 100px;
   user-select: none;
 }
 
@@ -35,6 +40,7 @@
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 15px;
+  max-width: 100px;
   position: relative;
   user-select: none;
 }
