@@ -1,6 +1,6 @@
 import React from "react";
 
-import portrait from "../../../content/images/portrait.jpeg";
+import portrait from "../../../content/images/portrait.png";
 import presets from "./portrait.module.scss";
 import PortraitProps from "./portrait.props";
 

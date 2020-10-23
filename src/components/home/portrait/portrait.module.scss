@@ -13,6 +13,7 @@ $small-img-size: 100px;
   }
 
   img {
+    background-color: $img-background-color;
     border: 1px solid $foreground-color;
     border-radius: 50%;
     height: $img-size;
