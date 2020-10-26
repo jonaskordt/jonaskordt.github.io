@@ -10,7 +10,7 @@
   }
 }
 
-.upper_container {
+.upperContainer {
   @extend .container;
 
   align-items: flex-start;
@@ -29,15 +29,42 @@
   }
 }
 
-.lower_container {
+.lowerContainer {
   @extend .container;
 
+  align-items: flex-start;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 5px;
+
+  @include for-phone-only {
+    padding: 20px 0px;
+  }
+
 }
 
-.cv_container {
+.cvContainer {
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
+}
+
+.lowerHeadingContainer {
+  padding-left: 15px;
+
+  @include for-phone-only {
+    padding-left: 10px;
+  }
+}
+
+.projectContainer {
+  display: flex;
+  flex-wrap: wrap;
+
+  > div {
+    margin: 15px;
+
+    @include for-phone-only {
+      margin: 10px;
+    }
+  }
 }

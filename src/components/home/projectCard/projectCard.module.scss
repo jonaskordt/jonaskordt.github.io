@@ -1,0 +1,50 @@
+.default {
+  display: block;
+}
+
+.container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  position: relative;
+  width: 300px;
+}
+
+.imgContainer {
+  flex-grow: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+img {
+  height: 115px;
+  width: auto;
+}
+
+.backgroundBlend {
+  background-image: linear-gradient(to right, rgba(233, 237, 240, 255), rgba(233, 237, 240, 0));
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.text {
+  max-width: 200px;
+  position: relative;
+  z-index: 20;
+}
+
+.type {
+  bottom: 0;
+  color: #bbbbbb;
+  font-size: 25px;
+  font-weight: 700;
+  position: absolute;
+  right: 0;
+  text-align: right;
+}

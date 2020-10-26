@@ -11,7 +11,7 @@ const Project: React.FC = () => {
   const { projectId } = useParams<IProjectParams>();
   return (
     <Screen>
-      <p>Project {projectId}</p>
+      <p>Project {projectId} coming soon...</p>
     </Screen>
   );
 };

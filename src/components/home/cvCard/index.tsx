@@ -13,8 +13,8 @@ const CVCard: React.FC<CVProps> = (props) => {
         <p className={presets.urriculum}>urriculum</p>
         <p className={presets.itae}>itae</p>
       </div>
-      <p className={presets.co_header}>Current Occupation:</p>
-      <p className={presets.co_text}>M.Sc. IT Systems Engineering at HPI</p>
+      <p className={presets.coHeader}>Current Occupation:</p>
+      <p>M.Sc. IT Systems Engineering at HPI</p>
     </Card>
   );
 };

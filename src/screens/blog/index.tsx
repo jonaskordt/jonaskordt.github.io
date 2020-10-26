@@ -11,7 +11,7 @@ const Blog: React.FC = () => {
   const { blogId } = useParams<IBlogParams>();
   return (
     <Screen>
-      <p>Blog {blogId}</p>
+      <p>Blog {blogId} coming soon...</p>
     </Screen>
   );
 };
