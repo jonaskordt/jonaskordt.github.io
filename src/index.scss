@@ -33,4 +33,5 @@ input {
   background-color: $background-color;
   color: $foreground-color;
   height: 100vh;
+  overflow: auto;
 }
