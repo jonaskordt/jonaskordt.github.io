@@ -32,9 +32,9 @@ const Home: React.FC = () => {
             isBlog
           />
           <ProjectCard
-            name="Classifai"
-            text="World first usable active learning system for medical image segmentation. Developed as a bachelor’s project at HPI."
-            projectId="classifai"
+            name="Classifai 3D"
+            text="My bachelor's thesis project. Enables 3D exploration and modification of MRI scans as an extension to Classifai."
+            projectId="classifai3D"
             image={classifai}
           />
         </div>
