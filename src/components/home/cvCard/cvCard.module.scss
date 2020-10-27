@@ -1,67 +1,18 @@
 @import "../../../theme";
 
-.container {
-  height: 100px;
+.cvImg {
+  height: auto;
   margin-bottom: 10px;
-  position: relative;
-  top: -20px;
-  width: 300px;
+  margin-right: 35px;
+  width: 265px;
 
   @include for-phone-only {
-    width: 270px;
+    margin-right: 5px;
   }
 }
 
-.first {
-  font-size: 80px;
-  font-weight: 600;
-  max-width: 100px;
-  user-select: none;
-}
-
-.c {
-  @extend .first;
-}
-
-.v {
-  @extend .first;
-  left: 26px;
-  position: relative;
-  top: -56px;
-}
-
-.dim {
-  opacity: 0.3;
-}
-
-.rest {
-  @extend .dim;
-
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 15px;
-  max-width: 100px;
-  position: relative;
-  user-select: none;
-}
-
-.urriculum {
-  @extend .rest;
-
-  left: 55px;
-  top: -150px;
-}
-
-.itae {
-  @extend .rest;
-
-  left: 80px;
-  top: -135px;
-}
-
 .coHeader {
-  @extend .dim;
-
   font-size: small;
   margin-bottom: 5px;
+  opacity: 0.3;
 }
