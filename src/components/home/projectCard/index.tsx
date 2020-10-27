@@ -1,7 +1,7 @@
 import React from "react";
 
+import Heading from "../../shared/heading";
 import Card from "../card";
-import Heading from "../heading";
 import presets from "./projectCard.module.scss";
 import ProjectCardProps from "./projectCard.props";
 

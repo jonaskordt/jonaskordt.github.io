@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import Screen from "../../components/screen";
+import Screen from "../../components/shared/screen";
 
 interface IProjectParams {
   projectId: string;

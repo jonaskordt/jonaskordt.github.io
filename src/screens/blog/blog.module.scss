@@ -1,0 +1,25 @@
+@import "../../theme/media.scss";
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 30px 70px;
+
+  @include for-phone-only {
+    margin: 30px 20px;
+  }
+
+  > div > p {
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    max-width: 1000px;
+    text-align: justify;
+
+    @include for-phone-only {
+      font-size: 18px;
+      line-height: 25px;
+    }
+  }
+}

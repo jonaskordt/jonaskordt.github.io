@@ -1,7 +1,7 @@
 import React from "react";
 
-import Name from "../name";
-import Portrait from "../portrait";
+import Name from "../../home/name";
+import Portrait from "../../home/portrait";
 import presets from "./header.module.scss";
 import HeaderProps from "./header.props";
 

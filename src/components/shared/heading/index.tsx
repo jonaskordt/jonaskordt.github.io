@@ -7,9 +7,9 @@ const Heading: React.FC<HeadingProps> = (props) => {
   const { preset = "default", text, ...rest } = props;
 
   return (
-    <p {...rest} className={presets[preset]}>
+    <h1 {...rest} className={presets[preset]}>
       {text}
-    </p>
+    </h1>
   );
 };
 

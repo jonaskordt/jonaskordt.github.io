@@ -1,6 +1,6 @@
 import React from "react";
 
-import Screen from "../../components/screen";
+import Screen from "../../components/shared/screen";
 
 const CV: React.FC = () => {
   return (

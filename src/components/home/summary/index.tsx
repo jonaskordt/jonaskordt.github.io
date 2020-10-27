@@ -5,7 +5,7 @@ import {
   summaryHeading,
   summaryText,
 } from "../../../content/text/summary";
-import Heading from "../heading";
+import Heading from "../../shared/heading";
 import presets from "./summary.module.scss";
 import SummaryProps from "./summary.props";
 

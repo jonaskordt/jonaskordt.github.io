@@ -1,11 +1,11 @@
 import React from "react";
 
 import CVCard from "../../components/home/cvCard";
-import Header from "../../components/home/header";
-import Heading from "../../components/home/heading";
 import ProjectCard from "../../components/home/projectCard";
 import Summary from "../../components/home/summary";
-import Screen from "../../components/screen";
+import Header from "../../components/shared/header";
+import Heading from "../../components/shared/heading";
+import Screen from "../../components/shared/screen";
 import classifai from "../../content/images/classifai.png";
 import presets from "./home.module.scss";
 
