@@ -31,6 +31,10 @@
   width: 280px;
 }
 
+.name_container:hover {
+  cursor: pointer;
+}
+
 .portrait_container {
   @extend .container;
 }
