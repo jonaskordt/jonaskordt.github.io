@@ -8,9 +8,9 @@ const classifaiBlog = (
     <Heading text="Classifai" />
     <p>
       During my studies in IT-Systems Engineering at Hasso Plattner Institute at
-      the University of Potsdam, I have been part of a bachelor project team at
-      the chair for Digital Health and Machine Learning. The goal of the project
-      was to design and develop a usable active learning tool for 3D image
+      the University of Potsdam, I was part of a bachelor project team at the
+      chair for Digital Health and Machine Learning. The goal of the project was
+      to design and develop a usable active learning tool for 3D image
       segmentation in life science and medical applications. Over a span of 10
       months, we developed a fully working prototype of the software called
       Classifai. For a popular scientific explanation of the project you can
