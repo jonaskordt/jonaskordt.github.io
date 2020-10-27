@@ -1,4 +1,5 @@
 import React from "react";
+import YouTube from "react-youtube-embed";
 
 import Heading from "../../components/shared/heading";
 
@@ -13,16 +14,11 @@ const classifaiBlog = (
       segmentation in life science and medical applications. Over a span of 10
       months, we developed a fully working prototype of the software called
       Classifai. For a popular scientific explanation of the project you can
-      check out our final project presentation{" "}
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://youtu.be/Z8s3fdrzI7c?t=7900"
-      >
-        on YouTube
-      </a>
-      .
+      check out our final project presentation.
     </p>
+    <div>
+      <YouTube id="Z8s3fdrzI7c" appendSrc="?start=7900&end=8507" />
+    </div>
     <p>
       Classifai introduces an active learning workflow and brings an entirely
       new and easy to use editor with it, which supports touch and touch pen
@@ -47,16 +43,11 @@ const classifaiBlog = (
     <p>
       My main role in the team was programming the editor itself. It is build
       with WebGL using Three.js. For an overview of the editor check out this
-      demo video{" "}
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.youtube.com/watch?v=OfchCyHBAII&feature=youtu.be"
-      >
-        on YouTube
-      </a>
-      .
+      demo video.
     </p>
+    <div>
+      <YouTube id="OfchCyHBAII" appendSrc="?start=2" />
+    </div>
   </div>
 );
 
