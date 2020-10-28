@@ -15,6 +15,12 @@
   }
 }
 
+.cv {
+  @extend .default;
+
+  max-width: 1000px;
+}
+
 .finisher {
   margin-top: 20px;
 }

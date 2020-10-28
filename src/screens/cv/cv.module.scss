@@ -1,0 +1,13 @@
+@import "../../theme/media.scss";
+
+.container {
+  margin: 30px 70px 0px;
+
+  > div {
+    margin-bottom: 20px;
+  }
+
+  @include for-phone-only {
+    margin: 30px 20px 0px;
+  }
+}
