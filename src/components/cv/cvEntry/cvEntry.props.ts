@@ -6,4 +6,7 @@ export default interface CVEntryProps
   extends HTMLAttributes<HTMLElement>,
     CVEntryData {
   preset?: string;
+
+  noDay?: boolean;
+  noMonth?: boolean;
 }
