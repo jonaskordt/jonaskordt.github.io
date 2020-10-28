@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react";
 
-import CVEntryData from "../../../content/cv/cvEntryData";
+import CVEntryData from "../../../lib/types/cvEntryData";
 
 export default interface CVEntryProps
   extends HTMLAttributes<HTMLElement>,

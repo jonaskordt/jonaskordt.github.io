@@ -1,6 +1,6 @@
 import React from "react";
 
-import { formatDate } from "../../../utils/date";
+import { formatDate } from "../../../lib/utils/date";
 import Heading from "../../shared/heading";
 import presets from "./cvEntry.module.scss";
 import CVEntryProps from "./cvEntry.props";

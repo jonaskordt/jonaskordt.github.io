@@ -4,6 +4,7 @@ interface CVEntryData {
   start: Date;
   end?: Date;
   details?: string[];
+  organizationLink?: string;
 }
 
 export default CVEntryData;

@@ -1,4 +1,4 @@
-import CVEntryData from "./cvEntryData";
+import CVEntryData from "../../lib/types/cvEntryData";
 
 const work: CVEntryData[] = [
   {
