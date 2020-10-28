@@ -2,8 +2,8 @@ import CVEntryData from "./cvEntryData";
 
 const work: CVEntryData[] = [
   {
-    heading: "Scientific Assistant",
-    organization: "Chair for digital health and machine learning at HPI",
+    heading: "Research Assistant",
+    organization: "Chair for Digital Health and Machine Learning at HPI",
     start: new Date(2020, 10, 1),
   },
   {
@@ -14,7 +14,7 @@ const work: CVEntryData[] = [
   },
   {
     heading: "Java Developer & Tutor",
-    organization: "Chair for system-analysis and modeling at HPI",
+    organization: "Chair for System-Analysis and Modeling at HPI",
     details: [
       "development of webservices and simulators in Java as sample solutions for different lectures",
       "development of web interface for live ECG data using HTML, CSS, JavaScript",
