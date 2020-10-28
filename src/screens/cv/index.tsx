@@ -13,7 +13,7 @@ const CV: React.FC = () => {
     <Screen>
       <Header />
       <div className={presets.container}>
-        <Summary isCV />
+        <Summary isCV preset="cv" />
         <Heading text="Work experience" />
         {work.map((w) => {
           return <CVEntry key={w.heading} {...w} />;
