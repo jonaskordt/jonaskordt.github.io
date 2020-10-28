@@ -1,35 +1,9 @@
 import React from "react";
 
+import { formatDate } from "../../../utils/date";
 import Heading from "../../shared/heading";
 import presets from "./cvEntry.module.scss";
 import CVEntryProps from "./cvEntry.props";
-
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-const padToTwo = (n: number) => n.toString().padStart(2, "0");
-
-const formatDate = (d: Date, noDay = false, noMonth = false) =>
-  // eslint-disable-next-line no-nested-ternary
-  noDay
-    ? noMonth
-      ? d.getFullYear().toString()
-      : `${months[d.getMonth()]} ${d.getFullYear()}`
-    : `${padToTwo(d.getDate())}.${padToTwo(
-        d.getMonth() + 1,
-      )}.${d.getFullYear()}`;
 
 const CVEntry: React.FC<CVEntryProps> = (props) => {
   const {
