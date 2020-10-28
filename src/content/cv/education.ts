@@ -5,6 +5,7 @@ const education: CVEntryData[] = [
     heading: "Aspiring Master of Science: IT-System Engineering",
     organization: "Hasso-Plattner-Institute at the University of Potsdam",
     start: new Date(2020, 9, 1),
+    organizationLink: "https://hpi.de",
   },
   {
     heading: "Bachelor of Science: IT-System Engineering",
@@ -12,6 +13,7 @@ const education: CVEntryData[] = [
     details: ['average grade: 1.2 "with distinction" (A)'],
     start: new Date(2017, 9, 1),
     end: new Date(2020, 7, 31),
+    organizationLink: "https://hpi.de",
   },
   {
     heading: "High School",
@@ -19,6 +21,7 @@ const education: CVEntryData[] = [
     details: ["diploma: German High-School-Diploma", "average grade: 1.0 (A)"],
     start: new Date(2010, 7, 1),
     end: new Date(2017, 5, 31),
+    organizationLink: "https://www.siemens-gymnasium-berlin.de",
   },
   {
     heading: "Exchange Year",
@@ -26,6 +29,7 @@ const education: CVEntryData[] = [
     details: ["Lexington, South Carolina, USA"],
     start: new Date(2014, 7, 1),
     end: new Date(2015, 5, 31),
+    organizationLink: "http://rbhs.lexington1.net",
   },
 ];
 

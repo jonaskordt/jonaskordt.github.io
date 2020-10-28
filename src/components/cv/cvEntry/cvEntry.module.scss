@@ -25,6 +25,28 @@
   padding: 5px 0px;
 }
 
+.organizationLink {
+  @extend .organization;
+
+  color: inherit;
+}
+
+.organizationLink:link {
+  text-decoration: none;
+}
+
+.organizationLink:visited {
+  text-decoration: none;
+}
+
+.organizationLink:hover {
+  text-decoration: underline;
+}
+
+.organizationLink:active {
+  text-decoration: underline;
+}
+
 ul {
   margin: 0;
   padding-left: 20px;

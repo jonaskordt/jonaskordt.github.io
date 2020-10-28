@@ -5,6 +5,8 @@ const work: CVEntryData[] = [
     heading: "Research Assistant",
     organization: "Chair for Digital Health and Machine Learning at HPI",
     start: new Date(2020, 10, 1),
+    organizationLink:
+      "https://hpi.de/forschung/fachgebiete/digital-health-machine-learning.html",
   },
   {
     heading: "Medicine Delivery Driver",
@@ -23,6 +25,8 @@ const work: CVEntryData[] = [
     ],
     start: new Date(2018, 8, 1),
     end: new Date(2019, 6, 31),
+    organizationLink:
+      "https://hpi.de/forschung/fachgebiete/systemanalyse-und-modellierung.html",
   },
   {
     heading: "Web Developer (internship)",
@@ -32,6 +36,7 @@ const work: CVEntryData[] = [
     ],
     start: new Date(2017, 7, 7),
     end: new Date(2017, 8, 15),
+    organizationLink: "https://www.isq-bb.de/wordpress/",
   },
   {
     heading: "Student Intern",

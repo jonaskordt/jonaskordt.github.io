@@ -14,6 +14,7 @@ const CVEntry: React.FC<CVEntryProps> = (props) => {
     end,
     noDay,
     noMonth,
+    organizationLink,
     preset = "default",
     ...rest
   } = props;
@@ -26,7 +27,16 @@ const CVEntry: React.FC<CVEntryProps> = (props) => {
       </div>
       <div className={presets.container}>
         <Heading preset="cv" text={heading} />
-        <p className={presets.organization}>{organization}</p>
+        <a
+          href={organizationLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={
+            organizationLink ? presets.organizationLink : presets.organization
+          }
+        >
+          {organization}
+        </a>
         {details && (
           <ul>
             {details.map((detail) => (
