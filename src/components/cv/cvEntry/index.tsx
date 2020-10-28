@@ -20,13 +20,13 @@ const CVEntry: React.FC<CVEntryProps> = (props) => {
   } = props;
 
   return (
-    <div className={presets[preset]} {...rest}>
+    <div className={end ? presets[preset] : presets.active} {...rest}>
       <div className={presets.leftContainer}>
         <p>{formatDate(start, noDay, noMonth)} -</p>
         <p>{end ? formatDate(end, noDay, noMonth) : "present"}</p>
       </div>
       <div className={presets.container}>
-        <Heading preset="cv" text={heading} />
+        <Heading preset="cvCard" text={heading} />
         <a
           href={organizationLink}
           target="_blank"

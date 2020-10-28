@@ -1,5 +1,17 @@
+@import "../../../theme/colors.scss";
+
 .default {
+  background-color: $cv_background;
+  border-radius: 10px;
   display: flex;
+  max-width: 980px;
+  padding: 10px;
+}
+
+.active {
+  @extend .default;
+
+  background-color: $blue;
 }
 
 .container {

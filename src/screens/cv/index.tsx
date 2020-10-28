@@ -17,19 +17,19 @@ const CV: React.FC = () => {
       <Header />
       <div className={presets.container}>
         <Summary isCV preset="cv" />
-        <Heading text="Work experience" />
+        <Heading preset="cv" text="Work experience" />
         {work.map((w) => {
           return <CVEntry key={w.heading} {...w} />;
         })}
-        <Heading text="Education" />
+        <Heading preset="cv" text="Education" />
         {education.map((e) => {
           return <CVEntry key={e.heading} {...e} noDay />;
         })}
-        <Heading text="Volunteering" />
+        <Heading preset="cv" text="Volunteering" />
         {volunteering.map((v) => {
           return <CVEntry key={v.heading} {...v} noDay noMonth />;
         })}
-        <Heading text="Scholarships" />
+        <Heading preset="cv" text="Scholarships" />
         {scholarships.map((s) => {
           return <CVEntry key={s.heading} {...s} noDay />;
         })}
