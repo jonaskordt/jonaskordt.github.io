@@ -2,13 +2,13 @@ import CVEntryData from "../../lib/types/cvEntryData";
 
 const education: CVEntryData[] = [
   {
-    heading: "Aspiring Master of Science: IT-System Engineering",
+    heading: "Aspiring Master of Science: IT System Engineering",
     organization: "Hasso-Plattner-Institute at the University of Potsdam",
     start: new Date(2020, 9),
     organizationLink: "https://hpi.de",
   },
   {
-    heading: "Bachelor of Science: IT-System Engineering",
+    heading: "Bachelor of Science: IT System Engineering",
     organization: "Hasso-Plattner-Institute at the University of Potsdam",
     details: ['average grade: 1.2 "with distinction" (A)'],
     start: new Date(2017, 9),
