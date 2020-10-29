@@ -20,7 +20,7 @@ const CV: React.FC = () => {
         <Summary isCV preset="cv" />
         <Heading preset="cv" text="Quick Info" />
         <QuickInfo />
-        <Heading preset="cv" text="Work experience" />
+        <Heading preset="cv" text="Work Experience" />
         {work.map((w) => {
           return <CVEntry key={w.heading} {...w} />;
         })}
