@@ -12,6 +12,7 @@ const Card: React.FC<CardProps> = (props) => {
   const clickHandler = useCallback(() => {
     if (to) {
       history.push(to);
+      window.scrollTo(0, 0);
     }
   }, [history, to]);
 
