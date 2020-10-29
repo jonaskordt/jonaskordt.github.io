@@ -3,3 +3,9 @@
     @content;
   }
 }
+
+@mixin for-smaller-screens {
+  @media (max-width: 899px) {
+    @content;
+  }
+}

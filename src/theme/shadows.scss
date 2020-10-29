@@ -17,3 +17,8 @@ $blur: 15px;
   box-shadow: $half-offset $half-offset $blur #d1d9e6 inset,
     (-$half-offset) (-$half-offset) $blur #ffffff inset;
 }
+
+@mixin progress-shadow {
+  box-shadow: 1px 1px 2px #a1a9b6 inset,
+    (-1px) (-1px) 2px #eeeeee inset;
+}

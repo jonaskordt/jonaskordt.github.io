@@ -1,6 +1,7 @@
 import React from "react";
 
 import CVEntry from "../../components/cv/cvEntry";
+import QuickInfo from "../../components/cv/quickInfo";
 import Header from "../../components/shared/header";
 import Heading from "../../components/shared/heading";
 import Screen from "../../components/shared/screen";
@@ -17,6 +18,8 @@ const CV: React.FC = () => {
       <Header />
       <div className={presets.container}>
         <Summary isCV preset="cv" />
+        <Heading preset="cv" text="Quick Info" />
+        <QuickInfo />
         <Heading preset="cv" text="Work experience" />
         {work.map((w) => {
           return <CVEntry key={w.heading} {...w} />;

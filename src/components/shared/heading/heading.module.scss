@@ -23,6 +23,12 @@
   margin-bottom: 0;
 }
 
+.quickInfo {
+  @extend .cvCard;
+
+  margin-bottom: 20px;
+}
+
 .projectCard {
   @extend .default;
 

@@ -8,7 +8,7 @@ const volunteering: CVEntryData[] = [
     organizationLink: "https://tt.tusli.de",
   },
   {
-    heading: "Chaperone in summer camps",
+    heading: "Chaperone in Summer Camps",
     organization: "Sportjugend Berlin",
     start: new Date(2016, 0),
     end: new Date(2017, 0),
