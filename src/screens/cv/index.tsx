@@ -14,7 +14,7 @@ import presets from "./cv.module.scss";
 
 const CV: React.FC = () => {
   return (
-    <Screen>
+    <Screen preset="thin">
       <Header />
       <div className={presets.container}>
         <Summary isCV preset="cv" />

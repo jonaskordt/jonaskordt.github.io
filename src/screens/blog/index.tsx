@@ -15,7 +15,7 @@ const Blog: React.FC = () => {
   const blog = blogs[blogId];
 
   return (
-    <Screen>
+    <Screen preset="thin">
       <Header />
       {blog ? (
         <div className={presets.container}>{blog.content}</div>
