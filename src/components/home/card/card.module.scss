@@ -33,20 +33,21 @@
   font-size: 18px;
   font-weight: 700;
   height: 30px;
-  left: -90px;
   letter-spacing: 2px;
   padding-top: 50px;
   position: absolute;
+  right: -90px;
   text-align: center;
-  top: -30px;
-  transform: rotate(-45deg);
+  top: -25px;
+  transform: rotate(45deg);
   width: 200px;
   z-index: 30;
 
   @include for-phone-only {
     font-size: 16px;
     height: 25px;
-    left: -95px;
     letter-spacing: unset;
+    right: -95px;
+    top: -30px;
   }
 }
