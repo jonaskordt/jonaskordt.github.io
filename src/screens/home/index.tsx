@@ -7,6 +7,8 @@ import Heading from "../../components/shared/heading";
 import Screen from "../../components/shared/screen";
 import Summary from "../../components/shared/summary";
 import classifai from "../../content/images/classifai.png";
+import classifai3D from "../../content/images/classifai3D.png";
+import planes from "../../content/images/planes.png";
 import presets from "./home.module.scss";
 
 const Home: React.FC = () => {
@@ -32,10 +34,17 @@ const Home: React.FC = () => {
             isBlog
           />
           <ProjectCard
+            name="Planes"
+            text="A way to have properly transparent intersecting planes with a variable intersection point. Part of Classifai 3D."
+            projectId="planes"
+            image={planes}
+            isPreview
+          />
+          <ProjectCard
             name="Classifai 3D"
             text="My bachelor's thesis project. Enables 3D exploration and modification of MRI scans as an extension to Classifai."
             projectId="classifai3D"
-            image={classifai}
+            image={classifai3D}
             isPreview
           />
         </div>
