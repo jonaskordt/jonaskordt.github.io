@@ -6,12 +6,20 @@ import presets from "./projectCard.module.scss";
 import ProjectCardProps from "./projectCard.props";
 
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
-  const { name, text, projectId, isBlog = false, image, ...rest } = props;
+  const {
+    name,
+    text,
+    projectId,
+    isBlog = false,
+    image,
+    isPreview,
+    ...rest
+  } = props;
 
   const link = isBlog ? `/blogs/${projectId}` : `/projects/${projectId}`;
 
   return (
-    <Card to={link} {...rest}>
+    <Card to={isPreview ? undefined : link} {...rest}>
       <div className={presets.container}>
         <Heading text={name} preset="projectCard" />
         <p className={presets.text}>{text}</p>

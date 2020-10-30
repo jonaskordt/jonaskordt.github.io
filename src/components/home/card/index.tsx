@@ -23,6 +23,7 @@ const Card: React.FC<CardProps> = (props) => {
       role="link"
       className={presets[preset]}
     >
+      {Boolean(to) || <p className={presets.soonTag}>Soon</p>}
       {children}
     </div>
   );

@@ -36,6 +36,7 @@ const Home: React.FC = () => {
             text="My bachelor's thesis project. Enables 3D exploration and modification of MRI scans as an extension to Classifai."
             projectId="classifai3D"
             image={classifai}
+            isPreview
           />
         </div>
       </div>

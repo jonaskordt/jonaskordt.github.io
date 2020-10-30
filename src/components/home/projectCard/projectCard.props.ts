@@ -8,4 +8,5 @@ export default interface ProjectCardProps extends HTMLAttributes<HTMLElement> {
   projectId: string;
   isBlog?: boolean;
   image?: string;
+  isPreview?: boolean;
 }
