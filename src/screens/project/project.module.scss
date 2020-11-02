@@ -1,4 +1,4 @@
-@import "../../theme/media.scss";
+@import "../../theme";
 
 .container {
   display: flex;
@@ -23,6 +23,15 @@
   @include for-phone-only {
     margin-left: 20px;
   }
+}
+
+.fullScreen {
+  background-color: $background-color;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 .fullRow{

@@ -4,3 +4,10 @@
   border: solid $border-color 1px;
   border-radius: 20px;
 }
+
+.fullScreen {
+  @extend .default;
+  
+  border: none;
+  border-radius: 0;
+}
