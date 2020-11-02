@@ -7,8 +7,8 @@ class CanvasHandler {
     this.resizeSensor = new ResizeSensor(canvas.parentElement!, () => {
       const parent = this.canvas.parentElement!;
 
-      this.canvas.width = parent.clientWidth - 5;
-      this.canvas.height = parent.clientHeight - 5;
+      this.canvas.width = parent.clientWidth - 2;
+      this.canvas.height = parent.clientHeight - 2;
     });
   }
 
