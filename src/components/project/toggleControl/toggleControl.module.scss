@@ -8,15 +8,16 @@
   flex-shrink: 0;
   justify-content: space-between;
   padding: 15px;
-  user-select: none;
   width: 250px;
 }
 
 .switch {
   border-radius: 15px;
+  cursor: pointer;
   height: 30px;
   overflow: hidden;
   position: relative;
+  user-select: none;
   width: 50px;
 
   @include progress-shadow;

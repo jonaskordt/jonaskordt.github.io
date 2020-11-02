@@ -14,9 +14,9 @@ const ToggleControl: React.FC<ToggleControlProps> = (props) => {
   }, [set, state]);
 
   return (
-    <div {...rest} className={presets[preset]} onClick={onClick} role="button">
+    <div {...rest} className={presets[preset]}>
       <p className={presets.text}>{action}</p>
-      <div className={presets.switch}>
+      <div className={presets.switch} onClick={onClick} role="button">
         <div
           className={state ? presets.background : presets.backgroundInactive}
         >
