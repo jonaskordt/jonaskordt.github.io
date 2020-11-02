@@ -1,0 +1,56 @@
+@import "../../../theme";
+
+.default {
+  align-items: center;
+  background-color: $control-background;
+  border-radius: 10px;
+  display: flex;
+  flex-shrink: 0;
+  padding: 15px;
+  user-select: none;
+  width: 250px;
+}
+
+.switch {
+  border-radius: 15px;
+  height: 30px;
+  overflow: hidden;
+  position: relative;
+  width: 50px;
+
+  @include progress-shadow;
+}
+
+.knub {
+  background-color: $background-color;
+  border-radius: 14px;
+  height: 28px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 28px;
+}
+
+.background {
+  background-color: $green;
+  border-radius: 14px;
+  height: 28px;
+  left: 1px;
+  position: absolute;
+  top: 1px;
+  transition: left linear 0.2s, background-color linear 0s 0s;
+  width: 48px;
+}
+
+.backgroundInactive {
+  @extend .background;
+  
+  background-color: unset;
+  left: -19px;
+  transition: left linear 0.2s, background-color linear 0s 0.2s;
+}
+
+.text {
+  font-size: 20px;
+  margin-left: 10px;
+}
