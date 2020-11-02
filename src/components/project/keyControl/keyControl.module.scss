@@ -1,0 +1,27 @@
+@import "../../../theme/colors.scss";
+
+.default {
+  align-items: center;
+  background-color: $control-background;
+  border-radius: 10px;
+  display: flex;
+  flex-shrink: 0;
+  padding: 15px;
+  width: 250px;
+}
+
+.text {
+  font-size: 20px;
+}
+
+.keys {
+  @extend .text;
+
+  font-weight: 700;
+}
+
+.action {
+  @extend .text;
+
+  padding-left: 10px;
+}

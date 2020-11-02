@@ -17,6 +17,10 @@
   }
 }
 
+.thin {
+  @extend .default;
+}
+
 .container {
   flex-shrink: 0;
   margin: 10px;

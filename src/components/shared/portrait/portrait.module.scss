@@ -25,3 +25,15 @@ $small-img-size: 100px;
     }
   }
 }
+
+.thin {
+  @extend .default;
+
+  height: $small-img-size;
+  width: $small-img-size;
+
+  img {
+    height: $small-img-size;
+    width: $small-img-size;
+  }
+}

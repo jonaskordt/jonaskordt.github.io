@@ -1,6 +1,6 @@
 import React from "react";
 
-import Card from "../card";
+import Card from "../../shared/card";
 import cvImg from "./cv.png";
 import presets from "./cvCard.module.scss";
 import CVProps from "./cvCard.props";

@@ -1,0 +1,8 @@
+.default {
+  display: flex;
+  flex-direction: column;
+
+  > div {
+    margin-bottom: 15px;
+  }
+}

@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
 import Name from "../../home/name";
-import Portrait from "../../home/portrait";
+import Portrait from "../portrait";
 import presets from "./header.module.scss";
 import HeaderProps from "./header.props";
 
@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = (props) => {
   return (
     <div {...rest} className={presets[preset]}>
       <div className={presets.portrait_container}>
-        <Portrait />
+        <Portrait preset={preset} />
       </div>
       <div
         onClick={clickHandler}

@@ -51,3 +51,23 @@
     top: -30px;
   }
 }
+
+.keyControl {
+  @extend .default;
+  @include small-shadow;
+  
+  border-radius: 10px;
+  padding: 10px;
+
+  .soonTag {
+    display: none;
+  }
+}
+
+.keyControl:hover {
+  @include small-hover-shadow;
+}
+
+.keyControl:active {
+  @include small-active-shadow;
+}

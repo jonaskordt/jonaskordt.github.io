@@ -8,3 +8,9 @@
   margin: 0px auto;
   max-width: 1140px;
 }
+
+.fullHeight {
+  @extend .default;
+
+  height: 100vh;  
+}

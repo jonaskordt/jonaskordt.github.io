@@ -1,0 +1,54 @@
+@import "../../theme/media.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 30px 70px;
+  min-height: 0;
+  min-width: 0;
+  
+  @include for-phone-only {
+    margin: 30px 20px;
+  }
+}
+
+.canvasContainer {
+  align-self: stretch;
+  flex-grow: 1;
+  margin-left: 70px;
+  min-height: 0;
+  min-width: 0;
+
+  @include for-phone-only {
+    margin-left: 20px;
+  }
+}
+
+.fullRow{
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+.fullCollumn {
+  @extend .fullRow;
+
+  flex-direction: column;
+}
+
+.text {
+  flex-shrink: 0;
+  font-size: 20px;
+  line-height: 30px;
+  margin: 30px 350px 0px;
+  max-height: 300px;
+  overflow: hidden;
+  text-align: justify;
+
+  @include for-medium-screens {
+    margin: 30px 0px 0px;
+  }
+}

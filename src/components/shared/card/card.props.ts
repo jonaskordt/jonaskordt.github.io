@@ -4,4 +4,5 @@ export default interface CardProps extends HTMLAttributes<HTMLElement> {
   preset?: string;
 
   to?: string;
+  clickCallback?: () => void;
 }

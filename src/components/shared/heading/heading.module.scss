@@ -35,3 +35,9 @@
   font-size: 30px;
   margin-bottom: 15px;
 }
+
+.centered {
+  @extend .default;
+
+  text-align: center;
+}

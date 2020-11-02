@@ -5,7 +5,7 @@ import presets from "./card.module.scss";
 import CardProps from "./card.props";
 
 const Card: React.FC<CardProps> = (props) => {
-  const { children, to, preset = "default", ...rest } = props;
+  const { children, to, clickCallback, preset = "default", ...rest } = props;
 
   const history = useHistory();
 
@@ -19,7 +19,7 @@ const Card: React.FC<CardProps> = (props) => {
   return (
     <div
       {...rest}
-      onClick={clickHandler}
+      onClick={clickCallback || clickHandler}
       role="link"
       className={presets[preset]}
     >
