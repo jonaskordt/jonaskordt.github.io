@@ -16,12 +16,12 @@
 .canvasContainer {
   align-self: stretch;
   flex-grow: 1;
-  margin-left: 70px;
+  margin-left: 50px;
   min-height: 0;
   min-width: 0;
 
   @include for-phone-only {
-    margin-left: 20px;
+    margin-left: 0;
   }
 }
 

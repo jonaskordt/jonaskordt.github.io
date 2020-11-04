@@ -59,3 +59,8 @@ $half-blur: ($blur / 2);
   box-shadow: 2px 2px 2px #688b88 inset,
     (-2px) (-2px) 2px #b7cfcd inset;
 }
+
+@mixin scroll-shadow {
+  box-shadow: 1px 1px 2px #a1a9b6 inset,
+    (-1px) (-1px) 2px #ffffff inset;
+}

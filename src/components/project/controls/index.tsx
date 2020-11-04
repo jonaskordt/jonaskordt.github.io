@@ -21,14 +21,16 @@ const Controls: React.FC<ControlsProps> = (props) => {
   return (
     <div {...rest} className={presets[preset]}>
       <Heading text="Controls" />
-      <KeyControl
-        keys={["f"]}
-        action="toggle fullscreen"
-        callback={fCallback}
-      />
-      <ToggleControl action="toggle setting" set={tCallback} initialValue />
-      <SliderControl name="Slider" callback={sCallback} initialValue={0.5} />
-      <ControlInfo controls={["Point", "Click"]} action="erase" />
+      <div>
+        <KeyControl
+          keys={["f"]}
+          action="toggle fullscreen"
+          callback={fCallback}
+        />
+        <ToggleControl action="toggle setting" set={tCallback} initialValue />
+        <SliderControl name="Slider" callback={sCallback} initialValue={0.5} />
+        <ControlInfo controls={["Point", "Click"]} action="erase" />
+      </div>
     </div>
   );
 };
