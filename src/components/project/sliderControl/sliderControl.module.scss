@@ -1,0 +1,57 @@
+@import "../../../theme";
+
+.default {
+  background-color: $control-background;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 15px;
+  width: 250px;
+}
+
+.text {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.track {
+  background-color: $background-color;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 8px;
+  margin-top: 20px;
+  position: relative;
+  transition: box-shadow linear 0.1s;
+  
+  @include slider-shadow;
+}
+
+.track:hover {
+  @include slider-hover-shadow;
+}
+
+.trackFiller {
+  background-color: $green;
+  border-radius: inherit;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.knubWrapper {
+  position: absolute;
+  top: 50%;
+}
+
+.knub {
+  background-color: $background-color;
+  border: solid $green 3px;
+  border-radius: 10px;
+  height: 14px;
+  left: -10px;
+  position: absolute;
+  top: -10px;
+  width: 14px;
+}

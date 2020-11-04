@@ -2,6 +2,7 @@ import React from "react";
 
 import Heading from "../../shared/heading";
 import KeyControl from "../keyControl";
+import SliderControl from "../sliderControl";
 import ToggleControl from "../toggleControl";
 import presets from "./controls.module.scss";
 import ControlsProps from "./controls.props";
@@ -10,6 +11,8 @@ import ControlsProps from "./controls.props";
 const fCallback = () => console.log("F");
 // eslint-disable-next-line no-console
 const tCallback = (state: boolean) => console.log(state);
+// eslint-disable-next-line no-console
+const sCallback = (value: number) => console.log(value);
 
 const Controls: React.FC<ControlsProps> = (props) => {
   const { preset = "default", ...rest } = props;
@@ -23,6 +26,7 @@ const Controls: React.FC<ControlsProps> = (props) => {
         callback={fCallback}
       />
       <ToggleControl action="toggle setting" set={tCallback} initialValue />
+      <SliderControl name="Slider" callback={sCallback} initialValue={0.5} />
     </div>
   );
 };

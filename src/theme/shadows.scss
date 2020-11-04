@@ -39,3 +39,13 @@ $half-blur: ($blur / 2);
   box-shadow: $fourth-offset $fourth-offset $half-blur #bac1cc inset,
     (-$fourth-offset) (-$fourth-offset) $half-blur #edeff3 inset;
 }
+
+@mixin slider-shadow {
+  box-shadow: 3px 3px 3px #aab1bb,
+    -3px -3px 3px #e5e8ec, -1px -1px 1px #ffffff;
+}
+
+@mixin slider-hover-shadow {
+  box-shadow: 2px 2px 3px #aab1bb,
+    -2px -2px 3px #e5e8ec;
+}
