@@ -15,41 +15,40 @@
   border-radius: 15px;
   cursor: pointer;
   height: 30px;
-  overflow: hidden;
   position: relative;
   user-select: none;
   width: 50px;
 
-  @include progress-shadow;
+  @include toggle-shadow;
 }
 
 .knub {
   background-color: $background-color;
-  border-radius: 14px;
-  height: 28px;
+  border-radius: 15px;
+  height: 30px;
   position: absolute;
   right: 0;
   top: 0;
-  width: 28px;
+  width: 30px;
 }
 
 .background {
   background-color: $green;
-  border-radius: 14px;
-  height: 28px;
-  left: 1px;
+  border-radius: 15px;
+  bottom: 0px;
+  left: 0px;
   position: absolute;
-  top: 1px;
-  transition: left linear 0.2s, background-color linear 0s 0s;
-  width: 48px;
+  right: 0px;
+  top: 0px;
+  transition: right linear 0.15s;
+
+  @include toggle-green-shadow;
 }
 
 .backgroundInactive {
   @extend .background;
-  
-  background-color: unset;
-  left: -19px;
-  transition: left linear 0.2s, background-color linear 0s 0.2s;
+
+  right: 20px;
 }
 
 .text {
