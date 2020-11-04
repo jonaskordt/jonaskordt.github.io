@@ -1,6 +1,7 @@
 import React from "react";
 
 import Heading from "../../shared/heading";
+import ControlInfo from "../controlInfo";
 import KeyControl from "../keyControl";
 import SliderControl from "../sliderControl";
 import ToggleControl from "../toggleControl";
@@ -27,6 +28,7 @@ const Controls: React.FC<ControlsProps> = (props) => {
       />
       <ToggleControl action="toggle setting" set={tCallback} initialValue />
       <SliderControl name="Slider" callback={sCallback} initialValue={0.5} />
+      <ControlInfo controls={["Point", "Click"]} action="erase" />
     </div>
   );
 };
