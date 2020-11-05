@@ -1,11 +1,9 @@
 import { HTMLAttributes } from "react";
 
-interface KeyControlProps extends HTMLAttributes<HTMLElement> {
-  preset?: string;
+import { IKeyControl } from "../../../lib/types/controls";
 
-  keys: string[];
-  action: string;
-  callback: () => void;
+interface KeyControlProps extends HTMLAttributes<HTMLElement>, IKeyControl {
+  preset?: string;
 }
 
 export default KeyControlProps;

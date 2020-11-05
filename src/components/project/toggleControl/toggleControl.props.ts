@@ -1,11 +1,11 @@
 import { HTMLAttributes } from "react";
 
-interface ToggleControlProps extends HTMLAttributes<HTMLElement> {
-  preset?: string;
+import { IUIToggleControl } from "../../../lib/types/controls";
 
-  action: string;
-  initialValue: boolean;
-  set: (state: boolean) => void;
+interface ToggleControlProps
+  extends HTMLAttributes<HTMLElement>,
+    IUIToggleControl {
+  preset?: string;
 }
 
 export default ToggleControlProps;

@@ -8,13 +8,10 @@ import ToggleControl from "../toggleControl";
 import presets from "./controls.module.scss";
 import ControlsProps from "./controls.props";
 
-// eslint-disable-next-line no-console
-const tCallback = (state: boolean) => console.log(state);
-// eslint-disable-next-line no-console
-const sCallback = (value: number) => console.log(value);
-
 const Controls: React.FC<ControlsProps> = (props) => {
-  const { preset = "default", toggleFullScreen, ...rest } = props;
+  const { preset = "default", toggleFullScreen, controls, ...rest } = props;
+
+  const [toggleControls, sliderControls, mouseControls, keyControls] = controls;
 
   return (
     <div {...rest} className={presets[preset]}>
@@ -25,9 +22,18 @@ const Controls: React.FC<ControlsProps> = (props) => {
           action="toggle fullscreen"
           callback={toggleFullScreen}
         />
-        <ToggleControl action="toggle setting" set={tCallback} initialValue />
-        <SliderControl name="Slider" callback={sCallback} initialValue={0.5} />
-        <ControlInfo controls={["Point", "Click"]} action="erase" />
+        {toggleControls.map((c) => (
+          <ToggleControl key={c.action} {...c} />
+        ))}
+        {sliderControls.map((c) => (
+          <SliderControl key={c.action} {...c} />
+        ))}
+        {mouseControls.map((c) => (
+          <ControlInfo key={c.action} {...c} />
+        ))}
+        {keyControls.map((c) => (
+          <KeyControl key={c.action} {...c} />
+        ))}
       </div>
     </div>
   );

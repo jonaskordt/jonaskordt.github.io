@@ -1,10 +1,9 @@
 import { HTMLAttributes } from "react";
 
-interface ControlInfoProps extends HTMLAttributes<HTMLElement> {
-  preset?: string;
+import { IMouseControl } from "../../../lib/types/controls";
 
-  controls: string[];
-  action: string;
+interface ControlInfoProps extends HTMLAttributes<HTMLElement>, IMouseControl {
+  preset?: string;
 }
 
 export default ControlInfoProps;

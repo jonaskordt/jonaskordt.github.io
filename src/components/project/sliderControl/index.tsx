@@ -6,7 +6,7 @@ import SliderControlProps from "./sliderControl.props";
 
 const SliderControl: React.FC<SliderControlProps> = (props) => {
   const {
-    name,
+    action,
     callback,
     min = 0,
     max = 1,
@@ -68,7 +68,7 @@ const SliderControl: React.FC<SliderControlProps> = (props) => {
 
   return (
     <div {...rest} className={presets[preset]}>
-      <p className={presets.text}>{name}</p>
+      <p className={presets.text}>{action}</p>
       <div
         className={presets.track}
         role="button"

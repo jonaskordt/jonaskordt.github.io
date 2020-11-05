@@ -1,14 +1,11 @@
 import { HTMLAttributes } from "react";
 
-interface SliderControlProps extends HTMLAttributes<HTMLElement> {
-  preset?: string;
+import { IUISliderControl } from "../../../lib/types/controls";
 
-  name: string;
-  callback: (value: number) => void;
-  initialValue: number;
-  min?: number;
-  max?: number;
-  step?: number;
+interface SliderControlProps
+  extends HTMLAttributes<HTMLElement>,
+    IUISliderControl {
+  preset?: string;
 }
 
 export default SliderControlProps;

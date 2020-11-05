@@ -4,14 +4,14 @@ import presets from "./toggleControl.module.scss";
 import ToggleControlProps from "./toggleControl.props";
 
 const ToggleControl: React.FC<ToggleControlProps> = (props) => {
-  const { action, initialValue, set, preset = "default", ...rest } = props;
+  const { action, initialValue, callback, preset = "default", ...rest } = props;
 
   const [state, setState] = useState(initialValue);
 
   const onClick = useCallback(() => {
-    set(!state);
+    callback(!state);
     setState(!state);
-  }, [set, state]);
+  }, [callback, state]);
 
   return (
     <div {...rest} className={presets[preset]}>
