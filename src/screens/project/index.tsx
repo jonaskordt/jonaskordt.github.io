@@ -6,7 +6,7 @@ import WebGLCanvas from "../../components/project/webGLCanvas";
 import Header from "../../components/shared/header";
 import Heading from "../../components/shared/heading";
 import Screen from "../../components/shared/screen";
-import CanvasControler from "../../content/projects/default";
+import CanvasController from "../../content/projects/default";
 import { noControls } from "../../lib/types/controls";
 import presets from "./project.module.scss";
 
@@ -14,7 +14,7 @@ interface IProjectParams {
   projectId: string;
 }
 
-let canvasControler: CanvasControler | undefined;
+let canvasController: CanvasController | undefined;
 
 const Project: React.FC = () => {
   const { projectId } = useParams<IProjectParams>();
@@ -27,10 +27,10 @@ const Project: React.FC = () => {
 
   useEffect(() => {
     if (canvasRef.current) {
-      canvasControler = new CanvasControler(canvasRef.current);
+      canvasController = new CanvasController(canvasRef.current);
     }
     return () => {
-      canvasControler?.dispose();
+      canvasController?.dispose();
     };
   }, []);
 
@@ -66,7 +66,7 @@ const Project: React.FC = () => {
         <div className={presets.fullRow}>
           <Controls
             toggleFullScreen={toggleFullScreen}
-            controls={canvasControler?.controls || noControls}
+            controls={canvasController?.controls || noControls}
           />
           <div
             className={

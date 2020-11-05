@@ -2,7 +2,7 @@ import ResizeSensor from "css-element-queries/src/ResizeSensor";
 
 import Controls, { noControls } from "../../../lib/types/controls";
 
-class CanvasControler {
+class CanvasController {
   public controls: Controls = noControls;
 
   private resizeSensor: ResizeSensor;
@@ -27,4 +27,4 @@ class CanvasControler {
   };
 }
 
-export default CanvasControler;
+export default CanvasController;
