@@ -16,8 +16,10 @@
 
 .controls {
   @extend .text;
-
+  
+  flex-shrink: 0;
   font-weight: 700;
+  max-width: 120px;
 }
 
 .action {
