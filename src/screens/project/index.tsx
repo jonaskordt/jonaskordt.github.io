@@ -31,7 +31,7 @@ const Project: React.FC = () => {
     return () => {
       canvasHandler?.dispose();
     };
-  });
+  }, []);
 
   /* Canvas Handler End */
 
