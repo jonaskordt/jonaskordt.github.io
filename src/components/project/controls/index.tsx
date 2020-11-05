@@ -9,14 +9,12 @@ import presets from "./controls.module.scss";
 import ControlsProps from "./controls.props";
 
 // eslint-disable-next-line no-console
-const fCallback = () => console.log("F");
-// eslint-disable-next-line no-console
 const tCallback = (state: boolean) => console.log(state);
 // eslint-disable-next-line no-console
 const sCallback = (value: number) => console.log(value);
 
 const Controls: React.FC<ControlsProps> = (props) => {
-  const { preset = "default", ...rest } = props;
+  const { preset = "default", toggleFullScreen, ...rest } = props;
 
   return (
     <div {...rest} className={presets[preset]}>
@@ -25,7 +23,7 @@ const Controls: React.FC<ControlsProps> = (props) => {
         <KeyControl
           keys={["f"]}
           action="toggle fullscreen"
-          callback={fCallback}
+          callback={toggleFullScreen}
         />
         <ToggleControl action="toggle setting" set={tCallback} initialValue />
         <SliderControl name="Slider" callback={sCallback} initialValue={0.5} />

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Controls from "../../components/project/controls";
@@ -20,6 +20,8 @@ const Project: React.FC = () => {
   // eslint-disable-next-line no-console
   console.log(projectId);
 
+  /* Canvas Handler */
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -31,15 +33,46 @@ const Project: React.FC = () => {
     };
   });
 
+  /* Canvas Handler End */
+
+  /* Full Screen */
+
+  const [fullScreen, setFullScreen] = useState(false);
+
+  const toggleFullScreen = useCallback(() => {
+    setFullScreen(!fullScreen);
+  }, [fullScreen]);
+
+  const handleKeyEvent = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "f") toggleFullScreen();
+    },
+    [toggleFullScreen],
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyEvent);
+    return () => document.removeEventListener("keydown", handleKeyEvent);
+  }, [handleKeyEvent]);
+
+  /* Full Screen End */
+
   return (
     <Screen preset="fullHeight">
       <Header preset="thin" />
       <div className={presets.container}>
         <Heading preset="centered" text="Project Name" />
         <div className={presets.fullRow}>
-          <Controls />
-          <div className={presets.canvasContainer}>
-            <WebGLCanvas ref={canvasRef} />
+          <Controls toggleFullScreen={toggleFullScreen} />
+          <div
+            className={
+              fullScreen ? presets.fullScreen : presets.canvasContainer
+            }
+          >
+            <WebGLCanvas
+              ref={canvasRef}
+              preset={fullScreen ? "fullScreen" : undefined}
+            />
           </div>
         </div>
         <p className={presets.text}>
