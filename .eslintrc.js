@@ -25,5 +25,7 @@ module.exports = {
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/interactive-supports-focus": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "import/no-cycle": "off",
   },
 };
