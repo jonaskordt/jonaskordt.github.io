@@ -3,6 +3,9 @@ import YouTube from "react-youtube-embed";
 
 import Heading from "../../components/shared/heading";
 
+export const classifaiQuickSummary =
+  "World first usable active learning system for medical image segmentation. Developed as a bachelor’s project at HPI.";
+
 const classifaiBlog = (
   <div>
     <Heading text="Classifai" />

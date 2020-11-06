@@ -6,6 +6,7 @@ import WebGLCanvas from "../../components/project/webGLCanvas";
 import Header from "../../components/shared/header";
 import Heading from "../../components/shared/heading";
 import Screen from "../../components/shared/screen";
+import { projects } from "../../content";
 import CanvasController from "../../content/projects/default";
 import { noControls } from "../../lib/types/controls";
 import presets from "./project.module.scss";
@@ -18,23 +19,29 @@ let canvasController: CanvasController | undefined;
 
 const Project: React.FC = () => {
   const { projectId } = useParams<IProjectParams>();
-  // eslint-disable-next-line no-console
-  console.log(projectId);
+  const project = projects[projectId];
 
-  /* Canvas Handler */
+  /* Canvas Controller */
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  // Since canvasController is volatile state we trick React to force
+  // an update once the effect has created it by assigning a new object
+  // as state through forceUpdate
+  const [, forceUpdate] = useState({});
   useEffect(() => {
-    if (canvasRef.current) {
-      canvasController = new CanvasController(canvasRef.current);
+    if (canvasRef.current && project) {
+      canvasController = new project.CanvasController(canvasRef.current);
+
+      // Here we asign the new object to force the update
+      forceUpdate({});
     }
     return () => {
       canvasController?.dispose();
     };
-  }, []);
+  }, [project]);
 
-  /* Canvas Handler End */
+  /* Canvas Controller End */
 
   /* Full Screen */
 
@@ -61,36 +68,32 @@ const Project: React.FC = () => {
   return (
     <Screen preset="fullHeight">
       <Header preset="thin" />
-      <div className={presets.container}>
-        <Heading preset="centered" text="Project Name" />
-        <div className={presets.fullRow}>
-          <Controls
-            toggleFullScreen={toggleFullScreen}
-            controls={canvasController?.controls || noControls}
-          />
-          <div
-            className={
-              fullScreen ? presets.fullScreen : presets.canvasContainer
-            }
-          >
-            <WebGLCanvas
-              ref={canvasRef}
-              preset={fullScreen ? "fullScreen" : undefined}
+      {project ? (
+        <div className={presets.container}>
+          <Heading preset="centered" text={project.name} />
+          <div className={presets.fullRow}>
+            <Controls
+              toggleFullScreen={toggleFullScreen}
+              controls={canvasController?.controls || noControls}
             />
+            <div
+              className={
+                fullScreen ? presets.fullScreen : presets.canvasContainer
+              }
+            >
+              <WebGLCanvas
+                ref={canvasRef}
+                preset={fullScreen ? "fullScreen" : undefined}
+              />
+            </div>
           </div>
+          <p className={presets.text}>{project.summary}</p>
         </div>
-        <p className={presets.text}>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-          ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-          sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-          et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-          takimata sanctus est Lorem ipsum dolor sit amet.
-        </p>
-      </div>
+      ) : (
+        <div className={presets.container}>
+          <p>Project {projectId} doesn&apos;t exist yet.</p>
+        </div>
+      )}
     </Screen>
   );
 };

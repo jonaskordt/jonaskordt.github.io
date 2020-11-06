@@ -8,23 +8,22 @@ class CanvasController {
   private resizeSensor: ResizeSensor;
 
   constructor(protected canvas: HTMLCanvasElement) {
-    this.resizeSensor = new ResizeSensor(
-      canvas.parentElement!,
-      this.resizeCanvas,
+    this.resizeSensor = new ResizeSensor(canvas.parentElement!, () =>
+      this.resizeCanvas(),
     );
   }
 
-  public dispose: () => void = () => {
+  public dispose(): void {
     this.resizeSensor.detach();
-  };
+  }
 
-  protected resizeCanvas: () => void = () => {
+  protected resizeCanvas(): void {
     const parent = this.canvas.parentElement;
     if (!parent) return;
 
     this.canvas.width = parent.clientWidth - 2;
     this.canvas.height = parent.clientHeight - 2;
-  };
+  }
 }
 
 export default CanvasController;

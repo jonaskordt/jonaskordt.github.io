@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import Header from "../../components/shared/header";
 import Screen from "../../components/shared/screen";
-import blogs from "../../content";
+import { blogs } from "../../content";
 import presets from "./blog.module.scss";
 
 interface IBlogParams {

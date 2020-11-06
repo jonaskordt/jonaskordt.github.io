@@ -1,0 +1,45 @@
+import TransparentPlanes from ".";
+import Controls from "../../../lib/types/controls";
+
+const transparentPlanesControls: (
+  canvasController: TransparentPlanes,
+) => Controls = (canvasController: TransparentPlanes) => {
+  return [
+    // Toggle Controls
+    [
+      {
+        action: "Default transparency",
+        initialValue: false,
+        callback: () => {},
+      },
+      {
+        action: "Separate plane parts",
+        initialValue: false,
+        callback: () => {},
+      },
+    ],
+    // Slider Controls
+    [
+      {
+        action: "Plane opacity",
+        initialValue: 0.5,
+        callback: canvasController.setOpacity,
+      },
+    ],
+    // Mouse Controls
+    [
+      {
+        action: "rotate view",
+        controls: ["Drag & Drop"],
+      },
+      {
+        action: "zoom",
+        controls: ["Scroll"],
+      },
+    ],
+    // Key Controls
+    [],
+  ];
+};
+
+export default transparentPlanesControls;
