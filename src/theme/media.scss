@@ -15,3 +15,9 @@
     @content;
   }
 }
+
+@mixin for-huge-screens {
+  @media (min-width: 2200px) {
+    @content;
+  }
+}

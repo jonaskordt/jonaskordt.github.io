@@ -71,11 +71,13 @@ const Project: React.FC = () => {
       {project ? (
         <div className={presets.container}>
           <Heading preset="centered" text={project.name} />
-          <div className={presets.fullRow}>
-            <Controls
-              toggleFullScreen={toggleFullScreen}
-              controls={canvasController?.controls || noControls}
-            />
+          <div className={presets.grid}>
+            <div className={presets.controlsContainer}>
+              <Controls
+                toggleFullScreen={toggleFullScreen}
+                controls={canvasController?.controls || noControls}
+              />
+            </div>
             <div
               className={
                 fullScreen ? presets.fullScreen : presets.canvasContainer
@@ -86,8 +88,8 @@ const Project: React.FC = () => {
                 preset={fullScreen ? "fullScreen" : undefined}
               />
             </div>
+            <p className={presets.text}>{project.summary}</p>
           </div>
-          <p className={presets.text}>{project.summary}</p>
         </div>
       ) : (
         <div className={presets.container}>

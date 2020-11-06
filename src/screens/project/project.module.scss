@@ -13,10 +13,33 @@
   }
 }
 
+.grid {
+  column-gap: 50px;
+  display: grid;
+  grid-template-columns: 300px auto;
+  grid-template-rows: auto auto;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  row-gap: 30px;
+
+  @include for-phone-only {
+    column-gap: 10px;
+    row-gap: 10px;
+  }
+}
+
+.controlsContainer {
+  grid-area: 1 / 1 / span 2 / span 1;
+  min-height: 0;
+
+  @include for-medium-screens {
+    grid-area: 1 / 1 / span 1 / span 1;
+  }
+}
+
 .canvasContainer {
-  align-self: stretch;
-  flex-grow: 1;
-  margin-left: 50px;
+  grid-area: 1 / 2 / span 1 / span 1;
   min-height: 0;
   min-width: 0;
 
@@ -35,31 +58,18 @@
   width: 100%;
 }
 
-.fullRow{
-  display: flex;
-  flex-grow: 1;
-  flex-shrink: 1;
-  min-height: 0;
-  min-width: 0;
-}
-
-.fullCollumn {
-  @extend .fullRow;
-
-  flex-direction: column;
-}
-
 .text {
-  flex-shrink: 0;
   font-size: 20px;
+  grid-area: 2 / 2 / span 1 / span 1;
   line-height: 30px;
-  margin: 30px 350px 0px;
-  max-height: 300px;
-  min-width: 73%;
   overflow: hidden;
   text-align: justify;
 
   @include for-medium-screens {
-    margin: 30px 0px 0px;
+    grid-area: 2 / 1 / span 1 / span 2;
+  }
+
+  @include for-huge-screens {
+    margin-right: 350px;
   }
 }
