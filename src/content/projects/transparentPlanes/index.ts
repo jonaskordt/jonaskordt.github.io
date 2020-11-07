@@ -39,6 +39,7 @@ class TransparentPlanes extends CanvasController {
         color,
         transparent: true,
         opacity: 0.5,
+        side: THREE.DoubleSide,
       });
     });
 
