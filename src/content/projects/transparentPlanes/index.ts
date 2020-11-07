@@ -19,6 +19,7 @@ class TransparentPlanes extends CanvasController {
     this.controls = transparentPlanesControls(this);
 
     this.renderer = new THREE.WebGLRenderer({ alpha: true, canvas });
+    this.renderer.setPixelRatio(window.devicePixelRatio);
     this.camera = new THREE.PerspectiveCamera(
       60,
       canvas.width / canvas.height,
