@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import CanvasController from "../default";
 import transparentPlanesControls from "./transparentPlanes.controls";
@@ -10,6 +11,9 @@ class TransparentPlanes extends CanvasController {
 
   private materials: THREE.MeshBasicMaterial[];
   private planes: THREE.Mesh[];
+
+  private cameraControls: OrbitControls;
+  private updateCameraControls = true;
 
   private renderDirty = true;
 
@@ -26,8 +30,7 @@ class TransparentPlanes extends CanvasController {
       0.01,
       1000,
     );
-    // Position Camera?
-    this.camera.position.set(5, 5, 5);
+    this.camera.position.set(3, 3, 3);
     this.camera.lookAt(0, 0, 0);
 
     this.materials = ["red", "green", "blue"].map((cString) => {
@@ -48,9 +51,10 @@ class TransparentPlanes extends CanvasController {
     this.planes[2].translateX(2);
     this.scene.add(...this.planes);
 
-    // Event Listeners
-
-    // Orbit Controls?
+    this.cameraControls = new OrbitControls(this.camera, this.canvas);
+    this.cameraControls.enableDamping = true;
+    this.cameraControls.enablePan = false;
+    this.cameraControls.addEventListener("change", this.render);
 
     this.animate();
   }
@@ -67,6 +71,7 @@ class TransparentPlanes extends CanvasController {
 
   private animate = () => {
     window.requestAnimationFrame(this.animate);
+    if (this.updateCameraControls) this.cameraControls.update();
 
     if (this.renderDirty) this.forceRender();
   };
@@ -78,6 +83,13 @@ class TransparentPlanes extends CanvasController {
   public setOpacity: (opacity: number) => void = (opacity: number) => {
     this.materials.forEach((material) => material.setValues({ opacity }));
     this.render();
+  };
+
+  public setSmoothCameraControls: (state: boolean) => void = (
+    state: boolean,
+  ) => {
+    this.updateCameraControls = state;
+    this.cameraControls.enableDamping = state;
   };
 
   private forceRender = () => {
