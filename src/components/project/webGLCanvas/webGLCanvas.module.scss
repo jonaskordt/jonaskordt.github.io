@@ -5,6 +5,10 @@
   border-radius: 20px;
 }
 
+.default:focus {
+  outline: none;
+}
+
 .fullScreen {
   @extend .default;
   
