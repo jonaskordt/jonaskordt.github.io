@@ -2,6 +2,13 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import CanvasController from "../default";
+import {
+  createCamera,
+  createCameraControls,
+  createMaterials,
+  createRenderer,
+  createSplitPlanes,
+} from "./creators";
 import transparentPlanesControls from "./transparentPlanes.controls";
 
 class TransparentPlanes extends CanvasController {
@@ -22,73 +29,21 @@ class TransparentPlanes extends CanvasController {
 
     this.controls = transparentPlanesControls(this);
 
-    this.renderer = new THREE.WebGLRenderer({ alpha: true, canvas });
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.camera = new THREE.PerspectiveCamera(
-      30,
-      canvas.width / canvas.height,
-      0.01,
-      1000,
-    );
-    this.camera.position.set(3, 3, 3);
-    this.camera.lookAt(0, 0, 0);
+    this.renderer = createRenderer(canvas);
+    this.camera = createCamera(canvas);
 
-    this.materials = ["red", "green", "blue"].map((cString) => {
-      const color = new THREE.Color(cString);
-      return new THREE.MeshBasicMaterial({
-        color,
-        transparent: true,
-        opacity: 0.5,
-        side: THREE.DoubleSide,
-      });
-    });
+    this.materials = createMaterials();
 
-    this.planes = this.materials.map((material, index) => {
-      const geometries = [
-        new THREE.PlaneBufferGeometry(1, 1),
-        new THREE.PlaneBufferGeometry(1, 1),
-        new THREE.PlaneBufferGeometry(1, 1),
-        new THREE.PlaneBufferGeometry(1, 1),
-      ];
-
-      /*
-       * Plane part positioning:
-       * 2 | 3
-       * --+--
-       * 0 | 1
-       */
-      geometries[0].translate(-0.5, -0.5, 0);
-      geometries[1].translate(0.5, -0.5, 0);
-      geometries[2].translate(-0.5, 0.5, 0);
-      geometries[3].translate(0.5, 0.5, 0);
-
-      return geometries.map((geometry) => {
-        const planePart = new THREE.Mesh(geometry, material);
-        planePart.userData.index = index;
-
-        switch (index) {
-          case 1:
-            planePart.rotateX(Math.PI / 2);
-            planePart.rotateY(-Math.PI / 2);
-            break;
-          case 2:
-            planePart.rotateX(Math.PI / 2);
-            break;
-          default:
-            break;
-        }
-
-        return planePart;
-      });
-    });
+    this.planes = createSplitPlanes(this.materials);
     this.scene.add(...this.planes.flat());
 
     // Event listeners for moving the planes
 
-    this.cameraControls = new OrbitControls(this.camera, this.canvas);
-    this.cameraControls.enableDamping = true;
-    this.cameraControls.enablePan = false;
-    this.cameraControls.addEventListener("change", this.render);
+    this.cameraControls = createCameraControls(
+      this.camera,
+      this.canvas,
+      this.render,
+    );
 
     this.animate();
   }
