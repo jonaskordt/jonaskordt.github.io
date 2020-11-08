@@ -10,7 +10,7 @@ class TransparentPlanes extends CanvasController {
   private camera: THREE.PerspectiveCamera;
 
   private materials: THREE.MeshBasicMaterial[];
-  private planes: THREE.Mesh[];
+  private planes: THREE.Mesh[][];
 
   private cameraControls: OrbitControls;
   private updateCameraControls = true;
@@ -25,7 +25,7 @@ class TransparentPlanes extends CanvasController {
     this.renderer = new THREE.WebGLRenderer({ alpha: true, canvas });
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.camera = new THREE.PerspectiveCamera(
-      60,
+      30,
       canvas.width / canvas.height,
       0.01,
       1000,
@@ -43,14 +43,47 @@ class TransparentPlanes extends CanvasController {
       });
     });
 
-    // Split Sprites
-    this.planes = this.materials.map((material) => {
-      const geometry = new THREE.PlaneBufferGeometry(1, 1);
-      return new THREE.Mesh(geometry, material);
+    this.planes = this.materials.map((material, index) => {
+      const geometries = [
+        new THREE.PlaneBufferGeometry(1, 1),
+        new THREE.PlaneBufferGeometry(1, 1),
+        new THREE.PlaneBufferGeometry(1, 1),
+        new THREE.PlaneBufferGeometry(1, 1),
+      ];
+
+      /*
+       * Plane part positioning:
+       * 2 | 3
+       * --+--
+       * 0 | 1
+       */
+      geometries[0].translate(-0.5, -0.5, 0);
+      geometries[1].translate(0.5, -0.5, 0);
+      geometries[2].translate(-0.5, 0.5, 0);
+      geometries[3].translate(0.5, 0.5, 0);
+
+      return geometries.map((geometry) => {
+        const planePart = new THREE.Mesh(geometry, material);
+        planePart.userData.index = index;
+
+        switch (index) {
+          case 1:
+            planePart.rotateX(Math.PI / 2);
+            planePart.rotateY(-Math.PI / 2);
+            break;
+          case 2:
+            planePart.rotateX(Math.PI / 2);
+            break;
+          default:
+            break;
+        }
+
+        return planePart;
+      });
     });
-    this.planes[1].translateX(1);
-    this.planes[2].translateX(2);
-    this.scene.add(...this.planes);
+    this.scene.add(...this.planes.flat());
+
+    // Event listeners for moving the planes
 
     this.cameraControls = new OrbitControls(this.camera, this.canvas);
     this.cameraControls.enableDamping = true;
@@ -72,6 +105,7 @@ class TransparentPlanes extends CanvasController {
 
   private animate = () => {
     window.requestAnimationFrame(this.animate);
+
     if (this.updateCameraControls) this.cameraControls.update();
 
     if (this.renderDirty) this.forceRender();
