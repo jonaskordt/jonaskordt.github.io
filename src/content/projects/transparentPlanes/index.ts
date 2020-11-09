@@ -9,6 +9,11 @@ import {
   createRenderer,
   createSplitPlanes,
 } from "./creators";
+import {
+  getIntersectionsFromPointer,
+  removeEventListeners,
+  setUpEventListeners,
+} from "./interaction";
 import transparentPlanesControls from "./transparentPlanes.controls";
 
 class TransparentPlanes extends CanvasController {
@@ -21,6 +26,8 @@ class TransparentPlanes extends CanvasController {
 
   private cameraControls: OrbitControls;
   private updateCameraControls = true;
+
+  private lastMouseEvent?: MouseEvent;
 
   private renderDirty = true;
 
@@ -37,15 +44,20 @@ class TransparentPlanes extends CanvasController {
     this.planes = createSplitPlanes(this.materials);
     this.scene.add(...this.planes.flat());
 
-    // Event listeners for moving the planes
-
     this.cameraControls = createCameraControls(
       this.camera,
       this.canvas,
       this.render,
     );
 
+    setUpEventListeners(this.canvas, this.onMouseMove, this.onScroll);
+
     this.animate();
+  }
+
+  public dispose(): void {
+    super.dispose();
+    removeEventListeners(this.canvas, this.onMouseMove, this.onScroll);
   }
 
   protected resizeCanvas(): void {
@@ -80,6 +92,57 @@ class TransparentPlanes extends CanvasController {
   ) => {
     this.updateCameraControls = state;
     this.cameraControls.enableDamping = state;
+  };
+
+  private onMouseMove = (e: MouseEvent) => {
+    this.lastMouseEvent = e;
+  };
+
+  private onScroll = (e: WheelEvent) => {
+    if (e.ctrlKey || e.metaKey) {
+      // Stop the event to propagate to the orbit controls if custom control conditions apply
+      e.stopPropagation();
+
+      if (!this.lastMouseEvent || e.deltaY === 0) return;
+
+      const lastPointerPosition = {
+        x: this.lastMouseEvent.x,
+        y: this.lastMouseEvent.y,
+      };
+      const intersections = getIntersectionsFromPointer(
+        lastPointerPosition,
+        this.planes.flat(),
+        this.canvas,
+        this.camera,
+      );
+
+      if (!intersections.length) return;
+
+      const hoveredPlaneIndex = intersections[0].object.userData
+        .index as number;
+
+      const step = e.deltaY > 0 ? 1 / 100 : -1 / 100;
+
+      this.planes[hoveredPlaneIndex].forEach((planePart) => {
+        const { position } = planePart;
+
+        switch (hoveredPlaneIndex) {
+          case 0:
+            position.z = Math.min(1, Math.max(-1, position.z + step));
+            break;
+          case 1:
+            position.x = Math.min(1, Math.max(-1, position.x + step));
+            break;
+          case 2:
+            position.y = Math.min(1, Math.max(-1, position.y + step));
+            break;
+          default:
+            break;
+        }
+      });
+
+      this.render();
+    }
   };
 
   private forceRender = () => {

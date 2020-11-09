@@ -41,6 +41,10 @@ const transparentPlanesControls: (
         action: "zoom",
         controls: ["Scroll"],
       },
+      {
+        action: "move the planes",
+        controls: ["Ctrl", "Scroll"],
+      },
     ],
     // Key Controls
     [],
