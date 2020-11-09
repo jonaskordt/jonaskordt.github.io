@@ -48,6 +48,10 @@
   }
 }
 
+.canvasContainer:focus {
+  outline: none;
+}
+
 .fullScreen {
   background-color: $background-color;
   height: 100%;
