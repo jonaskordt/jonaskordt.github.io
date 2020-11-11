@@ -1,14 +1,10 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-const createCameraControls: (
+const createCameraControls = (
   camera: THREE.Camera,
   canvas: HTMLCanvasElement,
-  render: () => void,
-) => OrbitControls = (
-  camera: THREE.Camera,
-  canvas: HTMLCanvasElement,
-  render: () => void,
+  onChange: () => void,
 ) => {
   // Attach the event listeners of the controls to the parent element of the canvas.
   // This way other event handlers attached to the canvas itself can overwrite
@@ -18,7 +14,7 @@ const createCameraControls: (
   controls.enableDamping = true;
   controls.enablePan = false;
 
-  controls.addEventListener("change", render);
+  controls.addEventListener("change", onChange);
 
   return controls;
 };
