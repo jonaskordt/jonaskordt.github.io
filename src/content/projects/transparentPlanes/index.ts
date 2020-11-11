@@ -23,6 +23,7 @@ class TransparentPlanes extends CanvasController {
 
   private materials: THREE.MeshBasicMaterial[];
   private planes: THREE.Mesh[][];
+  private planeGroup: THREE.Group = new THREE.Group();
 
   private cameraControls: OrbitControls;
   private updateCameraControls = true;
@@ -42,7 +43,8 @@ class TransparentPlanes extends CanvasController {
     this.materials = createMaterials();
 
     this.planes = createSplitPlanes(this.materials);
-    this.scene.add(...this.planes.flat());
+    this.planeGroup.add(...this.planes.flat());
+    this.scene.add(this.planeGroup);
 
     this.cameraControls = createCameraControls(
       this.camera,
@@ -123,26 +125,42 @@ class TransparentPlanes extends CanvasController {
 
       const step = e.deltaY > 0 ? 1 / 100 : -1 / 100;
 
-      this.planes[hoveredPlaneIndex].forEach((planePart) => {
-        const { position } = planePart;
+      const { position } = this.planeGroup;
 
-        switch (hoveredPlaneIndex) {
-          case 0:
-            position.z = Math.min(1, Math.max(-1, position.z + step));
-            break;
-          case 1:
-            position.x = Math.min(1, Math.max(-1, position.x + step));
-            break;
-          case 2:
-            position.y = Math.min(1, Math.max(-1, position.y + step));
-            break;
-          default:
-            break;
-        }
-      });
+      switch (hoveredPlaneIndex) {
+        case 0:
+          position.z = Math.min(1, Math.max(-1, position.z + step));
+          break;
+        case 1:
+          position.x = Math.min(1, Math.max(-1, position.x + step));
+          break;
+        case 2:
+          position.y = Math.min(1, Math.max(-1, position.y + step));
+          break;
+        default:
+          break;
+      }
+
+      this.planeGroup.updateMatrixWorld(true);
+
+      this.scalePlaneParts();
 
       this.render();
     }
+  };
+
+  private scalePlaneParts = () => {
+    this.planes.forEach((plane, index) => {
+      const xAxis: "x" | "y" = ["x", "y", "x"][index] as "x" | "y";
+      const yAxis: "y" | "z" = ["y", "z", "z"][index] as "y" | "z";
+
+      const intersection = this.planeGroup.position;
+
+      plane[0].scale.set(1 + intersection[xAxis], 1 + intersection[yAxis], 1);
+      plane[1].scale.set(1 - intersection[xAxis], 1 + intersection[yAxis], 1);
+      plane[2].scale.set(1 + intersection[xAxis], 1 - intersection[yAxis], 1);
+      plane[3].scale.set(1 - intersection[xAxis], 1 - intersection[yAxis], 1);
+    });
   };
 
   private forceRender = () => {

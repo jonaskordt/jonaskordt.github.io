@@ -4,7 +4,7 @@ const applyRotation = (planePart: THREE.Mesh, planeIndex: number) => {
   switch (planeIndex) {
     case 1:
       planePart.rotateX(Math.PI / 2);
-      planePart.rotateY(-Math.PI / 2);
+      planePart.rotateY(Math.PI / 2);
       break;
     case 2:
       planePart.rotateX(Math.PI / 2);
