@@ -28,5 +28,6 @@ module.exports = {
     "@typescript-eslint/lines-between-class-members": "off",
     "import/no-cycle": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-bitwise": "off",
   },
 };

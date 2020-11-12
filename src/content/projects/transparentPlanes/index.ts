@@ -14,6 +14,7 @@ import {
   removeEventListeners,
   setUpEventListeners,
 } from "./interaction";
+import { getOctant, getOctantPlanes } from "./octants";
 import transparentPlanesControls from "./transparentPlanes.controls";
 
 class TransparentPlanes extends CanvasController {
@@ -27,6 +28,7 @@ class TransparentPlanes extends CanvasController {
 
   private cameraControls: OrbitControls;
   private updateCameraControls = true;
+  private cameraOctant?: number;
 
   private lastMouseEvent?: MouseEvent;
 
@@ -49,10 +51,12 @@ class TransparentPlanes extends CanvasController {
     this.cameraControls = createCameraControls(
       this.camera,
       this.canvas,
-      this.render,
+      this.onCameraMove,
     );
 
     setUpEventListeners(this.canvas, this.onMouseMove, this.onScroll);
+
+    this.updateRenderOrder();
 
     this.animate();
   }
@@ -108,9 +112,15 @@ class TransparentPlanes extends CanvasController {
       if (e.deltaY === 0) return;
       if (!this.moveIntersectionPoint(e.deltaY)) return;
       this.scalePlaneParts();
+      this.updateRenderOrder();
 
       this.render();
     }
+  };
+
+  private onCameraMove = () => {
+    this.updateRenderOrder();
+    this.render();
   };
 
   private moveIntersectionPoint = (deltaY: number) => {
@@ -164,6 +174,36 @@ class TransparentPlanes extends CanvasController {
       plane[1].scale.set(1 - intersection[xAxis], 1 + intersection[yAxis], 1);
       plane[2].scale.set(1 + intersection[xAxis], 1 - intersection[yAxis], 1);
       plane[3].scale.set(1 - intersection[xAxis], 1 - intersection[yAxis], 1);
+    });
+  };
+
+  private updateRenderOrder = () => {
+    // get the camera position in the local plane group coords
+    // (the intersection point is always the origin in the plane group)
+    const cameraPosition = this.planeGroup.worldToLocal(this.camera.position);
+
+    const cameraOctant = getOctant(cameraPosition);
+
+    if (this.cameraOctant === cameraOctant) return;
+
+    this.cameraOctant = cameraOctant;
+
+    const renderFirstOctant = 7 - cameraOctant;
+    const renderLastOctant = cameraOctant;
+
+    this.planes.flat().forEach((planePart) => {
+      // eslint-disable-next-line no-param-reassign
+      planePart.renderOrder = 1;
+    });
+
+    getOctantPlanes(renderFirstOctant, this.planes).forEach((planePart) => {
+      // eslint-disable-next-line no-param-reassign
+      planePart.renderOrder = 0;
+    });
+
+    getOctantPlanes(renderLastOctant, this.planes).forEach((planePart) => {
+      // eslint-disable-next-line no-param-reassign
+      planePart.renderOrder = 2;
     });
   };
 
