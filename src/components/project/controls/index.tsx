@@ -22,14 +22,14 @@ const Controls: React.FC<ControlsProps> = (props) => {
           action="toggle fullscreen"
           callback={toggleFullScreen}
         />
+        {mouseControls.map((c) => (
+          <ControlInfo key={c.action} {...c} />
+        ))}
         {toggleControls.map((c) => (
           <ToggleControl key={c.action} {...c} />
         ))}
         {sliderControls.map((c) => (
           <SliderControl key={c.action} {...c} />
-        ))}
-        {mouseControls.map((c) => (
-          <ControlInfo key={c.action} {...c} />
         ))}
         {keyControls.map((c) => (
           <KeyControl key={c.action} {...c} />
