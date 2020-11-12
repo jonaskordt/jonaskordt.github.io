@@ -199,7 +199,9 @@ class TransparentPlanes extends CanvasController {
   private updateRenderOrder = (forceUpdate = false) => {
     // get the camera position in the local plane group coords
     // (the intersection point is always the origin in the plane group)
-    const cameraPosition = this.planeGroup.worldToLocal(this.camera.position);
+    const cameraPosition = this.planeGroup.worldToLocal(
+      this.camera.position.clone(),
+    );
 
     const cameraOctant = getOctant(cameraPosition);
 
