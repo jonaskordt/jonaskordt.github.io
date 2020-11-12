@@ -105,48 +105,52 @@ class TransparentPlanes extends CanvasController {
       // Stop the event to propagate to the orbit controls if custom control conditions apply
       e.stopPropagation();
 
-      if (!this.lastMouseEvent || e.deltaY === 0) return;
-
-      const lastPointerPosition = {
-        x: this.lastMouseEvent.x,
-        y: this.lastMouseEvent.y,
-      };
-      const intersections = getIntersectionsFromPointer(
-        lastPointerPosition,
-        this.planes.flat(),
-        this.canvas,
-        this.camera,
-      );
-
-      if (!intersections.length) return;
-
-      const hoveredPlaneIndex = intersections[0].object.userData
-        .index as number;
-
-      const step = e.deltaY > 0 ? 1 / 100 : -1 / 100;
-
-      const { position } = this.planeGroup;
-
-      switch (hoveredPlaneIndex) {
-        case 0:
-          position.z = Math.min(1, Math.max(-1, position.z + step));
-          break;
-        case 1:
-          position.x = Math.min(1, Math.max(-1, position.x + step));
-          break;
-        case 2:
-          position.y = Math.min(1, Math.max(-1, position.y + step));
-          break;
-        default:
-          break;
-      }
-
-      this.planeGroup.updateMatrixWorld(true);
-
+      if (e.deltaY === 0) return;
+      if (!this.moveIntersectionPoint(e.deltaY)) return;
       this.scalePlaneParts();
 
       this.render();
     }
+  };
+
+  private moveIntersectionPoint = (deltaY: number) => {
+    if (!this.lastMouseEvent) return false;
+    const lastPointerPosition = {
+      x: this.lastMouseEvent.x,
+      y: this.lastMouseEvent.y,
+    };
+    const intersections = getIntersectionsFromPointer(
+      lastPointerPosition,
+      this.planes.flat(),
+      this.canvas,
+      this.camera,
+    );
+
+    if (!intersections.length) return false;
+
+    const hoveredPlaneIndex = intersections[0].object.userData.index as number;
+
+    const step = deltaY > 0 ? 1 / 100 : -1 / 100;
+
+    const { position } = this.planeGroup;
+
+    switch (hoveredPlaneIndex) {
+      case 0:
+        position.z = Math.min(1, Math.max(-1, position.z + step));
+        break;
+      case 1:
+        position.x = Math.min(1, Math.max(-1, position.x + step));
+        break;
+      case 2:
+        position.y = Math.min(1, Math.max(-1, position.y + step));
+        break;
+      default:
+        break;
+    }
+
+    this.planeGroup.updateMatrixWorld(true);
+
+    return true;
   };
 
   private scalePlaneParts = () => {
