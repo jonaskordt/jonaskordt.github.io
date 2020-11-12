@@ -28,7 +28,9 @@ class TransparentPlanes extends CanvasController {
 
   private cameraControls: OrbitControls;
   private updateCameraControls = true;
+
   private cameraOctant?: number;
+  private defaultTransparency = false;
 
   private lastMouseEvent?: MouseEvent;
 
@@ -98,6 +100,23 @@ class TransparentPlanes extends CanvasController {
   ) => {
     this.updateCameraControls = state;
     this.cameraControls.enableDamping = state;
+  };
+
+  public setDefaultTransparency: (state: boolean) => void = (
+    state: boolean,
+  ) => {
+    this.defaultTransparency = state;
+
+    if (state) {
+      this.planes.flat().forEach((planePart) => {
+        // eslint-disable-next-line no-param-reassign
+        planePart.renderOrder = 0;
+      });
+    } else {
+      this.updateRenderOrder(true);
+    }
+
+    this.render();
   };
 
   private onMouseMove = (e: MouseEvent) => {
@@ -177,16 +196,18 @@ class TransparentPlanes extends CanvasController {
     });
   };
 
-  private updateRenderOrder = () => {
+  private updateRenderOrder = (forceUpdate = false) => {
     // get the camera position in the local plane group coords
     // (the intersection point is always the origin in the plane group)
     const cameraPosition = this.planeGroup.worldToLocal(this.camera.position);
 
     const cameraOctant = getOctant(cameraPosition);
 
-    if (this.cameraOctant === cameraOctant) return;
+    if (this.cameraOctant === cameraOctant && !forceUpdate) return;
 
     this.cameraOctant = cameraOctant;
+
+    if (this.defaultTransparency) return;
 
     const renderFirstOctant = 7 - cameraOctant;
     const renderLastOctant = cameraOctant;

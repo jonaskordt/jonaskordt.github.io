@@ -10,7 +10,7 @@ const transparentPlanesControls: (
       {
         action: "Default transparency",
         initialValue: false,
-        callback: () => {},
+        callback: canvasController.setDefaultTransparency,
       },
       {
         action: "Separate plane parts",
