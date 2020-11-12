@@ -27,7 +27,6 @@ class TransparentPlanes extends CanvasController {
   private planeGroup: THREE.Group = new THREE.Group();
 
   private cameraControls: OrbitControls;
-  private updateCameraControls = true;
 
   private cameraOctant?: number;
   private defaultTransparency = false;
@@ -81,7 +80,7 @@ class TransparentPlanes extends CanvasController {
   private animate = () => {
     window.requestAnimationFrame(this.animate);
 
-    if (this.updateCameraControls) this.cameraControls.update();
+    this.cameraControls.update();
 
     if (this.renderDirty) this.forceRender();
   };
@@ -93,13 +92,6 @@ class TransparentPlanes extends CanvasController {
   public setOpacity: (opacity: number) => void = (opacity: number) => {
     this.materials.forEach((material) => material.setValues({ opacity }));
     this.render();
-  };
-
-  public setSmoothCameraControls: (state: boolean) => void = (
-    state: boolean,
-  ) => {
-    this.updateCameraControls = state;
-    this.cameraControls.enableDamping = state;
   };
 
   public setDefaultTransparency: (state: boolean) => void = (

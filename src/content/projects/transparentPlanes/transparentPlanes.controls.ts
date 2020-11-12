@@ -17,11 +17,6 @@ const transparentPlanesControls: (
         initialValue: false,
         callback: canvasController.setSeperatePlaneParts,
       },
-      {
-        action: "Smooth controls",
-        initialValue: true,
-        callback: canvasController.setSmoothCameraControls,
-      },
     ],
     // Slider Controls
     [
