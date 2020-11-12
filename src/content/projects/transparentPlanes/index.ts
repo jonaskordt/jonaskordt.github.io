@@ -119,6 +119,31 @@ class TransparentPlanes extends CanvasController {
     this.render();
   };
 
+  public setSeperatePlaneParts: (state: boolean) => void = (state: boolean) => {
+    if (state) {
+      const dist = 0.3;
+
+      this.planes[0][0].position.set(-dist, -dist, 0);
+      this.planes[0][1].position.set(dist, -dist, 0);
+      this.planes[0][2].position.set(-dist, dist, 0);
+      this.planes[0][3].position.set(dist, dist, 0);
+      this.planes[1][0].position.set(0, -dist, -dist);
+      this.planes[1][1].position.set(0, dist, -dist);
+      this.planes[1][2].position.set(0, -dist, dist);
+      this.planes[1][3].position.set(0, dist, dist);
+      this.planes[2][0].position.set(-dist, 0, -dist);
+      this.planes[2][1].position.set(dist, 0, -dist);
+      this.planes[2][2].position.set(-dist, 0, dist);
+      this.planes[2][3].position.set(dist, 0, dist);
+    } else {
+      this.planes.flat().forEach((planePart) => {
+        planePart.position.set(0, 0, 0);
+      });
+    }
+
+    this.render();
+  };
+
   private onMouseMove = (e: MouseEvent) => {
     this.lastMouseEvent = e;
   };

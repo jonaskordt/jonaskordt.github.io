@@ -15,7 +15,7 @@ const transparentPlanesControls: (
       {
         action: "Separate plane parts",
         initialValue: false,
-        callback: () => {},
+        callback: canvasController.setSeperatePlaneParts,
       },
       {
         action: "Smooth controls",
