@@ -1,7 +1,7 @@
 {
   "name": "website",
   "version": "0.1.0",
-  "homepage": "https://jonaskordt.github.io/",
+  "homepage": "https://jonaskordt.com/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
