@@ -27,11 +27,11 @@ const bachelorThesisBlog = (
       clinical environment, accelerate operation planning, for example for tumor
       resection operations.
     </p>
-    <p>For a demo of Classifai’s 3D Toolkit check out the video below.</p>
+    <p>For a demo of Classifai’s 3D Toolkit, check out the video below.</p>
     <div>
       <YouTube id="2O-99Zb-JR0" />
     </div>
-    <p>For access to the full thesis contanct me.</p>
+    <p>For access to the full thesis, contact me.</p>
   </div>
 );
 
