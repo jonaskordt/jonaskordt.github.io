@@ -4,6 +4,10 @@ import classifai3DIMG from "./images/classifai3D.png";
 import planesIMG from "./images/planes.png";
 import CanvasController from "./projects/default";
 import TransparentPlanes from "./projects/transparentPlanes";
+import bachelorThesisBlog, {
+  bachelorThesisQuickSummary,
+  bachelorThesisTitle,
+} from "./text/bachelorThesis";
 import classifaiBlog, { classifaiQuickSummary } from "./text/classifai";
 import {
   classifai3DQuickSummary,
@@ -19,6 +23,14 @@ export const blogs: { [id: string]: Blog } = {
     content: classifaiBlog,
     isPreview: false,
     img: classifaiIMG,
+  },
+  bachelorThesis: {
+    name: bachelorThesisTitle,
+    shortName: "Bachelor Thesis",
+    quickSummary: bachelorThesisQuickSummary,
+    content: bachelorThesisBlog,
+    isPreview: false,
+    img: classifai3DIMG,
   },
 };
 
@@ -46,5 +58,6 @@ export const projects: { [id: string]: Project } = {
 export const homeOrder: { isBlog: boolean; id: string }[] = [
   { isBlog: true, id: "classifai" },
   { isBlog: false, id: "planes" },
+  { isBlog: true, id: "bachelorThesis" },
   { isBlog: false, id: "classifai3D" },
 ];
