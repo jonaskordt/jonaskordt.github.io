@@ -10,6 +10,7 @@ body {
     "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
   margin: 0;
 }
 
@@ -32,6 +33,6 @@ input {
 #root {
   background-color: $background-color;
   color: $foreground-color;
-  min-height: 100vh;
+  height: 100%;
   overflow: auto;
 }
