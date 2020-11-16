@@ -8,9 +8,9 @@ const transparentPlanesControls: (
     // Toggle Controls
     [
       {
-        action: "Default transparency",
-        initialValue: false,
-        callback: canvasController.setDefaultTransparency,
+        action: "Enable textures",
+        initialValue: true,
+        callback: canvasController.setEnableTextures,
       },
       {
         action: "Separate plane parts",
@@ -18,9 +18,9 @@ const transparentPlanesControls: (
         callback: canvasController.setSeperatePlaneParts,
       },
       {
-        action: "Enable textures",
-        initialValue: true,
-        callback: canvasController.setEnableTextures,
+        action: "Default transparency",
+        initialValue: false,
+        callback: canvasController.setDefaultTransparency,
       },
     ],
     // Slider Controls
