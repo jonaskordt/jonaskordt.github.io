@@ -7,9 +7,13 @@
   margin: 30px 70px;
   min-height: 0;
   min-width: 0;
+
+  @include for-tiny-screens {
+    margin: 30px 20px;
+  }
   
   @include for-phone-only {
-    margin: 30px 20px;
+    height: unset;
   }
 }
 
@@ -23,18 +27,30 @@
   min-width: 0;
   row-gap: 30px;
 
-  @include for-phone-only {
+  @include for-tiny-screens {
     column-gap: 10px;
     row-gap: 10px;
+  }
+
+  @include for-phone-only {
+    grid-template-columns: unset;
+    grid-template-rows: calc(min(100vw, 100vh) - 40px) 1fr 0;
+    height: unset;
+    row-gap: 30px;
   }
 }
 
 .controlsContainer {
   grid-area: 1 / 1 / span 2 / span 1;
+  max-width: 300px;
   min-height: 0;
 
   @include for-medium-screens {
     grid-area: 1 / 1 / span 1 / span 1;
+  }
+
+  @include for-phone-only {
+    grid-area: 2 / 1 / span 1 / span 1;
   }
 }
 
@@ -44,7 +60,10 @@
   min-width: 0;
 
   @include for-phone-only {
+    grid-area: 1 / 1 / span 1 / span 1;
+    height: calc(min(100vw, 100vh) - 40px);
     margin-left: 0;
+    width: 100%;
   }
 }
 
@@ -76,5 +95,10 @@
 
   @include for-huge-screens {
     margin-right: 350px;
+  }
+
+  @include for-phone-only {
+    grid-area: 3 / 1 / span 1 / span 1;
+    overflow: unset;
   }
 }

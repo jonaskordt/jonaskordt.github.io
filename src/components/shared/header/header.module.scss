@@ -11,7 +11,7 @@
   margin: 0px 50px;
   padding: 0px 10px;
 
-  @include for-phone-only {
+  @include for-tiny-screens {
     margin: 0px 10px;
     padding: 0;
   }

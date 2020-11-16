@@ -6,7 +6,7 @@
   margin-right: 35px;
   width: 265px;
 
-  @include for-phone-only {
+  @include for-tiny-screens {
     margin-right: 5px;
   }
 }

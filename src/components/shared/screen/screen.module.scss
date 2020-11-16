@@ -1,3 +1,5 @@
+@import "../../../theme/media.scss";
+
 .default {
   display: flex;
   flex-direction: column;
@@ -13,4 +15,8 @@
   @extend .default;
 
   height: 100%;
+
+  @include for-phone-only {
+    height: unset;
+  }
 }

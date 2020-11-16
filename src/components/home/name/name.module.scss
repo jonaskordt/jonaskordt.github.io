@@ -4,7 +4,7 @@
   font-size: 50px;
   font-weight: 700;
 
-  @include for-phone-only {
+  @include for-tiny-screens {
     font-size: 45px;
   }
 }

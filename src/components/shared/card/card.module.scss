@@ -13,7 +13,7 @@
   position: relative;
   transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s;
 
-  @include for-phone-only {
+  @include for-tiny-screens {
     padding: 10px;
   }
 }
@@ -43,7 +43,7 @@
   width: 200px;
   z-index: 30;
 
-  @include for-phone-only {
+  @include for-tiny-screens {
     font-size: 16px;
     height: 25px;
     letter-spacing: unset;

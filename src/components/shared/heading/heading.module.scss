@@ -5,7 +5,7 @@
   font-weight: 700;
   margin-bottom: 30px;
 
-  @include for-phone-only {
+  @include for-tiny-screens {
     font-size: 25px;
   }
 }

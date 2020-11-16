@@ -9,7 +9,7 @@
   max-width: 800px;
   text-align: justify;
 
-  @include for-phone-only {
+  @include for-tiny-screens {
     font-size: 18px;
     line-height: 25px;
   }

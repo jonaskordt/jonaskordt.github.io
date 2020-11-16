@@ -7,7 +7,7 @@ $small-img-size: 100px;
   height: $img-size;
   width: $img-size;
 
-  @include for-phone-only {
+  @include for-tiny-screens {
     height: $small-img-size;
     width: $small-img-size;
   }
@@ -19,7 +19,7 @@ $small-img-size: 100px;
     height: $img-size;
     width: $img-size;
 
-    @include for-phone-only {
+    @include for-tiny-screens {
       height: $small-img-size;
       width: $small-img-size;
     }
