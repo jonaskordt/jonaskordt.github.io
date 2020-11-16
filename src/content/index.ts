@@ -36,7 +36,7 @@ export const blogs: { [id: string]: Blog } = {
 
 export const projects: { [id: string]: Project } = {
   planes: {
-    name: "Transparent Planes",
+    name: "Intersecting Transparent Planes",
     shortName: "Planes",
     CanvasController: TransparentPlanes,
     summary: planesSummary,
