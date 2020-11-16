@@ -43,7 +43,7 @@ class TransparentPlanes extends CanvasController {
     this.renderer = createRenderer(canvas);
     this.camera = createCamera(canvas);
 
-    this.materials = createMaterials();
+    this.materials = createMaterials(this.render);
 
     this.planes = createSplitPlanes(this.materials);
     this.planeGroup.add(...this.planes.flat());

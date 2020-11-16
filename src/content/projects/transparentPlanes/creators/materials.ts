@@ -1,10 +1,17 @@
 import * as THREE from "three";
 
-const createMaterials: () => THREE.MeshBasicMaterial[] = () => {
-  return ["red", "green", "blue"].map((cString) => {
-    const color = new THREE.Color(cString);
+import blueTexture from "../textures/blue.png";
+import greenTexture from "../textures/green.png";
+import redTexture from "../textures/red.png";
+
+const createMaterials = (onLoad: () => void) => {
+  const textureLoader = new THREE.TextureLoader();
+
+  return [redTexture, greenTexture, blueTexture].map((textureURL) => {
+    const texture = textureLoader.load(textureURL, onLoad);
+
     return new THREE.MeshBasicMaterial({
-      color,
+      map: texture,
       transparent: true,
       opacity: 0.5,
       side: THREE.DoubleSide,
