@@ -139,7 +139,7 @@ class TransparentPlanes extends CanvasController {
     this.render();
   };
 
-  public setEnableTextures = (state: boolean) => {
+  public setEnableTextures: (state: boolean) => void = (state: boolean) => {
     let materialIndex = 1;
     if (state) {
       materialIndex = 0;
