@@ -14,9 +14,7 @@ const applyRotation = (planePart: THREE.Mesh, planeIndex: number) => {
   }
 };
 
-const createSplitPlanes: (materials: THREE.Material[]) => THREE.Mesh[][] = (
-  materials: THREE.Material[],
-) => {
+const createSplitPlanes = (materials: THREE.Material[][]) => {
   return materials.map((material, index) => {
     const geometries = [
       new THREE.PlaneBufferGeometry(),
@@ -37,7 +35,7 @@ const createSplitPlanes: (materials: THREE.Material[]) => THREE.Mesh[][] = (
     geometries[3].translate(0.5, 0.5, 0);
 
     return geometries.map((geometry) => {
-      const planePart = new THREE.Mesh(geometry, material);
+      const planePart = new THREE.Mesh(geometry, material[0]);
       planePart.userData.index = index;
 
       applyRotation(planePart, index);

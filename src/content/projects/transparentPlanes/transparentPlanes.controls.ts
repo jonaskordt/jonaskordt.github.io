@@ -17,6 +17,11 @@ const transparentPlanesControls: (
         initialValue: false,
         callback: canvasController.setSeperatePlaneParts,
       },
+      {
+        action: "Enable textures",
+        initialValue: true,
+        callback: canvasController.setEnableTextures,
+      },
     ],
     // Slider Controls
     [

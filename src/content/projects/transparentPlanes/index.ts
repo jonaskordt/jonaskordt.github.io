@@ -22,7 +22,7 @@ class TransparentPlanes extends CanvasController {
   private scene = new THREE.Scene();
   private camera: THREE.PerspectiveCamera;
 
-  private materials: THREE.MeshBasicMaterial[];
+  private materials: THREE.MeshBasicMaterial[][];
   private planes: THREE.Mesh[][];
   private planeGroup: THREE.Group = new THREE.Group();
 
@@ -91,7 +91,9 @@ class TransparentPlanes extends CanvasController {
   };
 
   public setOpacity: (opacity: number) => void = (opacity: number) => {
-    this.materials.forEach((material) => material.setValues({ opacity }));
+    this.materials
+      .flat()
+      .forEach((material) => material.setValues({ opacity }));
     this.render();
   };
 
@@ -133,6 +135,22 @@ class TransparentPlanes extends CanvasController {
         planePart.position.set(0, 0, 0);
       });
     }
+
+    this.render();
+  };
+
+  public setEnableTextures = (state: boolean) => {
+    let materialIndex = 1;
+    if (state) {
+      materialIndex = 0;
+    }
+
+    this.planes.forEach((plane, index) => {
+      plane.forEach((planePart) => {
+        // eslint-disable-next-line no-param-reassign
+        planePart.material = this.materials[index][materialIndex];
+      });
+    });
 
     this.render();
   };
