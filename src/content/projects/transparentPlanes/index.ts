@@ -58,6 +58,7 @@ class TransparentPlanes extends CanvasController {
     setUpEventListeners(this.canvas, this.onMouseMove, this.onScroll);
 
     this.updateRenderOrder();
+    this.scalePlaneParts();
 
     this.animate();
   }
@@ -200,16 +201,54 @@ class TransparentPlanes extends CanvasController {
   };
 
   private scalePlaneParts = () => {
+    const intersection = this.planeGroup.position;
+
     this.planes.forEach((plane, index) => {
+      // Get the axes of the scene colinear with the x and y axes of the plane.
+
       const xAxis: "x" | "y" = ["x", "y", "x"][index] as "x" | "y";
       const yAxis: "y" | "z" = ["y", "z", "z"][index] as "y" | "z";
 
-      const intersection = this.planeGroup.position;
+      // Scale the plane parts to the correct size.
 
       plane[0].scale.set(1 + intersection[xAxis], 1 + intersection[yAxis], 1);
       plane[1].scale.set(1 - intersection[xAxis], 1 + intersection[yAxis], 1);
       plane[2].scale.set(1 + intersection[xAxis], 1 - intersection[yAxis], 1);
       plane[3].scale.set(1 - intersection[xAxis], 1 - intersection[yAxis], 1);
+
+      // Set the correct uv coordinates.
+
+      const geometryUVs = plane.map(
+        (planePart) =>
+          (planePart.geometry as THREE.BufferGeometry).getAttribute(
+            "uv",
+          ) as THREE.BufferAttribute,
+      );
+
+      // Width and height of plane quadrant 0.
+      // See split plane creation for quadrant locations.
+      const width0 = (1 + intersection[xAxis]) / 2;
+      const height0 = (1 + intersection[yAxis]) / 2;
+
+      geometryUVs[0].setY(0, height0);
+      geometryUVs[0].setXY(1, width0, height0);
+      geometryUVs[0].setX(3, width0);
+      geometryUVs[0].needsUpdate = true;
+
+      geometryUVs[1].setXY(0, width0, height0);
+      geometryUVs[1].setY(1, height0);
+      geometryUVs[1].setX(2, width0);
+      geometryUVs[1].needsUpdate = true;
+
+      geometryUVs[2].setX(1, width0);
+      geometryUVs[2].setY(2, height0);
+      geometryUVs[2].setXY(3, width0, height0);
+      geometryUVs[2].needsUpdate = true;
+
+      geometryUVs[3].setX(0, width0);
+      geometryUVs[3].setXY(2, width0, height0);
+      geometryUVs[3].setY(3, height0);
+      geometryUVs[3].needsUpdate = true;
     });
   };
 
