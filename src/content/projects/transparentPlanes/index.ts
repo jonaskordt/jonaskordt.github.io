@@ -163,6 +163,7 @@ class TransparentPlanes extends CanvasController {
     if (e.ctrlKey || e.metaKey) {
       // Stop the event to propagate to the orbit controls if custom control conditions apply
       e.stopPropagation();
+      e.preventDefault();
 
       if (e.deltaY === 0) return;
       if (!this.moveIntersectionPoint(e.deltaY)) return;
