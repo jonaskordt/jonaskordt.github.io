@@ -13,6 +13,10 @@
     font-size: 18px;
     line-height: 25px;
   }
+
+  @media (max-width: 1335px) {
+    max-width: unset;
+  }
 }
 
 .cv {
