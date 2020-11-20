@@ -13,12 +13,13 @@
 .upperContainer {
   @extend .container;
 
-  align-items: flex-start;
+  align-items: flex-end;
   border-bottom: 1px solid $border-color;
   flex-wrap: wrap;
   justify-content: space-between;
   padding-bottom: 10px;
   padding-top: 10px;
+  position: relative;
   
   > div {
     margin: 20px;

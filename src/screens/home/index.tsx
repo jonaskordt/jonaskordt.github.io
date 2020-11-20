@@ -5,6 +5,7 @@ import ProjectCard from "../../components/home/projectCard";
 import Header from "../../components/shared/header";
 import Heading from "../../components/shared/heading";
 import Screen from "../../components/shared/screen";
+import SocialMedia from "../../components/shared/socialMedia";
 import Summary from "../../components/shared/summary";
 import { blogs, homeOrder, projects } from "../../content";
 import { Content } from "../../lib/types/content";
@@ -19,6 +20,7 @@ const Home: React.FC = () => {
         <div className={presets.cvContainer}>
           <CVCard />
         </div>
+        <SocialMedia />
       </div>
       <div className={presets.lowerContainer}>
         <div className={presets.lowerHeadingContainer}>

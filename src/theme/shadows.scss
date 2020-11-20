@@ -40,6 +40,21 @@ $half-blur: ($blur / 2);
     (-$fourth-offset) (-$fourth-offset) $half-blur #edeff3 inset;
 }
 
+@mixin social-media-shadow {
+  box-shadow: $half-offset $half-offset $half-blur #d1d9e6,
+    (-$half-offset) (-$half-offset) $half-blur #ffffff, -1px -1px 1px #ffffff;
+}
+
+@mixin social-media-hover-shadow {
+  box-shadow: $fourth-offset $fourth-offset $half-blur #d1d9e6,
+    (-$fourth-offset) (-$fourth-offset) $half-blur #ffffff;
+}
+
+@mixin social-media-active-shadow {
+  box-shadow: $fourth-offset $fourth-offset $half-blur #d1d9e6 inset,
+    (-$fourth-offset) (-$fourth-offset) $half-blur #ffffff inset;
+}
+
 @mixin slider-shadow {
   box-shadow: 3px 3px 3px #aab1bb,
     -3px -3px 3px #e5e8ec, -1px -1px 1px #ffffff;

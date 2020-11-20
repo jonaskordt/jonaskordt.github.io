@@ -5,6 +5,7 @@ import QuickInfo from "../../components/cv/quickInfo";
 import Header from "../../components/shared/header";
 import Heading from "../../components/shared/heading";
 import Screen from "../../components/shared/screen";
+import SocialMedia from "../../components/shared/socialMedia";
 import Summary from "../../components/shared/summary";
 import education from "../../content/cv/education";
 import scholarships from "../../content/cv/scholarschips";
@@ -17,6 +18,7 @@ const CV: React.FC = () => {
     <Screen preset="thin">
       <Header />
       <div className={presets.container}>
+        <SocialMedia preset="cv" />
         <Summary isCV preset="cv" />
         <Heading preset="cv" text="Quick Info" />
         <QuickInfo />
