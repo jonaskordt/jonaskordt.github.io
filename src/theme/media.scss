@@ -16,6 +16,12 @@
   }
 }
 
+@mixin for-small-screens {
+  @media (max-width: 1099px) {
+    @content;
+  }
+}
+
 @mixin for-medium-screens {
   @media (max-width: 1399px) {
     @content;

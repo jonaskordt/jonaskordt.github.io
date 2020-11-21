@@ -19,7 +19,7 @@ const CV: React.FC = () => {
       <Header />
       <div className={presets.container}>
         <SocialMedia preset="cv" />
-        <Summary isCV preset="cv" />
+        <Summary isCV />
         <Heading preset="cv" text="Quick Info" />
         <QuickInfo />
         <Heading preset="cv" text="Work Experience" />
