@@ -10,33 +10,6 @@
   }
 }
 
-.cv {
-  @extend .default;
-
-  margin-top: 30px;
-}
-
-.cvCard {
-  @extend .default;
-
-  font-size: 20px;
-  margin-bottom: 0;
-}
-
-.quickInfo {
-  @extend .cvCard;
-
-  margin-bottom: 20px;
-}
-
-.projectCard {
-  @extend .default;
-
-  font-size: 30px;
-  margin-bottom: 15px;
-  z-index: 20;
-}
-
 .centered {
   @extend .default;
 

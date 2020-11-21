@@ -16,11 +16,11 @@ const Home: React.FC = () => {
     <Screen preset="home">
       <Header />
       <div className={presets.upperContainer}>
-        <Summary />
+        <Summary className={presets.upperItem} />
         <div className={presets.cvContainer}>
           <CVCard />
         </div>
-        <SocialMedia />
+        <SocialMedia className={presets.socialMedia} />
       </div>
       <div className={presets.lowerContainer}>
         <div className={presets.lowerHeadingContainer}>
@@ -31,6 +31,7 @@ const Home: React.FC = () => {
             const content: Content = c.isBlog ? blogs[c.id] : projects[c.id];
             return (
               <ProjectCard
+                className={presets.projectCard}
                 name={content.shortName}
                 text={content.quickSummary}
                 projectId={c.id}

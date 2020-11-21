@@ -4,17 +4,27 @@
   margin: 30px 70px 0px;
   position: relative;
 
-  > div {
-    margin: 0 auto 20px;
-  }
-
-  > h1 {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1000px;
-  }
-
   @include for-tiny-screens {
     margin: 20px 20px 0px;
+  }
+}
+
+.entry {
+  margin-bottom: 20px;
+}
+
+.heading {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+
+.socialMedia {
+  position: absolute;
+  right: 0;
+  top: -10px;
+
+  @include for-tiny-screens {
+    top: -5px;
   }
 }

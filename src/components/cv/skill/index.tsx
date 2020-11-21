@@ -17,11 +17,11 @@ const Skill: React.FC<SkillProps> = (props) => {
 
   return (
     <div className={classNames(presets[preset], className)} {...rest}>
-      <div>
-        <p>{name}</p>
-        <ProgressBar level={level} />
+      <div className={presets.container}>
+        <p className={presets.name}>{name}</p>
+        <ProgressBar className={presets.progressBar} level={level} />
       </div>
-      {comment && <p>{comment}</p>}
+      {comment && <p className={presets.comment}>{comment}</p>}
     </div>
   );
 };

@@ -1,13 +1,10 @@
-@import "../../../theme/colors.scss";
+@import "../../../theme";
 
 .default {
   align-items: center;
   background-color: $control-background;
   border-radius: 10px;
   display: flex;
-  flex-shrink: 0;
-  padding: 15px;
-  width: 250px;
 }
 
 .text {
@@ -24,4 +21,19 @@
   @extend .text;
 
   padding-left: 10px;
+}
+
+.keyCard {
+  @include small-shadow;
+  
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+.keyCard:hover {
+  @include small-hover-shadow;
+}
+
+.keyCard:active {
+  @include small-active-shadow;
 }

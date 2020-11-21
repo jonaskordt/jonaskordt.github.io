@@ -10,22 +10,24 @@
     margin: 30px 20px;
   }
 
-  > div > p {
-    font-size: 20px;
-    line-height: 30px;
-    margin-bottom: 20px;
-    max-width: 1000px;
-    text-align: justify;
-
-    @include for-tiny-screens {
-      font-size: 18px;
-      line-height: 25px;
+  > div {
+    > p {
+      font-size: 20px;
+      line-height: 30px;
+      margin-bottom: 20px;
+      text-align: justify;
+  
+      @include for-tiny-screens {
+        font-size: 18px;
+        line-height: 25px;
+      }
+    }
+    
+    > div {
+       margin: auto;
+       margin-bottom: 20px;
+       max-width: 800px;
     }
   }
 
-  > div > div {
-    margin: auto;
-    margin-bottom: 20px;
-    max-width: 800px;
-  }
 }

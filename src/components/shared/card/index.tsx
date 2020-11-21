@@ -12,6 +12,7 @@ const Card: React.FC<CardProps> = (props) => {
     to,
     clickCallback,
     preset = "default",
+    displaySoonTag,
     ...rest
   } = props;
 
@@ -31,7 +32,7 @@ const Card: React.FC<CardProps> = (props) => {
       role="link"
       className={classNames(presets[preset], className)}
     >
-      {Boolean(to) || <p className={presets.soonTag}>Soon</p>}
+      {displaySoonTag && <p className={presets.soonTag}>Soon</p>}
       {children}
     </div>
   );

@@ -18,25 +18,37 @@ const CV: React.FC = () => {
     <Screen preset="thin">
       <Header />
       <div className={presets.container}>
-        <SocialMedia preset="cv" />
+        <SocialMedia className={presets.socialMedia} />
         <Summary isCV />
-        <Heading preset="cv" text="Quick Info" />
+        <Heading className={presets.heading} text="Quick Info" />
         <QuickInfo />
-        <Heading preset="cv" text="Work Experience" />
+        <Heading className={presets.heading} text="Work Experience" />
         {work.map((w) => {
-          return <CVEntry key={w.heading} {...w} />;
+          return <CVEntry className={presets.entry} key={w.heading} {...w} />;
         })}
-        <Heading preset="cv" text="Education" />
+        <Heading className={presets.heading} text="Education" />
         {education.map((e) => {
-          return <CVEntry key={e.heading} {...e} noDay />;
+          return (
+            <CVEntry className={presets.entry} key={e.heading} {...e} noDay />
+          );
         })}
-        <Heading preset="cv" text="Volunteering" />
+        <Heading className={presets.heading} text="Volunteering" />
         {volunteering.map((v) => {
-          return <CVEntry key={v.heading} {...v} noDay noMonth />;
+          return (
+            <CVEntry
+              className={presets.entry}
+              key={v.heading}
+              {...v}
+              noDay
+              noMonth
+            />
+          );
         })}
-        <Heading preset="cv" text="Scholarships" />
+        <Heading className={presets.heading} text="Scholarships" />
         {scholarships.map((s) => {
-          return <CVEntry key={s.heading} {...s} noDay />;
+          return (
+            <CVEntry className={presets.entry} key={s.heading} {...s} noDay />
+          );
         })}
       </div>
     </Screen>

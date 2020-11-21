@@ -23,23 +23,24 @@ const Controls: React.FC<ControlsProps> = (props) => {
   return (
     <div {...rest} className={classNames(presets[preset], className)}>
       <Heading text="Controls" />
-      <div>
+      <div className={presets.scrollableContainer}>
         <KeyControl
+          className={presets.control}
           keys={["f"]}
           action="toggle fullscreen"
           callback={toggleFullScreen}
         />
         {mouseControls.map((c) => (
-          <ControlInfo key={c.action} {...c} />
+          <ControlInfo className={presets.control} key={c.action} {...c} />
         ))}
         {toggleControls.map((c) => (
-          <ToggleControl key={c.action} {...c} />
+          <ToggleControl className={presets.control} key={c.action} {...c} />
         ))}
         {sliderControls.map((c) => (
-          <SliderControl key={c.action} {...c} />
+          <SliderControl className={presets.control} key={c.action} {...c} />
         ))}
         {keyControls.map((c) => (
-          <KeyControl key={c.action} {...c} />
+          <KeyControl className={presets.control} key={c.action} {...c} />
         ))}
       </div>
     </div>

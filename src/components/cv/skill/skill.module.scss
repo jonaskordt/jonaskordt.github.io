@@ -1,26 +1,26 @@
 .default {
   display: flex;
   flex-direction: column;
+}
 
-  > p {
-    font-style: italic;
-    margin-top: 10px;
-    text-align: right;
-  }
+.container {
+  align-items: center;
+  display: flex;
+}
 
-  > div {
-    align-items: center;
-    display: flex;
+.name {
+  align-self: start;
+  font-size: 18px;
+  font-weight: 500;
+  min-width: 100px;
+}
 
-    > div {
-      flex-grow: 1;
-    }
+.progressBar {
+  flex-grow: 1;
+}
 
-    > p {
-      align-self: start;
-      font-size: 18px;
-      font-weight: 500;
-      min-width: 100px;
-    }
-  }
+.comment {
+  font-style: italic;
+  margin-top: 10px;
+  text-align: right;
 }

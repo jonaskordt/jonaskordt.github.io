@@ -3,16 +3,15 @@
 .default {
   border-radius: 10px;
   display: flex;
-  max-width: 1000px;
-
-  > div > div {
-    margin-bottom: 15px;
-  }
 
   @include for-smaller-screens {
     flex-direction: column;
   }
   
+}
+
+.barSkill {
+  margin-bottom: 15px;
 }
 
 .container {
@@ -31,29 +30,28 @@
 
   @include for-smaller-screens {
     margin: 20px 0px;
-
-    > div {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-
-      > p {
-        flex-grow: 1;
-        flex-shrink: 0;
-        width: 213px;
-      }
-    }
   }
+}
 
-  /* stylelint-disable no-descending-specificity */
-  > div {
-    margin: 0 !important;
+.generalSkillContainer {
+  margin: 0 !important;
+
+  @include for-smaller-screens {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
+}
 
-  > div > p {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 10px;
+.generalSkill {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+
+  @include for-smaller-screens {
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: 213px;
   }
 }
 
@@ -65,4 +63,10 @@
 
 .tech {
   @extend .languages;
+}
+
+.heading {
+  font-size: 20px;
+  margin-bottom: 0;
+  margin-bottom: 20px;
 }

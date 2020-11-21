@@ -8,38 +8,43 @@
   // Firefox scrollbar
   scrollbar-color: $control-background $background-color;
   scrollbar-width: thin;
+}
 
-  // Other Browsers
+// Other Browsers
+.scrollableContainer {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 20px;
+  
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background-color: $background-color;
+    border-radius: 5px;
+    
+    @include scroll-shadow;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: $control-background;
+    border-radius: 5px;
+  }
+  
   > div {
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding-right: 20px;
-    
-    &::-webkit-scrollbar {
-      width: 10px;
-    }
-    
-    &::-webkit-scrollbar-track {
-      background-color: $background-color;
-      border-radius: 5px;
-      
-      @include scroll-shadow;
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: $control-background;
-      border-radius: 5px;
-    }
-    
-    > div {
-      margin-bottom: 15px;
-    }
-
-    > div:last-child {
-      margin-bottom: 0;
-    }
+    margin-bottom: 15px;
   }
 
+  > div:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.control {
+  flex-shrink: 0;
+  padding: 15px;
+  width: 250px;
 }

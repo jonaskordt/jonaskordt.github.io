@@ -20,7 +20,7 @@ const KeyControl: React.FC<KeyControlProps> = (props) => {
 
   return (
     <div className={classNames(presets[preset], className)}>
-      <Card {...rest} clickCallback={callback} preset="keyControl">
+      <Card {...rest} clickCallback={callback} className={presets.keyCard}>
         <p className={presets.keys}>{keyText}</p>
       </Card>
       <p className={presets.action}>to {action}</p>

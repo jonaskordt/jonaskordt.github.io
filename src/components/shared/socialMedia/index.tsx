@@ -20,10 +20,10 @@ const SocialMedia: React.FC<SocialMediaProps> = (props) => {
 
   return (
     <div {...rest} className={classNames(presets[preset], className)}>
-      <Card preset="socialMedia" clickCallback={gitHubLink}>
+      <Card className={presets.card} clickCallback={gitHubLink}>
         <img src={gitHubIcon} alt="" />
       </Card>
-      <Card preset="socialMedia" clickCallback={twitterLink}>
+      <Card className={presets.card} clickCallback={twitterLink}>
         <img src={twitterIcon} alt="" />
       </Card>
     </div>

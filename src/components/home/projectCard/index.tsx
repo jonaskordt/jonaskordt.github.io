@@ -19,9 +19,13 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const link = isBlog ? `/blogs/${projectId}` : `/projects/${projectId}`;
 
   return (
-    <Card to={isPreview ? undefined : link} {...rest}>
+    <Card
+      to={isPreview ? undefined : link}
+      displaySoonTag={isPreview}
+      {...rest}
+    >
       <div className={presets.container}>
-        <Heading text={name} preset="projectCard" />
+        <Heading text={name} className={presets.heading} />
         <p className={presets.text}>{text}</p>
         {image && (
           <div className={presets.imgContainer}>
