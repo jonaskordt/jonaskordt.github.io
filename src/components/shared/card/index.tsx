@@ -1,11 +1,19 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
+import classNames from "../../../styling";
 import presets from "./card.module.scss";
 import CardProps from "./card.props";
 
 const Card: React.FC<CardProps> = (props) => {
-  const { children, to, clickCallback, preset = "default", ...rest } = props;
+  const {
+    className,
+    children,
+    to,
+    clickCallback,
+    preset = "default",
+    ...rest
+  } = props;
 
   const history = useHistory();
 
@@ -21,7 +29,7 @@ const Card: React.FC<CardProps> = (props) => {
       {...rest}
       onClick={clickCallback || clickHandler}
       role="link"
-      className={presets[preset]}
+      className={classNames(presets[preset], className)}
     >
       {Boolean(to) || <p className={presets.soonTag}>Soon</p>}
       {children}

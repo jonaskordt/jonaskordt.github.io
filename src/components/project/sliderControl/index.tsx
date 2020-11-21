@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 
 import preventDefault from "../../../lib/utils/preventDefault";
+import classNames from "../../../styling";
 import presets from "./sliderControl.module.scss";
 import SliderControlProps from "./sliderControl.props";
 
@@ -8,6 +9,7 @@ const SliderControl: React.FC<SliderControlProps> = (props) => {
   const {
     action,
     callback,
+    className,
     min = 0,
     max = 1,
     step = 0.01,
@@ -67,7 +69,7 @@ const SliderControl: React.FC<SliderControlProps> = (props) => {
   );
 
   return (
-    <div {...rest} className={presets[preset]}>
+    <div {...rest} className={classNames(presets[preset], className)}>
       <p className={presets.text}>{action}</p>
       <div
         className={presets.track}

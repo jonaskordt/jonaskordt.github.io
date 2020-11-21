@@ -5,16 +5,17 @@ import {
   languages,
   techSkills,
 } from "../../../content/cv/skills";
+import classNames from "../../../styling";
 import Heading from "../../shared/heading";
 import Skill from "../skill";
 import presets from "./quickInfo.module.scss";
 import QuickInfoProps from "./quickInfo.props";
 
 const QuickInfo: React.FC<QuickInfoProps> = (props) => {
-  const { preset = "default", ...rest } = props;
+  const { className, preset = "default", ...rest } = props;
 
   return (
-    <div className={presets[preset]} {...rest}>
+    <div className={classNames(presets[preset], className)} {...rest}>
       <div className={presets.languages}>
         <Heading preset="quickInfo" text="Languages" />
         {languages.map((s) => (

@@ -1,11 +1,12 @@
 import React from "react";
 
+import classNames from "../../../styling";
 import presets from "./webGLCanvas.module.scss";
 import WebGLCanvasProps from "./webGLCanvas.props";
 
 const WebGLCanvas = React.forwardRef<HTMLCanvasElement, WebGLCanvasProps>(
   (props, ref) => {
-    const { preset = "default", ...rest } = props;
+    const { className, preset = "default", ...rest } = props;
 
     return (
       <canvas
@@ -13,7 +14,7 @@ const WebGLCanvas = React.forwardRef<HTMLCanvasElement, WebGLCanvasProps>(
         width={1}
         height={1}
         ref={ref}
-        className={presets[preset]}
+        className={classNames(presets[preset], className)}
       />
     );
   },

@@ -5,14 +5,15 @@ import {
   summaryHeading,
   summaryText,
 } from "../../../content/text/summary";
+import classNames from "../../../styling";
 import Heading from "../heading";
 import presets from "./summary.module.scss";
 import SummaryProps from "./summary.props";
 
 const Summary: React.FC<SummaryProps> = (props) => {
-  const { preset = "default", isCV, ...rest } = props;
+  const { className, preset = "default", isCV, ...rest } = props;
   return (
-    <div className={presets[preset]} {...rest}>
+    <div className={classNames(presets[preset], className)} {...rest}>
       <Heading text={summaryHeading} />
       <p>{summaryText}</p>
       {isCV || <p className={presets.finisher}>{summaryFinisher}</p>}

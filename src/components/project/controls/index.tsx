@@ -1,5 +1,6 @@
 import React from "react";
 
+import classNames from "../../../styling";
 import Heading from "../../shared/heading";
 import ControlInfo from "../controlInfo";
 import KeyControl from "../keyControl";
@@ -9,12 +10,18 @@ import presets from "./controls.module.scss";
 import ControlsProps from "./controls.props";
 
 const Controls: React.FC<ControlsProps> = (props) => {
-  const { preset = "default", toggleFullScreen, controls, ...rest } = props;
+  const {
+    className,
+    preset = "default",
+    toggleFullScreen,
+    controls,
+    ...rest
+  } = props;
 
   const [toggleControls, sliderControls, mouseControls, keyControls] = controls;
 
   return (
-    <div {...rest} className={presets[preset]}>
+    <div {...rest} className={classNames(presets[preset], className)}>
       <Heading text="Controls" />
       <div>
         <KeyControl

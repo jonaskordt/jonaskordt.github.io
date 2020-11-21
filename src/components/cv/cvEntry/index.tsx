@@ -1,12 +1,14 @@
 import React from "react";
 
 import { formatDate } from "../../../lib/utils/date";
+import classNames from "../../../styling";
 import Heading from "../../shared/heading";
 import presets from "./cvEntry.module.scss";
 import CVEntryProps from "./cvEntry.props";
 
 const CVEntry: React.FC<CVEntryProps> = (props) => {
   const {
+    className,
     heading,
     organization,
     details,
@@ -20,7 +22,10 @@ const CVEntry: React.FC<CVEntryProps> = (props) => {
   } = props;
 
   return (
-    <div className={end ? presets[preset] : presets.active} {...rest}>
+    <div
+      className={classNames(end ? presets[preset] : presets.active, className)}
+      {...rest}
+    >
       <div className={presets.leftContainer}>
         <p>{formatDate(start, noDay, noMonth)} -</p>
         <p>{end ? formatDate(end, noDay, noMonth) : "present"}</p>

@@ -1,17 +1,25 @@
 import React from "react";
 
 import controlText from "../../../lib/utils/controlText";
+import classNames from "../../../styling";
 import Card from "../../shared/card";
 import presets from "./keyControl.module.scss";
 import KeyControlProps from "./keyControl.props";
 
 const KeyControl: React.FC<KeyControlProps> = (props) => {
-  const { action, keys, callback, preset = "default", ...rest } = props;
+  const {
+    action,
+    className,
+    keys,
+    callback,
+    preset = "default",
+    ...rest
+  } = props;
 
   const keyText = controlText(keys);
 
   return (
-    <div className={presets[preset]}>
+    <div className={classNames(presets[preset], className)}>
       <Card {...rest} clickCallback={callback} preset="keyControl">
         <p className={presets.keys}>{keyText}</p>
       </Card>
