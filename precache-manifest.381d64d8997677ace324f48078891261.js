@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d1ad8f03b7154fd35cf6b7d278e10e19",
+    "revision": "0c5a8e18a76273dc1259fadb7f4a944b",
     "url": "/index.html"
   },
   {
-    "revision": "1feee3a6e511bfaa2ce9",
-    "url": "/static/css/main.12c87f05.chunk.css"
+    "revision": "33078063e2d11a4f5c6e",
+    "url": "/static/css/main.a304d886.chunk.css"
   },
   {
-    "revision": "0dfbdaeb5c473e768847",
-    "url": "/static/js/2.3296b6fd.chunk.js"
+    "revision": "5b99960d675d0fc6bea0",
+    "url": "/static/js/2.9de97e02.chunk.js"
   },
   {
     "revision": "9b318b6fb13190fe82c0677e9264b3c7",
-    "url": "/static/js/2.3296b6fd.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.9de97e02.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1feee3a6e511bfaa2ce9",
-    "url": "/static/js/main.bd3fe2e3.chunk.js"
+    "revision": "33078063e2d11a4f5c6e",
+    "url": "/static/js/main.14cbcff7.chunk.js"
   },
   {
     "revision": "ba126735810163618457",
     "url": "/static/js/runtime-main.3374ac37.js"
+  },
+  {
+    "revision": "e80e472816b3c3e9d27cfa6189ea6586",
+    "url": "/static/media/bachelorThesis.e80e4728.png"
   },
   {
     "revision": "e652888a23235b83d2716bfecff8f88d",
