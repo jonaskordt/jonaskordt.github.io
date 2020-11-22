@@ -24,16 +24,16 @@
 }
 
 .keyCard {
-  @include small-shadow;
+  @include keyCard-shadow;
   
   border-radius: 10px;
   padding: 5px 10px;
 }
 
 .keyCard:hover {
-  @include small-hover-shadow;
+  @include keyCard-hover-shadow;
 }
 
 .keyCard:active {
-  @include small-active-shadow;
+  @include keyCard-active-shadow;
 }

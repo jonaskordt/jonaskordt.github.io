@@ -11,8 +11,6 @@
 }
 
 .card {
-  @include social-media-shadow;
-  
   border-radius: 10px;
   height: 30px;
   margin-left: 15px;
@@ -32,12 +30,4 @@
       height: 20px;
     }
   }
-}
-
-.card:hover {
-  @include social-media-hover-shadow;
-}
-
-.card:active {
-  @include social-media-active-shadow;
 }
