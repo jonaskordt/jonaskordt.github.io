@@ -1,4 +1,5 @@
 import { Blog, Project } from "../lib/types/content";
+import bachelorThesisIMG from "./images/bachelorThesis.png";
 import classifaiIMG from "./images/classifai.png";
 import classifai3DIMG from "./images/classifai3D.png";
 import planesIMG from "./images/planes.png";
@@ -30,7 +31,7 @@ export const blogs: { [id: string]: Blog } = {
     quickSummary: bachelorThesisQuickSummary,
     content: bachelorThesisBlog,
     isPreview: false,
-    img: classifai3DIMG,
+    img: bachelorThesisIMG,
   },
 };
 
