@@ -4,6 +4,11 @@ const work: CVEntryData[] = [
   {
     heading: "Research Assistant",
     organization: "Chair for Digital Health and Machine Learning at HPI",
+    details: [
+      "full stack development of Classifai (web based medical annotation system relying on active machine learning)",
+      "focus on graphics using WebGL through Three.js",
+      "active machine learning research in the medical field",
+    ],
     start: new Date(2020, 10, 1),
     organizationLink:
       "https://hpi.de/forschung/fachgebiete/digital-health-machine-learning.html",
