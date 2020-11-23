@@ -31,7 +31,7 @@ const CVEntry: React.FC<CVEntryProps> = (props) => {
         <p>{end ? formatDate(end, noDay, noMonth) : "present"}</p>
       </div>
       <div className={presets.container}>
-        <Heading preset="cvCard" text={heading} />
+        <Heading className={presets.heading} text={heading} />
         <a
           href={organizationLink}
           target="_blank"
