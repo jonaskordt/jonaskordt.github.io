@@ -21,7 +21,7 @@
 .fullHeight {
   @extend .default;
 
-  height: 100%;
+  height: 100vh;
 
   @include for-phone-only {
     height: unset;
