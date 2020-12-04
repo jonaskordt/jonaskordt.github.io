@@ -68,12 +68,14 @@ class TransparentPlanes extends CanvasController {
     this.updateRenderOrder();
     this.scalePlaneParts();
 
-    this.animate();
+    this.renderer.setAnimationLoop(this.animate);
   }
 
   public dispose(): void {
     super.dispose();
     removeEventListeners(this.canvas, this.onMouseMove, this.onScroll);
+    this.renderer.setAnimationLoop(null);
+    this.renderer.dispose();
   }
 
   protected resizeCanvas(): void {
@@ -87,12 +89,7 @@ class TransparentPlanes extends CanvasController {
   }
 
   private animate = () => {
-    animate(
-      this.animate,
-      this.cameraControls,
-      this.renderDirty,
-      this.forceRender,
-    );
+    animate(this.cameraControls, this.renderDirty, this.forceRender);
   };
 
   public render: () => void = () => {
