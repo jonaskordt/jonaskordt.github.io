@@ -18,6 +18,7 @@ const work: CVEntryData[] = [
     organization: "Apotheke 4.0 (pharmacy)",
     details: ["doing my part to help during the COVID-19 pandemic"],
     start: new Date(2020, 8, 1),
+    end: new Date(2020, 10, 30),
   },
   {
     heading: "Java Developer & Tutor",
