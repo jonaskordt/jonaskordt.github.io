@@ -30,5 +30,7 @@ module.exports = {
     "import/no-cycle": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "no-bitwise": "off",
+    "no-plusplus": "off",
+    "default-case": "off",
   },
 };

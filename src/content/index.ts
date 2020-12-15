@@ -3,7 +3,7 @@ import bachelorThesisIMG from "./images/bachelorThesis.png";
 import classifaiIMG from "./images/classifai.png";
 import classifai3DIMG from "./images/classifai3D.png";
 import planesIMG from "./images/planes.png";
-import CanvasController from "./projects/default";
+import Classifai3D from "./projects/classifai3D";
 import TransparentPlanes from "./projects/transparentPlanes";
 import bachelorThesisBlog, {
   bachelorThesisQuickSummary,
@@ -48,10 +48,10 @@ export const projects: { [id: string]: Project } = {
   classifai3D: {
     name: "Classifai's 3D Toolkit",
     shortName: "Classifai3D",
-    CanvasController,
+    CanvasController: Classifai3D,
     summary: classifai3DSummary,
     quickSummary: classifai3DQuickSummary,
-    isPreview: true,
+    isPreview: false,
     img: classifai3DIMG,
   },
 };
