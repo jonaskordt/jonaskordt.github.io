@@ -11,6 +11,7 @@ import {
   createRenderer,
   getMaterials,
 } from "./creators";
+import NavigationHandler from "./helpers/navigationHandler";
 import SpriteHandler from "./helpers/spriteHandler";
 import {
   getConnectedStructureGeometries,
@@ -32,6 +33,7 @@ export default class Classifai3D extends CanvasController {
   private meshes!: THREE.Mesh[];
   private materials!: THREE.MeshPhongMaterial[];
 
+  private navigator!: NavigationHandler;
   private spriteHandler!: SpriteHandler;
 
   private renderDirty = true;
@@ -42,7 +44,7 @@ export default class Classifai3D extends CanvasController {
     z: Math.floor(voxelCount.z / 2),
   };
 
-  private pointerLocked = false;
+  public pointerLocked = false;
 
   private lastMouseEvent?: MouseEvent;
 
@@ -86,15 +88,20 @@ export default class Classifai3D extends CanvasController {
       meshGroup.add(this.spriteHandler.spriteGroup);
 
       this.scene.add(meshGroup);
+      meshGroup.updateMatrixWorld(true);
 
       const pickingMeshes = createPickingMeshes(geometries);
       const pickingGroup = createMeshGroup();
       pickingGroup.add(...pickingMeshes);
       this.pickingScene.add(pickingGroup);
 
+      this.navigator = new NavigationHandler(
+        this,
+        this.canvas,
+        this.spriteHandler,
+      );
+
       this.renderer.setAnimationLoop(this.animate);
-      this.spriteHandler.updateRenderOrder();
-      this.render();
     });
   }
 
@@ -112,6 +119,8 @@ export default class Classifai3D extends CanvasController {
   }
 
   private animate = () => {
+    this.navigator.navigate();
+
     if (this.renderDirty) this.forceRender();
   };
 
@@ -123,6 +132,10 @@ export default class Classifai3D extends CanvasController {
     this.renderDirty = false;
 
     this.renderer.render(this.scene, this.camera);
+  };
+
+  public togglePointerLock = () => {
+    this.pointerLocked = !this.pointerLocked;
   };
 
   private deleteConnectedStructures = (objects: THREE.Object3D[]) => {
