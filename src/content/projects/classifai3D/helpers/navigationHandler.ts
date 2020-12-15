@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
 
 import Classifai3D from "..";
 import { voxelCount } from "../staticScan";
@@ -9,14 +10,15 @@ import SpriteHandler from "./spriteHandler";
 export default class NavigationHandler implements IDisposable {
   private camera: THREE.PerspectiveCamera;
 
-  private pressedKeys: any = {};
+  private pressedKeys: { [key: string]: boolean } = {};
 
   private direction = new THREE.Vector3();
-  private quaternion = new THREE.Quaternion();
 
   private lastMouseEvent?: MouseEvent;
 
   private speed = 5;
+
+  private controls: PointerLockControls;
 
   constructor(
     private renderer: Classifai3D,
@@ -25,9 +27,15 @@ export default class NavigationHandler implements IDisposable {
   ) {
     this.camera = renderer.camera;
 
+    this.controls = new PointerLockControls(
+      this.camera,
+      this.canvas.parentElement!,
+    );
+
     document.addEventListener("keydown", this.handleKeyDown);
     document.addEventListener("keyup", this.handleKeyUp);
     document.addEventListener("mousemove", this.saveMouseEvent);
+    this.controls.addEventListener("change", this.renderer.render);
 
     this.updateCameraPosition();
   }
@@ -36,17 +44,20 @@ export default class NavigationHandler implements IDisposable {
     document.removeEventListener("keydown", this.handleKeyDown);
     document.removeEventListener("keyup", this.handleKeyUp);
     document.removeEventListener("mousemove", this.saveMouseEvent);
+    this.controls.removeEventListener("change", this.renderer.render);
+    this.controls.disconnect();
+    this.controls.dispose();
     if (this.renderer.pointerLocked) this.togglePointerLock();
   };
 
   private handleKeyDown = (event: KeyboardEvent) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    this.pressedKeys[event.keyCode] = true;
+    this.pressedKeys[event.key.toLowerCase()] = true;
+
+    if (event.key === "t") this.togglePointerLock();
   };
 
   private handleKeyUp = (event: KeyboardEvent) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    this.pressedKeys[event.keyCode] = false;
+    this.pressedKeys[event.key.toLowerCase()] = false;
   };
 
   private saveMouseEvent = (event: MouseEvent) => {
@@ -61,10 +72,6 @@ export default class NavigationHandler implements IDisposable {
   };
 
   private moveBack = () => {
-    // don't move during crtl + s for saving
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    if (this.pressedKeys[17]) return;
-
     this.camera.getWorldDirection(this.direction);
     this.camera.position.addScaledVector(this.direction, -this.speed);
 
@@ -84,51 +91,26 @@ export default class NavigationHandler implements IDisposable {
   };
 
   private moveLeft = () => {
-    this.camera.getWorldDirection(this.direction);
-    this.direction.cross(this.camera.up);
-    this.camera.position.addScaledVector(this.direction, -this.speed);
+    this.controls.moveRight(-this.speed);
 
     this.updateCameraPosition();
   };
 
   private moveRight = () => {
-    this.camera.getWorldDirection(this.direction);
-    this.direction.cross(this.camera.up);
-    this.camera.position.addScaledVector(this.direction, this.speed);
+    this.controls.moveRight(this.speed);
 
     this.updateCameraPosition();
-  };
-
-  private turn = (amount: number) => {
-    this.quaternion.setFromAxisAngle(this.camera.up, -amount * 0.001);
-    this.camera.applyQuaternion(this.quaternion);
-    this.renderer.render();
-  };
-
-  private pitch = (amount: number) => {
-    this.camera.getWorldDirection(this.direction);
-    this.direction.cross(this.camera.up);
-    this.quaternion.setFromAxisAngle(this.direction, -amount * 0.001);
-    this.camera.applyQuaternion(this.quaternion);
-    this.renderer.render();
   };
 
   private updateCameraPosition = () => {
     this.spriteHandler.setCameraPosition(this.camera.position);
   };
 
-  private handleMouseMove = (event: MouseEvent) => {
-    this.turn(event.movementX);
-    this.pitch(event.movementY);
-  };
-
   public togglePointerLock = () => {
     if (this.renderer.pointerLocked) {
-      document.exitPointerLock();
-      document.removeEventListener("mousemove", this.handleMouseMove);
+      this.controls.unlock();
     } else {
-      this.canvas.requestPointerLock();
-      document.addEventListener("mousemove", this.handleMouseMove);
+      this.controls.lock();
     }
     this.renderer.togglePointerLock();
     this.renderer.render();
@@ -218,27 +200,27 @@ export default class NavigationHandler implements IDisposable {
 
   private keyMap = [
     {
-      key: 87, // w
+      key: "w",
       mapper: this.moveForward,
     },
     {
-      key: 65, // a
+      key: "a",
       mapper: this.moveLeft,
     },
     {
-      key: 83, // s
+      key: "s",
       mapper: this.moveBack,
     },
     {
-      key: 68, // d
+      key: "d",
       mapper: this.moveRight,
     },
     {
-      key: 16, // Shift
+      key: "shift",
       mapper: this.moveDown,
     },
     {
-      key: 32, // Space
+      key: " ",
       mapper: this.moveUp,
     },
   ];
