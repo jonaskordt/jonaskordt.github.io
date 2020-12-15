@@ -18,7 +18,6 @@ import {
   voxelCount,
   voxelDimensions,
 } from "./staticScan";
-import { Voxel } from "./types";
 import { getIntersectionsFromMouseEvent } from "./utils/picking";
 import { resizeRenderer } from "./utils/scaling";
 
@@ -37,12 +36,6 @@ export default class Classifai3D extends CanvasController {
   private spriteHandler!: SpriteHandler;
 
   private renderDirty = true;
-
-  readonly selectedVoxel: Voxel = {
-    x: Math.floor(voxelCount.x / 2),
-    y: Math.floor(voxelCount.y / 2),
-    z: Math.floor(voxelCount.z / 2),
-  };
 
   public pointerLocked = false;
 
@@ -72,8 +65,9 @@ export default class Classifai3D extends CanvasController {
     const [lights, lightTargets] = createLights(voxelCount);
     this.scene.add(...lights, ...lightTargets);
 
-    document.addEventListener("click", this.handleClick);
-    document.addEventListener("mousemove", this.handleMouseMove);
+    this.canvas.addEventListener("click", this.handleClick);
+    this.canvas.addEventListener("mousemove", this.handleMouseMove);
+    this.canvas.addEventListener("wheel", this.handleWheel);
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     Promise.all(getConnectedStructureGeometries()).then((geometries) => {
@@ -107,8 +101,12 @@ export default class Classifai3D extends CanvasController {
 
   public dispose() {
     super.dispose();
-    document.removeEventListener("click", this.handleClick);
-    document.removeEventListener("mousemove", this.handleMouseMove);
+
+    this.canvas.removeEventListener("click", this.handleClick);
+    this.canvas.removeEventListener("mousemove", this.handleMouseMove);
+    this.canvas.removeEventListener("wheel", this.handleWheel);
+
+    this.navigator.dispose();
   }
 
   protected resizeCanvas(): void {
@@ -178,5 +176,15 @@ export default class Classifai3D extends CanvasController {
   private handleMouseMove = (event: MouseEvent) => {
     this.lastMouseEvent = event;
     this.render();
+  };
+
+  private handleWheel = (event: WheelEvent) => {
+    event.preventDefault();
+
+    if (event.deltaY > 0) {
+      this.navigator.increaseSpritePosition();
+    } else if (event.deltaY < 0) {
+      this.navigator.decreaseSpritePosition();
+    }
   };
 }

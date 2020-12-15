@@ -1,7 +1,9 @@
 import * as THREE from "three";
 
 import Classifai3D from "..";
-import { IDisposable } from "../types";
+import { voxelCount } from "../staticScan";
+import { IDisposable, ViewType } from "../types";
+import { getIntersectionsFromMouseEvent } from "../utils/picking";
 import SpriteHandler from "./spriteHandler";
 
 export default class NavigationHandler implements IDisposable {
@@ -132,80 +134,87 @@ export default class NavigationHandler implements IDisposable {
     this.renderer.render();
   };
 
-  // public increaseSpritePosition = () => {
-  //   if (!this.lastMouseEvent) return;
+  public increaseSpritePosition = () => {
+    if (!this.lastMouseEvent) return;
 
-  //   const intersections = getIntersectionsFromMouseEvent(
-  //     this.lastMouseEvent,
-  //     this.renderer.spriteHandler.spriteParts,
-  //     this.eraserModel,
-  //     this.renderer.canvas,
-  //     this.renderer.camera,
-  //   );
+    const intersections = getIntersectionsFromMouseEvent(
+      this.lastMouseEvent,
+      this.spriteHandler.spriteParts,
+      this.canvas,
+      this.renderer.camera,
+      this.renderer.pointerLocked,
+    );
 
-  //   if (intersections.length) {
-  //     const hoveredViewType = intersections[0].object.userData.viewType;
-  //     switch (hoveredViewType) {
-  //       case ViewType.Transverse:
-  //         this.eraserModel.selectedVoxel.setZ(
-  //           Math.min(
-  //             this.eraserModel.scan!.voxelCount.z - 1,
-  //             this.eraserModel.selectedVoxel.z + 1,
-  //           ),
-  //         );
-  //         break;
-  //       case ViewType.Sagittal:
-  //         this.eraserModel.selectedVoxel.setX(
-  //           Math.min(
-  //             this.eraserModel.scan!.voxelCount.x - 1,
-  //             this.eraserModel.selectedVoxel.x + 1,
-  //           ),
-  //         );
-  //         break;
-  //       case ViewType.Coronal:
-  //         this.eraserModel.selectedVoxel.setY(
-  //           Math.min(
-  //             this.eraserModel.scan!.voxelCount.y - 1,
-  //             this.eraserModel.selectedVoxel.y + 1,
-  //           ),
-  //         );
-  //         break;
-  //     }
-  //   }
-  // };
+    if (intersections.length) {
+      const newSelectedVoxel = this.spriteHandler.selectedVoxel;
 
-  // public decreaseSpritePosition = () => {
-  //   if (!this.lastMouseEvent) return;
+      const hoveredViewType = intersections[0].object.userData
+        .viewType as ViewType;
+      switch (hoveredViewType) {
+        case ViewType.Transverse:
+          newSelectedVoxel.z = Math.min(
+            voxelCount.z - 1,
+            this.spriteHandler.selectedVoxel.z + 1,
+          );
+          break;
+        case ViewType.Sagittal:
+          newSelectedVoxel.x = Math.min(
+            voxelCount.x - 1,
+            this.spriteHandler.selectedVoxel.x + 1,
+          );
+          break;
+        case ViewType.Coronal:
+          newSelectedVoxel.y = Math.min(
+            voxelCount.y - 1,
+            this.spriteHandler.selectedVoxel.y + 1,
+          );
+          break;
+      }
 
-  //   const intersections = getIntersectionsFromMouseEvent(
-  //     this.lastMouseEvent,
-  //     this.renderer.spriteHandler.spriteParts,
-  //     this.eraserModel,
-  //     this.renderer.canvas,
-  //     this.renderer.camera,
-  //   );
+      this.spriteHandler.setSelectedVoxel(newSelectedVoxel);
+    }
+  };
 
-  //   if (intersections.length) {
-  //     const hoveredViewType = intersections[0].object.userData.viewType;
-  //     switch (hoveredViewType) {
-  //       case ViewType.Transverse:
-  //         this.eraserModel.selectedVoxel.setZ(
-  //           Math.max(0, this.eraserModel.selectedVoxel.z - 1),
-  //         );
-  //         break;
-  //       case ViewType.Sagittal:
-  //         this.eraserModel.selectedVoxel.setX(
-  //           Math.max(0, this.eraserModel.selectedVoxel.x - 1),
-  //         );
-  //         break;
-  //       case ViewType.Coronal:
-  //         this.eraserModel.selectedVoxel.setY(
-  //           Math.max(0, this.eraserModel.selectedVoxel.y - 1),
-  //         );
-  //         break;
-  //     }
-  //   }
-  // };
+  public decreaseSpritePosition = () => {
+    if (!this.lastMouseEvent) return;
+
+    const intersections = getIntersectionsFromMouseEvent(
+      this.lastMouseEvent,
+      this.spriteHandler.spriteParts,
+      this.canvas,
+      this.renderer.camera,
+      this.renderer.pointerLocked,
+    );
+
+    if (intersections.length) {
+      const newSelectedVoxel = this.spriteHandler.selectedVoxel;
+
+      const hoveredViewType = intersections[0].object.userData
+        .viewType as ViewType;
+      switch (hoveredViewType) {
+        case ViewType.Transverse:
+          newSelectedVoxel.z = Math.max(
+            0,
+            this.spriteHandler.selectedVoxel.z - 1,
+          );
+          break;
+        case ViewType.Sagittal:
+          newSelectedVoxel.x = Math.max(
+            0,
+            this.spriteHandler.selectedVoxel.x - 1,
+          );
+          break;
+        case ViewType.Coronal:
+          newSelectedVoxel.y = Math.max(
+            0,
+            this.spriteHandler.selectedVoxel.y - 1,
+          );
+          break;
+      }
+
+      this.spriteHandler.setSelectedVoxel(newSelectedVoxel);
+    }
+  };
 
   private keyMap = [
     {

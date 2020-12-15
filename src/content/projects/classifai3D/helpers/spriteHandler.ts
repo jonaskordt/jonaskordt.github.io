@@ -21,6 +21,12 @@ export default class SpriteHandler {
   private cameraOctant?: number;
   private cameraPosition = new THREE.Vector3();
 
+  public selectedVoxel: Voxel = {
+    x: Math.floor(voxelCount.x / 2),
+    y: Math.floor(voxelCount.y / 2),
+    z: Math.floor(voxelCount.z / 2),
+  };
+
   constructor(private renderer: Classifai3D) {
     const loader = new THREE.TextureLoader();
     const scanTexture = loader.load(atlas, () => {
@@ -32,9 +38,9 @@ export default class SpriteHandler {
     this.uniforms = {
       activeSlices: {
         value: [
-          renderer.selectedVoxel.x,
-          renderer.selectedVoxel.y,
-          renderer.selectedVoxel.z,
+          this.selectedVoxel.x,
+          this.selectedVoxel.y,
+          this.selectedVoxel.z,
         ],
       },
       scanSize: {
@@ -90,7 +96,7 @@ export default class SpriteHandler {
     this.spriteGroup = new THREE.Group();
     this.spriteGroup.add(...this.spriteParts);
 
-    this.setSelectedVoxel(renderer.selectedVoxel);
+    this.setSelectedVoxel(this.selectedVoxel);
   }
 
   public get spriteParts() {
@@ -125,6 +131,8 @@ export default class SpriteHandler {
   };
 
   public setSelectedVoxel = (voxel: Voxel) => {
+    this.selectedVoxel = voxel;
+
     this.materials.forEach((material) => {
       // eslint-disable-next-line no-param-reassign
       ((material.uniforms as unknown) as SpriteUniforms).activeSlices.value[0] =
@@ -140,6 +148,10 @@ export default class SpriteHandler {
     viewTypes.forEach((viewType) => {
       this.scaleSprite(viewType);
     });
+
+    this.positionSpriteGroup();
+
+    this.renderer.render();
   };
 
   public setCameraPosition = (position: THREE.Vector3) => {
@@ -148,16 +160,18 @@ export default class SpriteHandler {
     this.updateRenderOrder();
   };
 
-  public updateRenderOrder = () => {
+  private positionSpriteGroup = () => {
     const scanSizeX = voxelCount.x * voxelDimensions.x;
     this.spriteGroup.position.set(
       // x axis of texture atlas is inverted ...
-      scanSizeX - this.renderer.selectedVoxel.x - 1,
-      this.renderer.selectedVoxel.y,
-      this.renderer.selectedVoxel.z,
+      scanSizeX - this.selectedVoxel.x - 1,
+      this.selectedVoxel.y,
+      this.selectedVoxel.z,
     );
+  };
 
-    this.spriteGroup.updateMatrixWorld(true);
+  public updateRenderOrder = () => {
+    this.spriteGroup.updateMatrixWorld();
 
     const cameraPosition = this.spriteGroup.worldToLocal(
       new THREE.Vector3(
@@ -194,8 +208,6 @@ export default class SpriteHandler {
   };
 
   private scaleSprite = (viewType: ViewType) => {
-    const { selectedVoxel } = this.renderer;
-
     const sprite = this.sprites[viewType];
 
     const planeAxes = getPlaneAxes(viewType);
@@ -203,23 +215,23 @@ export default class SpriteHandler {
     const yAxis = planeAxes[1];
 
     sprite[0].scale.set(
-      voxelCount[xAxis] - selectedVoxel[xAxis] - 0.5,
-      selectedVoxel[yAxis] + 0.5,
+      voxelCount[xAxis] - this.selectedVoxel[xAxis] - 0.5,
+      this.selectedVoxel[yAxis] + 0.5,
       1,
     );
     sprite[1].scale.set(
-      selectedVoxel[xAxis] + 0.5,
-      selectedVoxel[yAxis] + 0.5,
+      this.selectedVoxel[xAxis] + 0.5,
+      this.selectedVoxel[yAxis] + 0.5,
       1,
     );
     sprite[2].scale.set(
-      voxelCount[xAxis] - selectedVoxel[xAxis] - 0.5,
-      voxelCount[yAxis] - selectedVoxel[yAxis] - 0.5,
+      voxelCount[xAxis] - this.selectedVoxel[xAxis] - 0.5,
+      voxelCount[yAxis] - this.selectedVoxel[yAxis] - 0.5,
       1,
     );
     sprite[3].scale.set(
-      selectedVoxel[xAxis] + 0.5,
-      voxelCount[yAxis] - selectedVoxel[yAxis] - 0.5,
+      this.selectedVoxel[xAxis] + 0.5,
+      voxelCount[yAxis] - this.selectedVoxel[yAxis] - 0.5,
       1,
     );
 
@@ -231,8 +243,8 @@ export default class SpriteHandler {
     );
 
     const width0 =
-      (voxelCount[xAxis] - selectedVoxel[xAxis] - 0.5) / voxelCount[xAxis];
-    const height0 = (selectedVoxel[yAxis] + 0.5) / voxelCount[yAxis];
+      (voxelCount[xAxis] - this.selectedVoxel[xAxis] - 0.5) / voxelCount[xAxis];
+    const height0 = (this.selectedVoxel[yAxis] + 0.5) / voxelCount[yAxis];
     geometryUVs[0].setY(0, height0);
     geometryUVs[0].setXY(1, width0, height0);
     geometryUVs[0].setX(3, width0);
