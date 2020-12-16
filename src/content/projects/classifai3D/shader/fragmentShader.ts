@@ -46,7 +46,7 @@ const fragmentShader = (viewType: ViewType) => {
       if(texelValue.x < scanBackground)
         discard;
       
-      float contrastedColor = brightness * pow(texelValue.x, contrast);
+      float contrastedColor = brightness * pow(contrast, 3.0) * pow(texelValue.x, contrast);
 
       vec3 tintedColor = mix(vec3(0.0, 0.0, blueTint ? 0.06 : 0.0), vec3(1.0), contrastedColor);
 
