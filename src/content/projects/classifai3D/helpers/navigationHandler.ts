@@ -16,7 +16,7 @@ export default class NavigationHandler implements IDisposable {
 
   private lastMouseEvent?: MouseEvent;
 
-  private speed = 5;
+  private speed = 2;
 
   private controls: PointerLockControls;
 
@@ -48,6 +48,10 @@ export default class NavigationHandler implements IDisposable {
     this.controls.disconnect();
     this.controls.dispose();
     if (this.renderer.pointerLocked) this.togglePointerLock();
+  };
+
+  public setSpeed = (speed: number) => {
+    this.speed = speed;
   };
 
   private handleKeyDown = (event: KeyboardEvent) => {
