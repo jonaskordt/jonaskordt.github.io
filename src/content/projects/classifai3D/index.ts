@@ -63,9 +63,9 @@ export default class Classifai3D extends CanvasController {
     const [lights, lightTargets] = createLights(voxelCount);
     this.scene.add(...lights, ...lightTargets);
 
-    this.canvas.addEventListener("click", this.handleClick);
-    this.canvas.addEventListener("mousemove", this.handleMouseMove);
-    this.canvas.addEventListener("wheel", this.handleWheel);
+    document.addEventListener("click", this.handleClick);
+    document.addEventListener("mousemove", this.handleMouseMove);
+    document.addEventListener("wheel", this.handleWheel);
 
     this.spriteHandler = new SpriteHandler(this);
     this.navigator = new NavigationHandler(
@@ -102,9 +102,9 @@ export default class Classifai3D extends CanvasController {
   public dispose() {
     super.dispose();
 
-    this.canvas.removeEventListener("click", this.handleClick);
-    this.canvas.removeEventListener("mousemove", this.handleMouseMove);
-    this.canvas.removeEventListener("wheel", this.handleWheel);
+    document.removeEventListener("click", this.handleClick);
+    document.removeEventListener("mousemove", this.handleMouseMove);
+    document.removeEventListener("wheel", this.handleWheel);
 
     this.navigator.dispose();
   }

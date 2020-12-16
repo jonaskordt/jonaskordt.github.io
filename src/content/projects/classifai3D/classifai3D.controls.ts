@@ -16,6 +16,13 @@ const classifai3DControls: (canvasController: Classifai3D) => Controls = (
     // Slider Controls
     [
       {
+        action: "Movement Speed",
+        callback: canvasController.navigator.setSpeed,
+        initialValue: 2,
+        min: 0.1,
+        max: 7,
+      },
+      {
         action: "Scan Slice Opacity",
         callback: canvasController.spriteHandler.setOpacity,
         initialValue: 0.5,
