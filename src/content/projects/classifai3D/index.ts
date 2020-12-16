@@ -18,6 +18,13 @@ import {
   voxelCount,
   voxelDimensions,
 } from "./staticScan";
+import {
+  defaultStructureColor,
+  hoveredSelectedStructureColor,
+  hoveredStructureColor,
+  selectedStructureColor,
+} from "./theme";
+import { Pixel } from "./types";
 import { getIntersectionsFromMouseEvent } from "./utils/picking";
 import { resizeRenderer } from "./utils/scaling";
 
@@ -28,6 +35,7 @@ export default class Classifai3D extends CanvasController {
 
   private pickingScene = new THREE.Scene();
   private pickingTexture = new THREE.WebGLRenderTarget(1, 1);
+  private pickingMeshes!: THREE.Mesh[];
 
   private meshes!: THREE.Mesh[];
   private materials!: THREE.MeshPhongMaterial[];
@@ -38,6 +46,8 @@ export default class Classifai3D extends CanvasController {
   private renderDirty = true;
 
   public pointerLocked = false;
+  private hoveredStructureIndex?: number;
+  private structureSelection: number[] = [];
 
   private lastMouseEvent?: MouseEvent;
 
@@ -89,9 +99,9 @@ export default class Classifai3D extends CanvasController {
       this.scene.add(meshGroup);
       meshGroup.updateMatrixWorld(true);
 
-      const pickingMeshes = createPickingMeshes(geometries);
+      this.pickingMeshes = createPickingMeshes(geometries);
       const pickingGroup = createMeshGroup();
-      pickingGroup.add(...pickingMeshes);
+      pickingGroup.add(...this.pickingMeshes);
       this.pickingScene.add(pickingGroup);
 
       this.spriteHandler.updateRenderOrder();
@@ -129,6 +139,8 @@ export default class Classifai3D extends CanvasController {
   private forceRender = () => {
     this.renderDirty = false;
 
+    this.updateHover();
+
     this.renderer.render(this.scene, this.camera);
   };
 
@@ -136,11 +148,97 @@ export default class Classifai3D extends CanvasController {
     this.pointerLocked = !this.pointerLocked;
   };
 
-  private deleteConnectedStructures = (objects: THREE.Object3D[]) => {
-    objects.forEach((object) => {
-      // eslint-disable-next-line no-param-reassign
-      object.visible = false;
+  private deleteConnectedStructures = (indexes: number[]) => {
+    indexes.forEach((index) => {
+      this.meshes[index].visible = false;
+      this.pickingMeshes[index].visible = false;
     });
+  };
+
+  private selects = (index: number) => this.structureSelection.includes(index);
+  private hovers = (index: number) => this.hoveredStructureIndex === index;
+
+  private updateColor = (index: number) => {
+    // eslint-disable-next-line no-nested-ternary
+    const color = this.selects(index)
+      ? this.hovers(index)
+        ? hoveredSelectedStructureColor
+        : selectedStructureColor
+      : this.hovers(index)
+      ? hoveredStructureColor
+      : defaultStructureColor;
+
+    this.materials[index].color = new THREE.Color(color);
+  };
+
+  private updateHover = () => {
+    if (!this.lastMouseEvent) return;
+
+    let pointer: Pixel;
+    if (this.pointerLocked) {
+      pointer = {
+        x: Math.floor(this.canvas.width / 2),
+        y: Math.floor(this.canvas.height / 2),
+      };
+    } else {
+      const canvasBox = this.canvas.getBoundingClientRect();
+      pointer = {
+        x:
+          (this.lastMouseEvent.clientX - canvasBox.left) *
+          window.devicePixelRatio,
+        y:
+          (this.lastMouseEvent.clientY - canvasBox.top) *
+          window.devicePixelRatio,
+      };
+    }
+
+    this.camera.setViewOffset(
+      this.canvas.width,
+      this.canvas.height,
+      pointer.x,
+      pointer.y,
+      1,
+      1,
+    );
+
+    this.renderer.setRenderTarget(this.pickingTexture);
+    this.renderer.render(this.pickingScene, this.camera);
+
+    this.camera.clearViewOffset();
+
+    const pixelBuffer = new Uint8Array(4);
+    this.renderer.readRenderTargetPixels(
+      this.pickingTexture,
+      0,
+      0,
+      1,
+      1,
+      pixelBuffer,
+    );
+
+    this.renderer.setRenderTarget(null);
+
+    const pickedIndex =
+      ((pixelBuffer[0] << 16) | (pixelBuffer[1] << 8) | pixelBuffer[2]) - 1;
+
+    if (pickedIndex < 0) {
+      this.removeHoveredStructure();
+    } else if (this.hoveredStructureIndex !== pickedIndex) {
+      this.removeHoveredStructure();
+      this.hoverIndex(pickedIndex);
+    }
+  };
+
+  private removeHoveredStructure = () => {
+    if (this.hoveredStructureIndex === undefined) return;
+    const oldHover = this.hoveredStructureIndex;
+    this.hoveredStructureIndex = undefined;
+    this.updateColor(oldHover);
+  };
+
+  private hoverIndex = (index: number) => {
+    this.hoveredStructureIndex = index;
+    this.updateColor(index);
   };
 
   private handleClick = (event: MouseEvent) => {
@@ -155,11 +253,11 @@ export default class Classifai3D extends CanvasController {
     const intersection = intersections.find((i) => i.object.visible);
     if (intersection) {
       const clickedObject = intersection.object;
-      // const { index } = clickedObject.userData;
+      const { index } = clickedObject.userData;
 
       // switch (this.activeTool) {
       //   case Tool.PixelEraser:
-      this.deleteConnectedStructures([clickedObject]);
+      this.deleteConnectedStructures([index]);
       //     if (this.selects(index)) this.select(index);
       //     break;
       //   case Tool.Hand:
