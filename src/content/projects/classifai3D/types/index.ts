@@ -21,6 +21,11 @@ export const viewTypes = [
   ViewType.Coronal,
 ];
 
+export enum Tool {
+  Eraser = 0,
+  Selection = 1,
+}
+
 export interface IDisposable {
   dispose: () => void;
 }

@@ -24,7 +24,7 @@ import {
   hoveredStructureColor,
   selectedStructureColor,
 } from "./theme";
-import { Pixel } from "./types";
+import { Pixel, Tool } from "./types";
 import { getIntersectionsFromMouseEvent } from "./utils/picking";
 import { resizeRenderer } from "./utils/scaling";
 
@@ -48,6 +48,8 @@ export default class Classifai3D extends CanvasController {
   public pointerLocked = false;
   private hoveredStructureIndex?: number;
   private structureSelection: number[] = [];
+
+  public activeTool = Tool.Selection;
 
   private lastMouseEvent?: MouseEvent;
 
@@ -75,7 +77,7 @@ export default class Classifai3D extends CanvasController {
 
     document.addEventListener("click", this.handleClick);
     document.addEventListener("mousemove", this.handleMouseMove);
-    document.addEventListener("wheel", this.handleWheel);
+    canvas.addEventListener("wheel", this.handleWheel);
 
     this.spriteHandler = new SpriteHandler(this);
     this.navigator = new NavigationHandler(
@@ -114,7 +116,7 @@ export default class Classifai3D extends CanvasController {
 
     document.removeEventListener("click", this.handleClick);
     document.removeEventListener("mousemove", this.handleMouseMove);
-    document.removeEventListener("wheel", this.handleWheel);
+    this.canvas.removeEventListener("wheel", this.handleWheel);
 
     this.navigator.dispose();
   }
@@ -146,6 +148,17 @@ export default class Classifai3D extends CanvasController {
 
   public togglePointerLock = () => {
     this.pointerLocked = !this.pointerLocked;
+    if (this.pointerLocked) {
+      this.canvas.removeEventListener("wheel", this.handleWheel);
+      document.addEventListener("wheel", this.handleWheel);
+    } else {
+      document.removeEventListener("wheel", this.handleWheel);
+      this.canvas.addEventListener("wheel", this.handleWheel);
+    }
+  };
+
+  public setActiveTool = (tool: Tool) => {
+    this.activeTool = tool;
   };
 
   private deleteConnectedStructures = (indexes: number[]) => {
@@ -241,6 +254,42 @@ export default class Classifai3D extends CanvasController {
     this.updateColor(index);
   };
 
+  private select = (index: number) => {
+    if (this.selects(index)) {
+      const selectionIndex = this.structureSelection.indexOf(index);
+      this.structureSelection.splice(selectionIndex, 1);
+    } else {
+      this.structureSelection.push(index);
+    }
+    this.updateColor(index);
+  };
+
+  public deleteSelection = () => {
+    this.deleteConnectedStructures(this.structureSelection);
+    this.structureSelection = [];
+
+    this.render();
+  };
+
+  public invertSelection = () => {
+    for (let index = 0; index < this.meshes.length; index++) {
+      this.select(index);
+    }
+
+    this.render();
+  };
+
+  public clearSelection = () => {
+    const oldSelection: number[] = [];
+    this.structureSelection.forEach((index) => oldSelection.push(index));
+
+    oldSelection.forEach((index) => {
+      this.select(index);
+    });
+
+    this.render();
+  };
+
   private handleClick = (event: MouseEvent) => {
     const intersections = getIntersectionsFromMouseEvent(
       event,
@@ -255,17 +304,17 @@ export default class Classifai3D extends CanvasController {
       const clickedObject = intersection.object;
       const { index } = clickedObject.userData;
 
-      // switch (this.activeTool) {
-      //   case Tool.PixelEraser:
-      this.deleteConnectedStructures([index]);
-      //     if (this.selects(index)) this.select(index);
-      //     break;
-      //   case Tool.Hand:
-      //     this.select(index);
-      //     break;
-      //   default:
-      //     break;
-      // }
+      switch (this.activeTool) {
+        case Tool.Eraser:
+          this.deleteConnectedStructures([index]);
+          if (this.selects(index)) this.select(index);
+          break;
+        case Tool.Selection:
+          this.select(index);
+          break;
+        default:
+          break;
+      }
 
       this.render();
     }

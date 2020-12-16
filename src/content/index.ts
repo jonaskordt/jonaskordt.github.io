@@ -4,6 +4,7 @@ import classifaiIMG from "./images/classifai.png";
 import classifai3DIMG from "./images/classifai3D.png";
 import planesIMG from "./images/planes.png";
 import Classifai3D from "./projects/classifai3D";
+import Classifai3DControls from "./projects/classifai3D/customControls";
 import TransparentPlanes from "./projects/transparentPlanes";
 import bachelorThesisBlog, {
   bachelorThesisQuickSummary,
@@ -54,6 +55,11 @@ export const projects: { [id: string]: Project } = {
     isPreview: false,
     img: classifai3DIMG,
   },
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const customControls: { [id: string]: React.FC<any> } = {
+  classifai3D: Classifai3DControls,
 };
 
 export const homeOrder: { isBlog: boolean; id: string }[] = [

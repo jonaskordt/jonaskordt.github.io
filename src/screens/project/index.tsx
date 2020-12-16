@@ -6,7 +6,7 @@ import WebGLCanvas from "../../components/project/webGLCanvas";
 import Header from "../../components/shared/header";
 import Heading from "../../components/shared/heading";
 import Screen from "../../components/shared/screen";
-import { projects } from "../../content";
+import { customControls, projects } from "../../content";
 import CanvasController from "../../content/projects/default";
 import { noControls } from "../../lib/types/controls";
 import presets from "./project.module.scss";
@@ -20,6 +20,7 @@ let canvasController: CanvasController | undefined;
 const Project: React.FC = () => {
   const { projectId } = useParams<IProjectParams>();
   const project = projects[projectId];
+  const CustomControls = customControls[projectId];
 
   /* Canvas Controller */
 
@@ -65,6 +66,15 @@ const Project: React.FC = () => {
 
   /* Full Screen End */
 
+  /* Custom Controls */
+
+  const customControlsProps: {
+    [propName: string]: CanvasController | undefined;
+  } = {};
+  customControlsProps[projectId] = canvasController;
+
+  /* Custom Controls End */
+
   return (
     <Screen preset="fullHeight">
       <Header preset="thin" />
@@ -76,7 +86,9 @@ const Project: React.FC = () => {
               <Controls
                 toggleFullScreen={toggleFullScreen}
                 controls={canvasController?.controls || noControls}
-              />
+              >
+                {CustomControls && <CustomControls {...customControlsProps} />}
+              </Controls>
             </div>
             <div
               className={
