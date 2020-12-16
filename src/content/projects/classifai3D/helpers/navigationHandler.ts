@@ -64,39 +64,39 @@ export default class NavigationHandler implements IDisposable {
     this.lastMouseEvent = event;
   };
 
-  private moveForward = () => {
+  public moveForward = () => {
     this.camera.getWorldDirection(this.direction);
     this.camera.position.addScaledVector(this.direction, this.speed);
 
     this.updateCameraPosition();
   };
 
-  private moveBack = () => {
+  public moveBack = () => {
     this.camera.getWorldDirection(this.direction);
     this.camera.position.addScaledVector(this.direction, -this.speed);
 
     this.updateCameraPosition();
   };
 
-  private moveUp = () => {
+  public moveUp = () => {
     this.camera.position.addScaledVector(this.camera.up, this.speed);
 
     this.updateCameraPosition();
   };
 
-  private moveDown = () => {
+  public moveDown = () => {
     this.camera.position.addScaledVector(this.camera.up, -this.speed);
 
     this.updateCameraPosition();
   };
 
-  private moveLeft = () => {
+  public moveLeft = () => {
     this.controls.moveRight(-this.speed);
 
     this.updateCameraPosition();
   };
 
-  private moveRight = () => {
+  public moveRight = () => {
     this.controls.moveRight(this.speed);
 
     this.updateCameraPosition();

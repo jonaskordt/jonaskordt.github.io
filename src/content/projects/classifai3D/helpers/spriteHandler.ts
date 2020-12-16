@@ -130,6 +130,11 @@ export default class SpriteHandler {
     this.renderer.render();
   };
 
+  public setSpriteVisibility = (visible: boolean) => {
+    this.spriteGroup.visible = visible;
+    this.renderer.render();
+  };
+
   public setSelectedVoxel = (voxel: Voxel) => {
     this.selectedVoxel = voxel;
 

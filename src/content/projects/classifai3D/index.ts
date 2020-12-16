@@ -32,8 +32,8 @@ export default class Classifai3D extends CanvasController {
   private meshes!: THREE.Mesh[];
   private materials!: THREE.MeshPhongMaterial[];
 
-  private navigator!: NavigationHandler;
-  private spriteHandler!: SpriteHandler;
+  public navigator!: NavigationHandler;
+  public spriteHandler!: SpriteHandler;
 
   private renderDirty = true;
 
@@ -43,8 +43,6 @@ export default class Classifai3D extends CanvasController {
 
   constructor(canvas: HTMLCanvasElement) {
     super(canvas);
-
-    this.controls = classifai3DControls(this);
 
     this.scene.scale.set(
       voxelDimensions.x,
@@ -69,6 +67,15 @@ export default class Classifai3D extends CanvasController {
     this.canvas.addEventListener("mousemove", this.handleMouseMove);
     this.canvas.addEventListener("wheel", this.handleWheel);
 
+    this.spriteHandler = new SpriteHandler(this);
+    this.navigator = new NavigationHandler(
+      this,
+      this.canvas,
+      this.spriteHandler,
+    );
+
+    this.controls = classifai3DControls(this);
+
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     Promise.all(getConnectedStructureGeometries()).then((geometries) => {
       this.meshes = createMeshes(geometries);
@@ -77,8 +84,6 @@ export default class Classifai3D extends CanvasController {
       const meshGroup = createMeshGroup();
 
       meshGroup.add(...this.meshes);
-
-      this.spriteHandler = new SpriteHandler(this);
       meshGroup.add(this.spriteHandler.spriteGroup);
 
       this.scene.add(meshGroup);
@@ -89,12 +94,7 @@ export default class Classifai3D extends CanvasController {
       pickingGroup.add(...pickingMeshes);
       this.pickingScene.add(pickingGroup);
 
-      this.navigator = new NavigationHandler(
-        this,
-        this.canvas,
-        this.spriteHandler,
-      );
-
+      this.spriteHandler.updateRenderOrder();
       this.renderer.setAnimationLoop(this.animate);
     });
   }
