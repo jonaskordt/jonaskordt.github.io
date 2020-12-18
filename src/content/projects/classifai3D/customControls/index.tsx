@@ -9,7 +9,9 @@ import {
   DeleteIcon,
   EraserIcon,
   InvertSelectionIcon,
+  RedoIcon,
   SelectIcon,
+  UndoIcon,
 } from "./icons";
 
 const tools = [Tool.Selection, Tool.Eraser];
@@ -22,41 +24,55 @@ const Classifai3DControls: React.FC<Classifai3DControlsProps> = (props) => {
 
   return (
     <div className={classNames(presets[preset], className)}>
-      {classifai3D && (
-        <div className={presets.toolBar}>
-          {tools.map((tool, index) => {
-            const Icon = ToolIcons[index];
-            return (
-              <div
-                className={
-                  tool === activeTool ? presets.activeTool : presets.tool
-                }
-                key={tool}
-              >
-                <Icon
-                  onClick={() => {
-                    classifai3D.setActiveTool(tool);
-                    setActiveTool(tool);
-                  }}
-                />
-              </div>
-            );
-          })}
-        </div>
-      )}
-      {classifai3D && activeTool === Tool.Selection && (
-        <div className={presets.selectionToolBar}>
-          <div className={presets.tool}>
-            <InvertSelectionIcon onClick={classifai3D.invertSelection} />
+      <div className={presets.toolBarContainer}>
+        {classifai3D && (
+          <div className={presets.toolBar}>
+            <div className={presets.tool}>
+              <UndoIcon onClick={classifai3D.undo} />
+            </div>
+            <div className={presets.tool}>
+              <RedoIcon onClick={classifai3D.redo} />
+            </div>
           </div>
-          <div className={presets.tool}>
-            <DeleteIcon onClick={classifai3D.deleteSelection} />
+        )}
+      </div>
+      <div className={presets.toolBarContainer}>
+        {classifai3D && (
+          <div className={presets.toolBar}>
+            {tools.map((tool, index) => {
+              const Icon = ToolIcons[index];
+              return (
+                <div
+                  className={
+                    tool === activeTool ? presets.activeTool : presets.tool
+                  }
+                  key={tool}
+                >
+                  <Icon
+                    onClick={() => {
+                      classifai3D.setActiveTool(tool);
+                      setActiveTool(tool);
+                    }}
+                  />
+                </div>
+              );
+            })}
           </div>
-          <div className={presets.tool}>
-            <ClearIcon onClick={classifai3D.clearSelection} />
+        )}
+        {classifai3D && activeTool === Tool.Selection && (
+          <div className={presets.selectionToolBar}>
+            <div className={presets.tool}>
+              <InvertSelectionIcon onClick={classifai3D.invertSelection} />
+            </div>
+            <div className={presets.tool}>
+              <DeleteIcon onClick={classifai3D.deleteSelection} />
+            </div>
+            <div className={presets.tool}>
+              <ClearIcon onClick={classifai3D.clearSelection} />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

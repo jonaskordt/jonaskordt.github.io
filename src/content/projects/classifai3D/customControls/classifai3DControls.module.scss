@@ -4,9 +4,19 @@
   background-color: $control-background;
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   flex-shrink: 0;
   padding: 15px;
   width: 250px;
+}
+
+.toolBarContainer {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.toolBarContainer:last-child {
+  margin-bottom: 0;
 }
 
 .toolBar {

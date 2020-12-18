@@ -11,6 +11,7 @@ import {
   createRenderer,
   getMaterials,
 } from "./creators";
+import AnnotationHandler from "./helpers/annotationHandler";
 import NavigationHandler from "./helpers/navigationHandler";
 import SpriteHandler from "./helpers/spriteHandler";
 import {
@@ -42,6 +43,7 @@ export default class Classifai3D extends CanvasController {
 
   public navigator!: NavigationHandler;
   public spriteHandler!: SpriteHandler;
+  private annotator!: AnnotationHandler;
 
   private renderDirty = true;
 
@@ -73,8 +75,6 @@ export default class Classifai3D extends CanvasController {
 
     this.renderer = createRenderer(canvas);
     this.camera = createCamera(canvas, voxelCount, voxelDimensions);
-
-    // Todo: Navigation
 
     const [lights, lightTargets] = createLights(voxelCount);
     this.scene.add(...lights, ...lightTargets);
@@ -109,6 +109,12 @@ export default class Classifai3D extends CanvasController {
       const pickingGroup = createMeshGroup();
       pickingGroup.add(...this.pickingMeshes);
       this.pickingScene.add(pickingGroup);
+
+      this.annotator = new AnnotationHandler(
+        this,
+        this.meshes,
+        this.pickingMeshes,
+      );
 
       this.spriteHandler.updateRenderOrder();
       this.renderer.setAnimationLoop(this.animate);
@@ -167,17 +173,18 @@ export default class Classifai3D extends CanvasController {
     this.activeTool = tool;
   };
 
-  private deleteConnectedStructures = (indexes: number[]) => {
-    indexes.forEach((index) => {
-      this.meshes[index].visible = false;
-      this.pickingMeshes[index].visible = false;
-    });
+  public undo = () => {
+    this.annotator.undo();
+  };
+
+  public redo = () => {
+    this.annotator.redo();
   };
 
   private selects = (index: number) => this.structureSelection.includes(index);
   private hovers = (index: number) => this.hoveredStructureIndex === index;
 
-  private updateColor = (index: number) => {
+  public updateColor = (index: number) => {
     // eslint-disable-next-line no-nested-ternary
     const color = this.selects(index)
       ? this.hovers(index)
@@ -278,7 +285,7 @@ export default class Classifai3D extends CanvasController {
   };
 
   public deleteSelection = () => {
-    this.deleteConnectedStructures(this.structureSelection);
+    this.annotator.deleteConnectedStructures(this.structureSelection);
     this.structureSelection = [];
 
     this.render();
@@ -319,7 +326,7 @@ export default class Classifai3D extends CanvasController {
 
       switch (this.activeTool) {
         case Tool.Eraser:
-          this.deleteConnectedStructures([index]);
+          this.annotator.deleteConnectedStructures([index]);
           if (this.selects(index)) this.select(index);
           break;
         case Tool.Selection:
