@@ -195,12 +195,19 @@ export default class Classifai3D extends CanvasController {
       };
     } else {
       const canvasBox = this.canvas.getBoundingClientRect();
+
+      const style = getComputedStyle(this.canvas);
+      // eslint-disable-next-line radix
+      const borderLeft = parseInt(style.borderLeftWidth);
+      // eslint-disable-next-line radix
+      const borderTop = parseInt(style.borderTopWidth);
+
       pointer = {
         x:
-          (this.lastMouseEvent.clientX - canvasBox.left) *
+          (this.lastMouseEvent.clientX - canvasBox.left - borderLeft) *
           window.devicePixelRatio,
         y:
-          (this.lastMouseEvent.clientY - canvasBox.top) *
+          (this.lastMouseEvent.clientY - canvasBox.top - borderTop) *
           window.devicePixelRatio,
       };
     }
