@@ -51,10 +51,14 @@ export default class Classifai3D extends CanvasController {
 
   public activeTool = Tool.Selection;
 
+  private crosshair: HTMLElement | null;
+
   private lastMouseEvent?: MouseEvent;
 
   constructor(canvas: HTMLCanvasElement) {
     super(canvas);
+
+    this.crosshair = document.getElementById("crosshairPointer");
 
     this.scene.scale.set(
       voxelDimensions.x,
@@ -149,9 +153,11 @@ export default class Classifai3D extends CanvasController {
   public togglePointerLock = () => {
     this.pointerLocked = !this.pointerLocked;
     if (this.pointerLocked) {
+      if (this.crosshair) this.crosshair.style.display = "flex";
       this.canvas.removeEventListener("wheel", this.handleWheel);
       document.addEventListener("wheel", this.handleWheel);
     } else {
+      if (this.crosshair) this.crosshair.style.display = "none";
       document.removeEventListener("wheel", this.handleWheel);
       this.canvas.addEventListener("wheel", this.handleWheel);
     }

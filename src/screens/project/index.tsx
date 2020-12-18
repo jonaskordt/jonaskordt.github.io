@@ -7,6 +7,7 @@ import Header from "../../components/shared/header";
 import Heading from "../../components/shared/heading";
 import Screen from "../../components/shared/screen";
 import { customControls, projects } from "../../content";
+import { CrosshairIcon } from "../../content/projects/classifai3D/theme";
 import CanvasController from "../../content/projects/default";
 import { noControls } from "../../lib/types/controls";
 import presets from "./project.module.scss";
@@ -99,6 +100,11 @@ const Project: React.FC = () => {
                 ref={canvasRef}
                 preset={fullScreen ? "fullScreen" : undefined}
               />
+              {projectId === "classifai3D" && (
+                <div className={presets.crosshairPointer} id="crosshairPointer">
+                  <CrosshairIcon />
+                </div>
+              )}
             </div>
             <p className={presets.text}>{project.summary}</p>
           </div>
