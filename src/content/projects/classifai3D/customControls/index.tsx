@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import classNames from "../../../../styling";
 import { Tool } from "../types";
@@ -21,6 +21,25 @@ const Classifai3DControls: React.FC<Classifai3DControlsProps> = (props) => {
   const { classifai3D, className, preset = "default" } = props;
 
   const [activeTool, setActiveTool] = useState<Tool>(Tool.Selection);
+
+  useEffect(() => {
+    if (classifai3D) {
+      document.addEventListener("keydown", (event: KeyboardEvent) => {
+        switch (event.key.toLowerCase()) {
+          case "e":
+            setActiveTool(Tool.Eraser);
+            classifai3D.setActiveTool(Tool.Eraser);
+            break;
+          case "q":
+            setActiveTool(Tool.Selection);
+            classifai3D.setActiveTool(Tool.Selection);
+            break;
+          default:
+            break;
+        }
+      });
+    }
+  }, [setActiveTool, classifai3D]);
 
   return (
     <div className={classNames(presets[preset], className)}>

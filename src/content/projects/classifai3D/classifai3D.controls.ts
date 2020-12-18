@@ -96,6 +96,16 @@ const classifai3DControls: (canvasController: Classifai3D) => Controls = (
         keys: ["Shift"],
         callback: canvasController.navigator.moveDown,
       },
+      {
+        action: "undo",
+        keys: ["Control", "z"],
+        callback: canvasController.undo,
+      },
+      {
+        action: "redo",
+        keys: ["Control", "y"],
+        callback: canvasController.redo,
+      },
     ],
   ];
 };

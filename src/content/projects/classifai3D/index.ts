@@ -12,6 +12,7 @@ import {
   getMaterials,
 } from "./creators";
 import AnnotationHandler from "./helpers/annotationHandler";
+import KeyEventHandler from "./helpers/keyEventHandler";
 import NavigationHandler from "./helpers/navigationHandler";
 import SpriteHandler from "./helpers/spriteHandler";
 import {
@@ -30,6 +31,8 @@ import { getIntersectionsFromMouseEvent } from "./utils/picking";
 import { resizeRenderer } from "./utils/scaling";
 
 export default class Classifai3D extends CanvasController {
+  private keyEventHandler!: KeyEventHandler;
+
   private renderer: THREE.WebGLRenderer;
   public camera: THREE.PerspectiveCamera;
   private scene = new THREE.Scene();
@@ -116,6 +119,8 @@ export default class Classifai3D extends CanvasController {
         this.pickingMeshes,
       );
 
+      this.keyEventHandler = new KeyEventHandler(this);
+
       this.spriteHandler.updateRenderOrder();
       this.renderer.setAnimationLoop(this.animate);
     });
@@ -129,6 +134,7 @@ export default class Classifai3D extends CanvasController {
     this.canvas.removeEventListener("wheel", this.handleWheel);
 
     this.navigator.dispose();
+    this.keyEventHandler.dispose();
   }
 
   protected resizeCanvas(): void {
@@ -139,7 +145,7 @@ export default class Classifai3D extends CanvasController {
   }
 
   private animate = () => {
-    this.navigator.navigate();
+    this.keyEventHandler.tick();
 
     if (this.renderDirty) this.forceRender();
   };

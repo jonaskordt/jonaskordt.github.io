@@ -10,8 +10,6 @@ import SpriteHandler from "./spriteHandler";
 export default class NavigationHandler implements IDisposable {
   private camera: THREE.PerspectiveCamera;
 
-  private pressedKeys: { [key: string]: boolean } = {};
-
   private direction = new THREE.Vector3();
 
   private lastMouseEvent?: MouseEvent;
@@ -32,8 +30,6 @@ export default class NavigationHandler implements IDisposable {
       this.canvas.parentElement!,
     );
 
-    document.addEventListener("keydown", this.handleKeyDown);
-    document.addEventListener("keyup", this.handleKeyUp);
     document.addEventListener("mousemove", this.saveMouseEvent);
     this.controls.addEventListener("change", this.renderer.render);
 
@@ -41,8 +37,6 @@ export default class NavigationHandler implements IDisposable {
   }
 
   public dispose = () => {
-    document.removeEventListener("keydown", this.handleKeyDown);
-    document.removeEventListener("keyup", this.handleKeyUp);
     document.removeEventListener("mousemove", this.saveMouseEvent);
     this.controls.removeEventListener("change", this.renderer.render);
     this.controls.disconnect();
@@ -52,16 +46,6 @@ export default class NavigationHandler implements IDisposable {
 
   public setSpeed = (speed: number) => {
     this.speed = speed;
-  };
-
-  private handleKeyDown = (event: KeyboardEvent) => {
-    this.pressedKeys[event.key.toLowerCase()] = true;
-
-    if (event.key === "t") this.togglePointerLock();
-  };
-
-  private handleKeyUp = (event: KeyboardEvent) => {
-    this.pressedKeys[event.key.toLowerCase()] = false;
   };
 
   private saveMouseEvent = (event: MouseEvent) => {
@@ -200,46 +184,5 @@ export default class NavigationHandler implements IDisposable {
 
       this.spriteHandler.setSelectedVoxel(newSelectedVoxel);
     }
-  };
-
-  private keyMap = [
-    {
-      key: "w",
-      mapper: this.moveForward,
-    },
-    {
-      key: "a",
-      mapper: this.moveLeft,
-    },
-    {
-      key: "s",
-      mapper: this.moveBack,
-    },
-    {
-      key: "d",
-      mapper: this.moveRight,
-    },
-    {
-      key: "shift",
-      mapper: this.moveDown,
-    },
-    {
-      key: " ",
-      mapper: this.moveUp,
-    },
-  ];
-
-  public navigate = () => {
-    let changed = false;
-
-    this.keyMap.forEach((keyBinding) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (this.pressedKeys[keyBinding.key]) {
-        keyBinding.mapper();
-        changed = true;
-      }
-    });
-
-    if (changed) this.renderer.render();
   };
 }
