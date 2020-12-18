@@ -63,8 +63,8 @@ export const customControls: { [id: string]: React.FC<any> } = {
 };
 
 export const homeOrder: { isBlog: boolean; id: string }[] = [
-  { isBlog: true, id: "classifai" },
-  { isBlog: false, id: "planes" },
-  { isBlog: true, id: "bachelorThesis" },
   { isBlog: false, id: "classifai3D" },
+  { isBlog: true, id: "classifai" },
+  { isBlog: true, id: "bachelorThesis" },
+  { isBlog: false, id: "planes" },
 ];
