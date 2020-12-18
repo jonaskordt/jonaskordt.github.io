@@ -14,5 +14,5 @@ export interface Blog extends Content {
 
 export interface Project extends Content {
   CanvasController: typeof CanvasController;
-  summary: string;
+  summary: JSX.Element;
 }

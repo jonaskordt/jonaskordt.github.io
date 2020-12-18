@@ -106,7 +106,7 @@ const Project: React.FC = () => {
                 </div>
               )}
             </div>
-            <p className={presets.text}>{project.summary}</p>
+            {project.summary}
           </div>
         </div>
       ) : (
