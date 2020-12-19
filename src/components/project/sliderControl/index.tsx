@@ -15,10 +15,13 @@ const SliderControl: React.FC<SliderControlProps> = (props) => {
     step = 0.01,
     initialValue,
     preset = "default",
+    logarithmic = false,
     ...rest
   } = props;
 
-  const [normalizedValue, setNormalizedValue] = useState(initialValue);
+  const [normalizedValue, setNormalizedValue] = useState(
+    (initialValue - min) / (max - min),
+  );
 
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -43,11 +46,23 @@ const SliderControl: React.FC<SliderControlProps> = (props) => {
 
       if (stepPosition !== normalizedValue) {
         const selectedValue = selectedStep * step + min;
-        callback(selectedValue);
+        if (logarithmic) {
+          callback(Math.exp(selectedValue));
+        } else {
+          callback(selectedValue);
+        }
         setNormalizedValue(stepPosition);
       }
     },
-    [min, max, step, calculateNormalizedPosition, normalizedValue, callback],
+    [
+      min,
+      max,
+      step,
+      calculateNormalizedPosition,
+      normalizedValue,
+      callback,
+      logarithmic,
+    ],
   );
 
   const onMove = preventDefault(updateKnub);

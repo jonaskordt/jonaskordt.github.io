@@ -3,6 +3,7 @@
 .default {
   border: solid $border-color 1px;
   border-radius: 20px;
+  cursor: crosshair;
 }
 
 .default:focus {

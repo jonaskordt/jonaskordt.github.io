@@ -15,6 +15,7 @@ const Controls: React.FC<ControlsProps> = (props) => {
     preset = "default",
     toggleFullScreen,
     controls,
+    children,
     ...rest
   } = props;
 
@@ -30,6 +31,7 @@ const Controls: React.FC<ControlsProps> = (props) => {
           action="toggle fullscreen"
           callback={toggleFullScreen}
         />
+        {children}
         {mouseControls.map((c) => (
           <ControlInfo className={presets.control} key={c.action} {...c} />
         ))}

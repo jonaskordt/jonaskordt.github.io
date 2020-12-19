@@ -13,6 +13,7 @@ export interface IUISliderControl extends IUIControl<number> {
   min?: number;
   max?: number;
   step?: number;
+  logarithmic?: boolean;
 }
 
 export interface IKeyControl extends IControl {
