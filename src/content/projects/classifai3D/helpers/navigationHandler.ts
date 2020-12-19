@@ -1,8 +1,9 @@
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
 
 import Classifai3D from "..";
-import { voxelCount } from "../staticScan";
+import { voxelCount, voxelDimensions } from "../staticScan";
 import { IDisposable, ViewType } from "../types";
 import { getIntersectionsFromMouseEvent } from "../utils/picking";
 import SpriteHandler from "./spriteHandler";
@@ -16,7 +17,8 @@ export default class NavigationHandler implements IDisposable {
 
   private speed = 2;
 
-  private controls: PointerLockControls;
+  private pointerControls: PointerLockControls;
+  private orbitControls: OrbitControls;
 
   constructor(
     private renderer: Classifai3D,
@@ -25,23 +27,48 @@ export default class NavigationHandler implements IDisposable {
   ) {
     this.camera = renderer.camera;
 
-    this.controls = new PointerLockControls(
+    this.pointerControls = new PointerLockControls(
       this.camera,
       this.canvas.parentElement!,
     );
+    this.orbitControls = new OrbitControls(
+      renderer.camera,
+      canvas.parentElement!,
+    );
+    this.orbitControls.enableZoom = false;
+    this.orbitControls.enablePan = false;
+    this.orbitControls.enableKeys = false;
 
     document.addEventListener("mousemove", this.saveMouseEvent);
-    this.controls.addEventListener("change", this.renderer.render);
+    this.pointerControls.addEventListener("change", this.renderer.render);
+    this.orbitControls.addEventListener("change", this.renderer.render);
+    this.orbitControls.addEventListener(
+      "change",
+      this.spriteHandler.updateRenderOrder,
+    );
 
-    this.updateCameraPosition();
+    this.spriteHandler.updateRenderOrder();
   }
 
   public dispose = () => {
     document.removeEventListener("mousemove", this.saveMouseEvent);
-    this.controls.removeEventListener("change", this.renderer.render);
-    this.controls.disconnect();
-    this.controls.dispose();
+    this.pointerControls.removeEventListener("change", this.renderer.render);
+    this.pointerControls.disconnect();
+    this.pointerControls.dispose();
     if (this.renderer.pointerLocked) this.togglePointerLock();
+  };
+
+  public updateOrbitTarget = () => {
+    const scanSize = {
+      x: voxelCount.x * voxelDimensions.x,
+      y: voxelCount.y * voxelDimensions.y,
+      z: voxelCount.z * voxelDimensions.z,
+    };
+    this.orbitControls.target = new THREE.Vector3(
+      scanSize.x / 2,
+      scanSize.z / 2,
+      -scanSize.y / 2,
+    );
   };
 
   public setSpeed = (speed: number) => {
@@ -52,53 +79,59 @@ export default class NavigationHandler implements IDisposable {
     this.lastMouseEvent = event;
   };
 
+  private get isPointerLocked() {
+    return this.pointerControls.isLocked;
+  }
+
   public moveForward = () => {
     this.camera.getWorldDirection(this.direction);
     this.camera.position.addScaledVector(this.direction, this.speed);
 
-    this.updateCameraPosition();
+    this.spriteHandler.updateRenderOrder();
   };
 
   public moveBack = () => {
     this.camera.getWorldDirection(this.direction);
     this.camera.position.addScaledVector(this.direction, -this.speed);
 
-    this.updateCameraPosition();
+    this.spriteHandler.updateRenderOrder();
   };
 
   public moveUp = () => {
+    if (!this.isPointerLocked) return;
     this.camera.position.addScaledVector(this.camera.up, this.speed);
 
-    this.updateCameraPosition();
+    this.spriteHandler.updateRenderOrder();
   };
 
   public moveDown = () => {
+    if (!this.isPointerLocked) return;
     this.camera.position.addScaledVector(this.camera.up, -this.speed);
 
-    this.updateCameraPosition();
+    this.spriteHandler.updateRenderOrder();
   };
 
   public moveLeft = () => {
-    this.controls.moveRight(-this.speed);
+    if (!this.isPointerLocked) return;
+    this.pointerControls.moveRight(-this.speed);
 
-    this.updateCameraPosition();
+    this.spriteHandler.updateRenderOrder();
   };
 
   public moveRight = () => {
-    this.controls.moveRight(this.speed);
+    if (!this.isPointerLocked) return;
+    this.pointerControls.moveRight(this.speed);
 
-    this.updateCameraPosition();
-  };
-
-  private updateCameraPosition = () => {
-    this.spriteHandler.setCameraPosition(this.camera.position);
+    this.spriteHandler.updateRenderOrder();
   };
 
   public togglePointerLock = () => {
     if (this.renderer.pointerLocked) {
-      this.controls.unlock();
+      this.pointerControls.unlock();
+      this.orbitControls.enabled = true;
     } else {
-      this.controls.lock();
+      this.pointerControls.lock();
+      this.orbitControls.enabled = false;
     }
     this.renderer.togglePointerLock();
     this.renderer.render();

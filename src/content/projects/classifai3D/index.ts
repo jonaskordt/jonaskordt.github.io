@@ -41,7 +41,7 @@ export default class Classifai3D extends CanvasController {
   private pickingTexture = new THREE.WebGLRenderTarget(1, 1);
   private pickingMeshes!: THREE.Mesh[];
 
-  private meshes!: THREE.Mesh[];
+  public meshes!: THREE.Mesh[];
   private materials!: THREE.MeshPhongMaterial[];
 
   public navigator!: NavigationHandler;
@@ -93,6 +93,19 @@ export default class Classifai3D extends CanvasController {
       this.spriteHandler,
     );
 
+    const scanSize = {
+      x: voxelCount.x * voxelDimensions.x,
+      y: voxelCount.y * voxelDimensions.y,
+      z: voxelCount.z * voxelDimensions.z,
+    };
+
+    this.camera.position.set(
+      -0.25 * scanSize.x,
+      1.25 * scanSize.z,
+      -1.25 * scanSize.y,
+    );
+    this.camera.lookAt(scanSize.x / 2, scanSize.z / 2, -scanSize.y / 2);
+
     this.controls = classifai3DControls(this);
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -122,6 +135,7 @@ export default class Classifai3D extends CanvasController {
       this.keyEventHandler = new KeyEventHandler(this);
 
       this.spriteHandler.updateRenderOrder();
+      this.navigator.updateOrbitTarget();
       this.renderer.setAnimationLoop(this.animate);
     });
   }
