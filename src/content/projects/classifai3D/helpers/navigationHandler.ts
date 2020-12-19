@@ -147,16 +147,20 @@ export default class NavigationHandler implements IDisposable {
   };
 
   public togglePointerLock = () => {
-    if (this.renderer.pointerLocked) {
-      this.pointerControls.unlock();
-      this.orbitControls.enabled = true;
-      this.updateOrbitTarget();
-    } else {
-      this.pointerControls.lock();
-      this.orbitControls.enabled = false;
+    try {
+      if (this.renderer.pointerLocked) {
+        this.pointerControls.unlock();
+        this.orbitControls.enabled = true;
+        this.updateOrbitTarget();
+      } else {
+        this.pointerControls.lock();
+        this.orbitControls.enabled = false;
+      }
+      this.renderer.togglePointerLock();
+      this.renderer.render();
+    } catch {
+      // no-op
     }
-    this.renderer.togglePointerLock();
-    this.renderer.render();
   };
 
   public increaseSpritePosition = () => {
