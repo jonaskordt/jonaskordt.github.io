@@ -3,9 +3,13 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
 
 import Classifai3D from "..";
-import { voxelCount, voxelDimensions } from "../staticScan";
+import createOrbitControls from "../creators/orbitControls";
+import { voxelCount } from "../staticScan";
 import { IDisposable, ViewType } from "../types";
-import { getIntersectionsFromMouseEvent } from "../utils/picking";
+import {
+  getIntersections,
+  getIntersectionsFromMouseEvent,
+} from "../utils/picking";
 import SpriteHandler from "./spriteHandler";
 
 export default class NavigationHandler implements IDisposable {
@@ -31,13 +35,7 @@ export default class NavigationHandler implements IDisposable {
       this.camera,
       this.canvas.parentElement!,
     );
-    this.orbitControls = new OrbitControls(
-      renderer.camera,
-      canvas.parentElement!,
-    );
-    this.orbitControls.enableZoom = false;
-    this.orbitControls.enablePan = false;
-    this.orbitControls.enableKeys = false;
+    this.orbitControls = createOrbitControls(this.renderer.camera, canvas);
 
     document.addEventListener("mousemove", this.saveMouseEvent);
     this.pointerControls.addEventListener("change", this.renderer.render);
@@ -46,6 +44,9 @@ export default class NavigationHandler implements IDisposable {
       "change",
       this.spriteHandler.updateRenderOrder,
     );
+    // Block wheel events from reaching the orbit controls.
+    // We don't was to disable zoom completely to keept it on touch devices.
+    this.canvas.addEventListener("wheel", this.stopPropergation);
 
     this.spriteHandler.updateRenderOrder();
   }
@@ -53,22 +54,42 @@ export default class NavigationHandler implements IDisposable {
   public dispose = () => {
     document.removeEventListener("mousemove", this.saveMouseEvent);
     this.pointerControls.removeEventListener("change", this.renderer.render);
-    this.pointerControls.disconnect();
     this.pointerControls.dispose();
+    this.orbitControls.removeEventListener("change", this.renderer.render);
+    this.orbitControls.removeEventListener(
+      "change",
+      this.spriteHandler.updateRenderOrder,
+    );
+    this.orbitControls.dispose();
+    this.canvas.removeEventListener("wheel", this.stopPropergation);
+
     if (this.renderer.pointerLocked) this.togglePointerLock();
   };
 
+  private stopPropergation = (event: Event) => {
+    event.stopPropagation();
+  };
+
   public updateOrbitTarget = () => {
-    const scanSize = {
-      x: voxelCount.x * voxelDimensions.x,
-      y: voxelCount.y * voxelDimensions.y,
-      z: voxelCount.z * voxelDimensions.z,
-    };
-    this.orbitControls.target = new THREE.Vector3(
-      scanSize.x / 2,
-      scanSize.z / 2,
-      -scanSize.y / 2,
+    const screenCenter = { x: 0, y: 0 };
+    const objects = [
+      ...this.renderer.meshes,
+      ...this.spriteHandler.spriteParts,
+    ];
+    const intersections = getIntersections(
+      screenCenter,
+      objects,
+      this.renderer.camera,
     );
+    if (intersections.length) {
+      const intersectionPoint = intersections[0].point;
+      this.orbitControls.target = intersectionPoint;
+    } else {
+      const targetPoint = new THREE.Vector3().copy(this.camera.position);
+      this.camera.getWorldDirection(this.direction);
+      targetPoint.addScaledVector(this.direction, 150);
+      this.orbitControls.target = targetPoint;
+    }
   };
 
   public setSpeed = (speed: number) => {
@@ -129,6 +150,7 @@ export default class NavigationHandler implements IDisposable {
     if (this.renderer.pointerLocked) {
       this.pointerControls.unlock();
       this.orbitControls.enabled = true;
+      this.updateOrbitTarget();
     } else {
       this.pointerControls.lock();
       this.orbitControls.enabled = false;
