@@ -8,7 +8,7 @@ import { voxelCount } from "../staticScan";
 import { IDisposable, ViewType } from "../types";
 import {
   getIntersections,
-  getIntersectionsFromMouseEvent,
+  getIntersectionsFromClickPosition,
 } from "../utils/picking";
 import SpriteHandler from "./spriteHandler";
 
@@ -162,7 +162,7 @@ export default class NavigationHandler implements IDisposable {
   public increaseSpritePosition = () => {
     if (!this.lastMouseEvent) return;
 
-    const intersections = getIntersectionsFromMouseEvent(
+    const intersections = getIntersectionsFromClickPosition(
       this.lastMouseEvent,
       this.spriteHandler.spriteParts,
       this.canvas,
@@ -203,7 +203,7 @@ export default class NavigationHandler implements IDisposable {
   public decreaseSpritePosition = () => {
     if (!this.lastMouseEvent) return;
 
-    const intersections = getIntersectionsFromMouseEvent(
+    const intersections = getIntersectionsFromClickPosition(
       this.lastMouseEvent,
       this.spriteHandler.spriteParts,
       this.canvas,

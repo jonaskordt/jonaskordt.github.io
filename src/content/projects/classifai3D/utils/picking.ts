@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-import { Pixel } from "../types";
+import { ClickPosition, Pixel } from "../types";
 import { convertPositionToWebGLPosition } from "./conversion";
 
 const raycaster = new THREE.Raycaster();
@@ -55,8 +55,8 @@ export const getIntersectionsFromPointer = (
   return getIntersections(webGLPosition, objects, camera);
 };
 
-export const getIntersectionsFromMouseEvent = (
-  event: MouseEvent,
+export const getIntersectionsFromClickPosition = (
+  clickPosition: ClickPosition,
   objects: THREE.Object3D[],
   canvas: HTMLCanvasElement,
   camera: THREE.PerspectiveCamera,
@@ -66,8 +66,8 @@ export const getIntersectionsFromMouseEvent = (
     ? getIntersections({ x: 0, y: 0 }, objects, camera)
     : getIntersectionsFromPointer(
         {
-          x: event.clientX,
-          y: event.clientY,
+          x: clickPosition.clientX,
+          y: clickPosition.clientY,
         },
         objects,
         canvas,

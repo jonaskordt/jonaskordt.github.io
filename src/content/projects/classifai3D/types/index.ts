@@ -9,6 +9,11 @@ export interface Voxel extends Pixel {
   z: number;
 }
 
+export interface ClickPosition {
+  clientX: number;
+  clientY: number;
+}
+
 export enum ViewType {
   Transverse = 0,
   Sagittal = 1,

@@ -26,8 +26,8 @@ import {
   hoveredStructureColor,
   selectedStructureColor,
 } from "./theme";
-import { Pixel, Tool } from "./types";
-import { getIntersectionsFromMouseEvent } from "./utils/picking";
+import { ClickPosition, Pixel, Tool } from "./types";
+import { getIntersectionsFromClickPosition } from "./utils/picking";
 import { resizeRenderer } from "./utils/scaling";
 
 export default class Classifai3D extends CanvasController {
@@ -85,6 +85,7 @@ export default class Classifai3D extends CanvasController {
     document.addEventListener("click", this.handleClick);
     document.addEventListener("mousemove", this.handleMouseMove);
     canvas.addEventListener("wheel", this.handleWheel);
+    canvas.addEventListener("touchstart", this.fakeClickOnTouchStart);
 
     this.spriteHandler = new SpriteHandler(this);
     this.navigator = new NavigationHandler(
@@ -146,6 +147,7 @@ export default class Classifai3D extends CanvasController {
     document.removeEventListener("click", this.handleClick);
     document.removeEventListener("mousemove", this.handleMouseMove);
     this.canvas.removeEventListener("wheel", this.handleWheel);
+    this.canvas.removeEventListener("touchstart", this.fakeClickOnTouchStart);
 
     this.navigator.dispose();
     this.keyEventHandler.dispose();
@@ -330,8 +332,16 @@ export default class Classifai3D extends CanvasController {
     this.render();
   };
 
-  private handleClick = (event: MouseEvent) => {
-    const intersections = getIntersectionsFromMouseEvent(
+  private fakeClickOnTouchStart = (event: TouchEvent) => {
+    if (event.touches.length !== 1) {
+      return;
+    }
+    const touch = event.touches[0];
+    this.handleClick(touch);
+  };
+
+  private handleClick = (event: ClickPosition) => {
+    const intersections = getIntersectionsFromClickPosition(
       event,
       this.meshes,
       this.canvas,
