@@ -67,12 +67,12 @@ const classifai3DControls: (canvasController: Classifai3D) => Controls = (
         callback: canvasController.navigator.togglePointerLock,
       },
       {
-        action: "move forward",
+        action: "zoom in / move forward",
         keys: ["w"],
         callback: canvasController.navigator.moveForward,
       },
       {
-        action: "move back",
+        action: "zoom out / move back",
         keys: ["s"],
         callback: canvasController.navigator.moveBack,
       },

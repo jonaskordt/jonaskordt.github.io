@@ -159,12 +159,6 @@ export default class SpriteHandler {
     this.renderer.render();
   };
 
-  public setCameraPosition = (position: THREE.Vector3) => {
-    this.cameraPosition.copy(position);
-
-    this.updateRenderOrder();
-  };
-
   private positionSpriteGroup = () => {
     const scanSizeX = voxelCount.x * voxelDimensions.x;
     this.spriteGroup.position.set(
@@ -180,9 +174,9 @@ export default class SpriteHandler {
 
     const cameraPosition = this.spriteGroup.worldToLocal(
       new THREE.Vector3(
-        this.cameraPosition.x,
-        this.cameraPosition.y,
-        this.cameraPosition.z,
+        this.renderer.camera.position.x,
+        this.renderer.camera.position.y,
+        this.renderer.camera.position.z,
       ),
     );
 
