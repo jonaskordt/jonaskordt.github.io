@@ -10,6 +10,7 @@ import { customControls, projects } from "../../content";
 import { CrosshairIcon } from "../../content/projects/classifai3D/theme";
 import CanvasController from "../../content/projects/default";
 import { noControls } from "../../lib/types/controls";
+import { XIcon } from "../../theme/icons";
 import presets from "./project.module.scss";
 
 interface IProjectParams {
@@ -103,6 +104,16 @@ const Project: React.FC = () => {
               {projectId === "classifai3D" && (
                 <div className={presets.crosshairPointer} id="crosshairPointer">
                   <CrosshairIcon />
+                </div>
+              )}
+              {fullScreen && (
+                <div
+                  className={presets.xIcon}
+                  onClick={toggleFullScreen}
+                  onTouchStartCapture={toggleFullScreen}
+                  role="button"
+                >
+                  <XIcon />
                 </div>
               )}
             </div>
