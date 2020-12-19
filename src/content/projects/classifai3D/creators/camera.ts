@@ -10,8 +10,8 @@ const createCamera = (
   const camera = new THREE.PerspectiveCamera(
     60,
     canvas.width / canvas.height,
-    0.01,
-    1000,
+    1,
+    600,
   );
 
   const scanSize = {
