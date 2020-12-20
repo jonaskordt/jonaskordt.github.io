@@ -136,7 +136,6 @@ export default class Classifai3D extends CanvasController {
       this.keyEventHandler = new KeyEventHandler(this);
 
       this.spriteHandler.updateRenderOrder();
-      this.navigator.updateOrbitTarget();
       this.renderer.setAnimationLoop(this.animate);
     });
   }
