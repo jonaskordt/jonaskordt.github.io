@@ -52,6 +52,7 @@ const Project: React.FC = () => {
 
   const toggleFullScreen = useCallback(() => {
     setFullScreen(!fullScreen);
+    window.scrollTo(0, 0);
   }, [fullScreen]);
 
   const handleKeyEvent = useCallback(
@@ -84,14 +85,6 @@ const Project: React.FC = () => {
         <div className={presets.container}>
           <Heading preset="centered" text={project.name} />
           <div className={presets.grid}>
-            <div className={presets.controlsContainer}>
-              <Controls
-                toggleFullScreen={toggleFullScreen}
-                controls={canvasController?.controls || noControls}
-              >
-                {CustomControls && <CustomControls {...customControlsProps} />}
-              </Controls>
-            </div>
             <div
               className={
                 fullScreen ? presets.fullScreen : presets.canvasContainer
@@ -116,6 +109,14 @@ const Project: React.FC = () => {
                   <XIcon />
                 </div>
               )}
+            </div>
+            <div className={presets.controlsContainer}>
+              <Controls
+                toggleFullScreen={toggleFullScreen}
+                controls={canvasController?.controls || noControls}
+              >
+                {CustomControls && <CustomControls {...customControlsProps} />}
+              </Controls>
             </div>
             {project.summary}
           </div>
