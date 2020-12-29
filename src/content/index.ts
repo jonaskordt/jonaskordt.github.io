@@ -3,9 +3,11 @@ import bachelorThesisIMG from "./images/bachelorThesis.png";
 import classifaiIMG from "./images/classifai.png";
 import classifai3DIMG from "./images/classifai3D.png";
 import planesIMG from "./images/planes.png";
+import Animation from "./projects/animation";
 import Classifai3D from "./projects/classifai3D";
 import Classifai3DControls from "./projects/classifai3D/customControls";
 import TransparentPlanes from "./projects/transparentPlanes";
+import { animationQuickSummary, animationSummary } from "./text/animation";
 import bachelorThesisBlog, {
   bachelorThesisQuickSummary,
   bachelorThesisTitle,
@@ -55,6 +57,15 @@ export const projects: { [id: string]: Project } = {
     isPreview: false,
     img: classifai3DIMG,
   },
+  animation: {
+    name: "Animated Gold",
+    shortName: "Aniated Gold",
+    CanvasController: Animation,
+    summary: animationSummary,
+    quickSummary: animationQuickSummary,
+    isPreview: false,
+    img: "",
+  },
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -67,4 +78,5 @@ export const homeOrder: { isBlog: boolean; id: string }[] = [
   { isBlog: true, id: "classifai" },
   { isBlog: true, id: "bachelorThesis" },
   { isBlog: false, id: "planes" },
+  { isBlog: false, id: "animation" },
 ];
