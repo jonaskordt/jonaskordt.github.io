@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7b638ba3b8e221e191f69bc3d2097752",
+    "revision": "42c22ac5cd58aebf159451b7a1c5b533",
     "url": "/index.html"
   },
   {
-    "revision": "99ca21e5e96ed77424bd",
-    "url": "/static/css/main.e34dbbab.chunk.css"
+    "revision": "2b7d2721efdf00e3fcce",
+    "url": "/static/css/main.3a8b5b0d.chunk.css"
   },
   {
-    "revision": "d7dbf108aa609acd8edd",
-    "url": "/static/js/2.02ac12f8.chunk.js"
+    "revision": "66194f4c85aa48e70001",
+    "url": "/static/js/2.26bb2947.chunk.js"
   },
   {
     "revision": "9b318b6fb13190fe82c0677e9264b3c7",
-    "url": "/static/js/2.02ac12f8.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.26bb2947.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "99ca21e5e96ed77424bd",
-    "url": "/static/js/main.b63991bf.chunk.js"
+    "revision": "2b7d2721efdf00e3fcce",
+    "url": "/static/js/main.06d06472.chunk.js"
   },
   {
     "revision": "ba126735810163618457",
@@ -104,6 +104,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/9.36edefaa.txt"
   },
   {
+    "revision": "5c6febe3db591aa2ddbbe805f15b9142",
+    "url": "/static/media/animatedGold.5c6febe3.png"
+  },
+  {
     "revision": "e80e472816b3c3e9d27cfa6189ea6586",
     "url": "/static/media/bachelorThesis.e80e4728.png"
   },
@@ -152,12 +156,36 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/invertSelection.905aa706.svg"
   },
   {
+    "revision": "f65a0e01ae62481bb027d286f58fd9eb",
+    "url": "/static/media/nx.f65a0e01.png"
+  },
+  {
+    "revision": "77d1875be490998b386e52c222cdff42",
+    "url": "/static/media/ny.77d1875b.png"
+  },
+  {
+    "revision": "00e71d66385aecbf61a438e5ee1460c0",
+    "url": "/static/media/nz.00e71d66.png"
+  },
+  {
     "revision": "294449e9e2788adecd980c475e3519ff",
     "url": "/static/media/planes.294449e9.png"
   },
   {
     "revision": "baaa0c5cc51503581c223fa74746380e",
     "url": "/static/media/portrait.baaa0c5c.png"
+  },
+  {
+    "revision": "2c0ebb61c54b0e9a30652884777ba636",
+    "url": "/static/media/px.2c0ebb61.png"
+  },
+  {
+    "revision": "b64d5ac193ddc5ee123c6ff75a72e7aa",
+    "url": "/static/media/py.b64d5ac1.png"
+  },
+  {
+    "revision": "f273f208e301feb4cc14f0d2f34cc7d3",
+    "url": "/static/media/pz.f273f208.png"
   },
   {
     "revision": "745c5cd44fcf43b63e3e7919f1df55eb",
