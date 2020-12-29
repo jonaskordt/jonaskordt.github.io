@@ -1,4 +1,5 @@
 import { Blog, Project } from "../lib/types/content";
+import animatedGoldIMG from "./images/animatedGold.png";
 import bachelorThesisIMG from "./images/bachelorThesis.png";
 import classifaiIMG from "./images/classifai.png";
 import classifai3DIMG from "./images/classifai3D.png";
@@ -59,12 +60,12 @@ export const projects: { [id: string]: Project } = {
   },
   animation: {
     name: "Animated Gold",
-    shortName: "Aniated Gold",
+    shortName: "Animated Gold",
     CanvasController: Animation,
     summary: animationSummary,
     quickSummary: animationQuickSummary,
     isPreview: false,
-    img: "",
+    img: animatedGoldIMG,
   },
 };
 
