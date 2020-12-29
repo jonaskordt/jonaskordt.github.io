@@ -19,7 +19,6 @@ export default class SpriteHandler {
   private materials: THREE.ShaderMaterial[];
 
   private cameraOctant?: number;
-  private cameraPosition = new THREE.Vector3();
 
   public selectedVoxel: Voxel = {
     x: Math.floor(voxelCount.x / 2),
