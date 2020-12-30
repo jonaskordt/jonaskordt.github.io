@@ -33,18 +33,30 @@ const transparentPlanesControls: (
     ],
     // Mouse Controls
     [
-      {
-        action: "rotate view",
-        controls: ["Drag & Drop"],
-      },
-      {
-        action: "zoom",
-        controls: ["Scroll"],
-      },
-      {
-        action: "move the planes",
-        controls: ["Ctrl", "Scroll"],
-      },
+      [
+        {
+          action: "rotate view",
+          controls: ["Drag & Drop"],
+        },
+        {
+          action: "zoom",
+          controls: ["Scroll"],
+        },
+        {
+          action: "move the planes",
+          controls: ["Ctrl", "Scroll"],
+        },
+      ],
+      [
+        {
+          action: "rotate view",
+          controls: ["Drag"],
+        },
+        {
+          action: "zoom",
+          controls: ["Pinch"],
+        },
+      ],
     ],
     // Key Controls
     [],

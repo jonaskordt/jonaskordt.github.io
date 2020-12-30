@@ -1,3 +1,8 @@
+export enum ControlMode {
+  MOUSE = 0,
+  TOUCH = 1,
+}
+
 export interface IControl {
   readonly action: string;
 }
@@ -19,19 +24,22 @@ export interface IUISliderControl extends IUIControl<number> {
 export interface IKeyControl extends IControl {
   readonly keys: string[];
   callback: () => void;
+  touchEnabled: boolean;
 }
 
 export interface IMouseControl extends IControl {
   readonly controls: string[];
 }
 
+export type ITouchControl = IMouseControl;
+
 type Controls = [
   IUIToggleControl[],
   IUISliderControl[],
-  IMouseControl[],
+  [IMouseControl[], ITouchControl[]],
   IKeyControl[],
 ];
 
-export const noControls: Controls = [[], [], [], []];
+export const noControls: Controls = [[], [], [[], []], []];
 
 export default Controls;

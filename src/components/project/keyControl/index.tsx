@@ -13,6 +13,7 @@ const KeyControl: React.FC<KeyControlProps> = (props) => {
     keys,
     callback,
     preset = "default",
+    touchEnabled,
     ...rest
   } = props;
 

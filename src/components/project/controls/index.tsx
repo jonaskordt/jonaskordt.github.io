@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
+import { ControlMode } from "../../../lib/types/controls";
 import classNames from "../../../styling";
+import { MouseIcon, TouchIcon } from "../../../theme/icons";
 import Heading from "../../shared/heading";
 import ControlInfo from "../controlInfo";
 import KeyControl from "../keyControl";
@@ -19,20 +21,55 @@ const Controls: React.FC<ControlsProps> = (props) => {
     ...rest
   } = props;
 
-  const [toggleControls, sliderControls, mouseControls, keyControls] = controls;
+  const [
+    toggleControls,
+    sliderControls,
+    [mouseControls, touchControls],
+    keyControls,
+  ] = controls;
+
+  const [controlMode, setControlMode] = useState<ControlMode>(
+    ControlMode.MOUSE,
+  );
 
   return (
     <div {...rest} className={classNames(presets[preset], className)}>
-      <Heading text="Controls" />
+      <div className={presets.controlHeadingContainer}>
+        <Heading text="Controls" />
+        <div className={presets.controlModeContainer}>
+          <div
+            className={
+              controlMode === ControlMode.MOUSE
+                ? presets.activeIcon
+                : presets.icon
+            }
+          >
+            <MouseIcon onClick={() => setControlMode(ControlMode.MOUSE)} />
+          </div>
+          <div
+            className={
+              controlMode === ControlMode.TOUCH
+                ? presets.activeIcon
+                : presets.icon
+            }
+          >
+            <TouchIcon onClick={() => setControlMode(ControlMode.TOUCH)} />
+          </div>
+        </div>
+      </div>
       <div className={presets.scrollableContainer}>
         <KeyControl
           className={presets.control}
           keys={["f"]}
           action="toggle fullscreen"
           callback={toggleFullScreen}
+          touchEnabled
         />
         {children}
-        {mouseControls.map((c) => (
+        {(controlMode === ControlMode.MOUSE
+          ? mouseControls
+          : touchControls
+        ).map((c) => (
           <ControlInfo className={presets.control} key={c.action} {...c} />
         ))}
         {toggleControls.map((c) => (
@@ -41,9 +78,12 @@ const Controls: React.FC<ControlsProps> = (props) => {
         {sliderControls.map((c) => (
           <SliderControl className={presets.control} key={c.action} {...c} />
         ))}
-        {keyControls.map((c) => (
-          <KeyControl className={presets.control} key={c.action} {...c} />
-        ))}
+        {keyControls.map(
+          (c) =>
+            (controlMode === ControlMode.MOUSE || c.touchEnabled) && (
+              <KeyControl className={presets.control} key={c.action} {...c} />
+            ),
+        )}
       </div>
     </div>
   );

@@ -46,18 +46,34 @@ const classifai3DControls: (canvasController: Classifai3D) => Controls = (
     ],
     // Mouse Controls
     [
-      {
-        action: "use selected tool",
-        controls: ["Click"],
-      },
-      {
-        action: "move scan slices",
-        controls: ["Scroll", "Point"],
-      },
-      {
-        action: "turn the camera (toggle controls on)",
-        controls: ["Point"],
-      },
+      [
+        {
+          action: "use selected tool",
+          controls: ["Click"],
+        },
+        {
+          action: "move scan slices",
+          controls: ["Scroll", "Point"],
+        },
+        {
+          action: "turn the camera (toggle controls on)",
+          controls: ["Point"],
+        },
+      ],
+      [
+        {
+          action: "use selected tool",
+          controls: ["Tap"],
+        },
+        {
+          action: "rotate view",
+          controls: ["Drag"],
+        },
+        {
+          action: "zoom",
+          controls: ["Pinch"],
+        },
+      ],
     ],
     // Key Controls
     [
@@ -65,46 +81,55 @@ const classifai3DControls: (canvasController: Classifai3D) => Controls = (
         action: "toggle Controls",
         keys: ["t"],
         callback: canvasController.navigator.togglePointerLock,
+        touchEnabled: false,
       },
       {
         action: "zoom in / move forward",
         keys: ["w"],
         callback: canvasController.navigator.moveForward,
+        touchEnabled: false,
       },
       {
         action: "zoom out / move back",
         keys: ["s"],
         callback: canvasController.navigator.moveBack,
+        touchEnabled: false,
       },
       {
         action: "move left",
         keys: ["a"],
         callback: canvasController.navigator.moveLeft,
+        touchEnabled: false,
       },
       {
         action: "move right",
         keys: ["d"],
         callback: canvasController.navigator.moveRight,
+        touchEnabled: false,
       },
       {
         action: "move up",
         keys: ["Space"],
         callback: canvasController.navigator.moveUp,
+        touchEnabled: false,
       },
       {
         action: "move down",
         keys: ["Shift"],
         callback: canvasController.navigator.moveDown,
+        touchEnabled: false,
       },
       {
         action: "undo",
         keys: ["Control", "z"],
         callback: canvasController.undo,
+        touchEnabled: true,
       },
       {
         action: "redo",
         keys: ["Control", "y"],
         callback: canvasController.redo,
+        touchEnabled: true,
       },
     ],
   ];

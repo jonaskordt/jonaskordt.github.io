@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="24px" viewBox="0 0 14 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>Pointer</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Workspace---Scan-List" transform="translate(-244.000000, -129.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M245.625,129.26625 L257.46,140.31125 C258.05375,140.865 257.71,141.86125 256.90125,141.93125 L251.75,142.375 L255.25875,150.1375 C255.59875,150.89 255.26625,151.77625 254.51375,152.11875 L254.51375,152.11875 C253.75125,152.465 252.85125,152.11875 252.51875,151.35 L249.125,143.5 L245.58375,146.86875 C244.98625,147.43625 244,147.01375 244,146.18875 L244,129.9725 C244,129.1275 245.0075,128.69 245.625,129.26625 Z" id="Pointer"></path>
+        </g>
+    </g>
+</svg>
