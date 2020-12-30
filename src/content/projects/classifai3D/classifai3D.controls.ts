@@ -78,7 +78,7 @@ const classifai3DControls: (canvasController: Classifai3D) => Controls = (
     // Key Controls
     [
       {
-        action: "toggle Fly-tControls",
+        action: "toggle Fly-Controls",
         keys: ["t"],
         callback: canvasController.navigator.togglePointerLock,
         touchEnabled: false,
