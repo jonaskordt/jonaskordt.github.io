@@ -4,6 +4,7 @@ import CanvasController from "../default";
 import classifai3DControls from "./classifai3D.controls";
 import {
   createCamera,
+  createCameraLight,
   createLights,
   createMeshes,
   createMeshGroup,
@@ -82,6 +83,9 @@ export default class Classifai3D extends CanvasController {
     const [lights, lightTargets] = createLights(voxelCount);
     this.scene.add(...lights, ...lightTargets);
 
+    const cameraLight = createCameraLight(this.camera);
+    this.scene.add(cameraLight, cameraLight.target);
+
     document.addEventListener("click", this.handleClick);
     document.addEventListener("mousemove", this.handleMouseMove);
     canvas.addEventListener("wheel", this.handleWheel);
@@ -92,6 +96,7 @@ export default class Classifai3D extends CanvasController {
       this,
       this.canvas,
       this.spriteHandler,
+      cameraLight,
     );
 
     const scanSize = {
@@ -106,6 +111,11 @@ export default class Classifai3D extends CanvasController {
       -1.25 * scanSize.y,
     );
     this.camera.lookAt(scanSize.x / 2, scanSize.z / 2, -scanSize.y / 2);
+    cameraLight.target.position.set(
+      scanSize.x / 2,
+      scanSize.z / 2,
+      -scanSize.y / 2,
+    );
 
     this.controls = classifai3DControls(this);
 

@@ -28,6 +28,7 @@ export default class NavigationHandler implements IDisposable {
     private renderer: Classifai3D,
     private canvas: HTMLCanvasElement,
     private spriteHandler: SpriteHandler,
+    private cameraLight: THREE.DirectionalLight,
   ) {
     this.camera = renderer.camera;
 
@@ -38,8 +39,8 @@ export default class NavigationHandler implements IDisposable {
     this.orbitControls = createOrbitControls(this.renderer.camera, canvas);
 
     document.addEventListener("mousemove", this.saveMouseEvent);
-    this.pointerControls.addEventListener("change", this.renderer.render);
-    this.orbitControls.addEventListener("change", this.renderer.render);
+    this.pointerControls.addEventListener("change", this.onCameraMove);
+    this.orbitControls.addEventListener("change", this.onCameraMove);
     this.orbitControls.addEventListener(
       "change",
       this.spriteHandler.updateRenderOrder,
@@ -53,9 +54,9 @@ export default class NavigationHandler implements IDisposable {
 
   public dispose = () => {
     document.removeEventListener("mousemove", this.saveMouseEvent);
-    this.pointerControls.removeEventListener("change", this.renderer.render);
+    this.pointerControls.removeEventListener("change", this.onCameraMove);
     this.pointerControls.dispose();
-    this.orbitControls.removeEventListener("change", this.renderer.render);
+    this.orbitControls.removeEventListener("change", this.onCameraMove);
     this.orbitControls.removeEventListener(
       "change",
       this.spriteHandler.updateRenderOrder,
@@ -68,6 +69,22 @@ export default class NavigationHandler implements IDisposable {
 
   private stopPropergation = (event: Event) => {
     event.stopPropagation();
+  };
+
+  private getCameraTarget = () => {
+    const targetPoint = new THREE.Vector3().copy(this.camera.position);
+    this.camera.getWorldDirection(this.direction);
+    targetPoint.addScaledVector(this.direction, 150);
+    return targetPoint;
+  };
+
+  private onCameraMove = () => {
+    this.cameraLight.position.copy(this.camera.position);
+
+    const targetPosition = this.getCameraTarget();
+    this.cameraLight.target.position.copy(targetPosition);
+
+    this.renderer.render();
   };
 
   public updateOrbitTarget = () => {
@@ -85,9 +102,7 @@ export default class NavigationHandler implements IDisposable {
       const intersectionPoint = intersections[0].point;
       this.orbitControls.target = intersectionPoint;
     } else {
-      const targetPoint = new THREE.Vector3().copy(this.camera.position);
-      this.camera.getWorldDirection(this.direction);
-      targetPoint.addScaledVector(this.direction, 150);
+      const targetPoint = this.getCameraTarget();
       this.orbitControls.target = targetPoint;
     }
   };
