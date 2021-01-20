@@ -22,6 +22,17 @@ const Classifai3DControls: React.FC<Classifai3DControlsProps> = (props) => {
 
   const [activeTool, setActiveTool] = useState<Tool>(Tool.Selection);
 
+  const [aRAvailable, setARAvailable] = useState<boolean>(false);
+
+  useEffect(() => {
+    if ("xr" in navigator) {
+      (navigator as THREE.Navigator)
+        .xr!.isSessionSupported("immersive-ar")
+        .then(setARAvailable)
+        .catch(() => {});
+    }
+  }, [setARAvailable]);
+
   useEffect(() => {
     if (classifai3D) {
       document.addEventListener("keydown", (event: KeyboardEvent) => {
@@ -92,6 +103,11 @@ const Classifai3DControls: React.FC<Classifai3DControlsProps> = (props) => {
           </div>
         )}
       </div>
+      {classifai3D && aRAvailable && (
+        <button onClick={classifai3D.enterAR} type="button">
+          Enter AR
+        </button>
+      )}
     </div>
   );
 };

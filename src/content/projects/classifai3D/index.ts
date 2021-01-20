@@ -50,6 +50,7 @@ export default class Classifai3D extends CanvasController {
   private annotator!: AnnotationHandler;
 
   private renderDirty = true;
+  public arActive = false;
 
   public pointerLocked = false;
   private hoveredStructureIndex?: number;
@@ -172,7 +173,9 @@ export default class Classifai3D extends CanvasController {
   private animate = () => {
     this.keyEventHandler.tick();
 
-    if (this.renderDirty) this.forceRender();
+    if (this.arActive) this.spriteHandler.updateRenderOrder();
+
+    if (this.renderDirty || this.arActive) this.forceRender();
   };
 
   public render = () => {
@@ -185,6 +188,23 @@ export default class Classifai3D extends CanvasController {
     this.updateHover();
 
     this.renderer.render(this.scene, this.camera);
+  };
+
+  public enterAR = () => {
+    if (!("xr" in navigator)) return;
+
+    (navigator as THREE.Navigator)
+      .xr!.requestSession("immersive-ar")
+      .then((session) => {
+        this.arActive = true;
+        this.scene.scale.set(0.001, 0.001, 0.001);
+        this.scene.updateMatrixWorld();
+        // this.navigator.pointerControls.enabled = false;
+        // this.camera.position.set(100, 125, -150);
+        this.renderer.xr.setReferenceSpaceType("local");
+        this.renderer.xr.setSession(session);
+      })
+      .catch(() => {});
   };
 
   public togglePointerLock = () => {
@@ -350,6 +370,8 @@ export default class Classifai3D extends CanvasController {
   };
 
   private handleClick = (event: ClickPosition) => {
+    if (this.arActive) return;
+
     const intersections = getIntersectionsFromClickPosition(
       event,
       this.meshes,
