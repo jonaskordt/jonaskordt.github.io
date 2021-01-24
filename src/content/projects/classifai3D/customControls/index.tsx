@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import Card from "../../../../components/shared/card";
 import classNames from "../../../../styling";
 import { Tool } from "../types";
 import presets from "./classifai3DControls.module.scss";
@@ -104,9 +105,9 @@ const Classifai3DControls: React.FC<Classifai3DControlsProps> = (props) => {
         )}
       </div>
       {classifai3D && aRAvailable && (
-        <button onClick={classifai3D.enterAR} type="button">
+        <Card className={presets.toolBar} clickCallback={classifai3D.enterAR}>
           Enter AR
-        </button>
+        </Card>
       )}
     </div>
   );
