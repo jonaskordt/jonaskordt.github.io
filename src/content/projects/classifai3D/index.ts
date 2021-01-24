@@ -62,8 +62,8 @@ export default class Classifai3D extends CanvasController {
 
   private lastMouseEvent?: MouseEvent;
 
-  constructor(canvas: HTMLCanvasElement) {
-    super(canvas);
+  constructor(canvas: HTMLCanvasElement, updateUI: () => void) {
+    super(canvas, updateUI);
 
     this.crosshair = document.getElementById("crosshairPointer");
 
@@ -203,6 +203,8 @@ export default class Classifai3D extends CanvasController {
         // this.camera.position.set(100, 125, -150);
         this.renderer.xr.setReferenceSpaceType("local");
         this.renderer.xr.setSession(session);
+
+        this.updateUI();
       })
       .catch(() => {});
   };

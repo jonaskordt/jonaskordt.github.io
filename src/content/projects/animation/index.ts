@@ -17,8 +17,8 @@ class Animation extends CanvasController {
 
   private animationStartTime = 0;
 
-  constructor(canvas: HTMLCanvasElement) {
-    super(canvas);
+  constructor(canvas: HTMLCanvasElement, updateUI: () => void) {
+    super(canvas, updateUI);
 
     this.controls = animationControls;
 

@@ -43,8 +43,8 @@ class TransparentPlanes extends CanvasController {
 
   private renderDirty = true;
 
-  constructor(canvas: HTMLCanvasElement) {
-    super(canvas);
+  constructor(canvas: HTMLCanvasElement, updateUI: () => void) {
+    super(canvas, updateUI);
 
     this.controls = transparentPlanesControls(this);
 

@@ -7,7 +7,10 @@ class CanvasController {
 
   private resizeSensor: ResizeSensor;
 
-  constructor(protected canvas: HTMLCanvasElement) {
+  constructor(
+    protected canvas: HTMLCanvasElement,
+    protected updateUI: () => void,
+  ) {
     this.resizeSensor = new ResizeSensor(canvas.parentElement!, () =>
       this.resizeCanvas(),
     );

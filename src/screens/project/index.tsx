@@ -7,6 +7,7 @@ import Header from "../../components/shared/header";
 import Heading from "../../components/shared/heading";
 import Screen from "../../components/shared/screen";
 import { customControls, projects } from "../../content";
+import Classifai3D from "../../content/projects/classifai3D";
 import { CrosshairIcon } from "../../content/projects/classifai3D/theme";
 import CanvasController from "../../content/projects/default";
 import { noControls } from "../../lib/types/controls";
@@ -31,18 +32,25 @@ const Project: React.FC = () => {
   // Since canvasController is volatile state we trick React to force
   // an update once the effect has created it by assigning a new object
   // as state through forceUpdate
-  const [, forceUpdate] = useState({});
+  const [, forceUpdateHelper] = useState({});
+  const forceUpdate = useCallback(() => {
+    // Here we asign the new object to force the update
+    forceUpdateHelper({});
+  }, [forceUpdateHelper]);
+
   useEffect(() => {
     if (canvasRef.current && project) {
-      canvasController = new project.CanvasController(canvasRef.current);
+      canvasController = new project.CanvasController(
+        canvasRef.current,
+        forceUpdate,
+      );
 
-      // Here we asign the new object to force the update
-      forceUpdate({});
+      forceUpdate();
     }
     return () => {
       canvasController?.dispose();
     };
-  }, [project]);
+  }, [project, forceUpdate]);
 
   /* Canvas Controller End */
 
@@ -78,6 +86,14 @@ const Project: React.FC = () => {
 
   /* Custom Controls End */
 
+  /* Canvas Border */
+
+  const noCanvasBorder =
+    fullScreen ||
+    (canvasController instanceof Classifai3D && canvasController.arActive);
+
+  /* Canvas Border End */
+
   return (
     <Screen preset="fullHeight">
       <Header preset="thin" />
@@ -92,7 +108,7 @@ const Project: React.FC = () => {
             >
               <WebGLCanvas
                 ref={canvasRef}
-                preset={fullScreen ? "fullScreen" : undefined}
+                preset={noCanvasBorder ? "noBorder" : undefined}
               />
               {projectId === "classifai3D" && (
                 <div className={presets.crosshairPointer} id="crosshairPointer">
