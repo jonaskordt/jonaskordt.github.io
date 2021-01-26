@@ -15,6 +15,7 @@ import {
 import AnnotationHandler from "./helpers/annotationHandler";
 import KeyEventHandler from "./helpers/keyEventHandler";
 import NavigationHandler from "./helpers/navigationHandler";
+import ReticleHandler from "./helpers/ReticleHandler";
 import SpriteHandler from "./helpers/spriteHandler";
 import {
   getConnectedStructureGeometries,
@@ -49,6 +50,7 @@ export default class Classifai3D extends CanvasController {
   public navigator!: NavigationHandler;
   public spriteHandler!: SpriteHandler;
   private annotator!: AnnotationHandler;
+  private reticleHandler: ReticleHandler;
 
   private renderDirty = true;
   public arActive = false;
@@ -109,6 +111,8 @@ export default class Classifai3D extends CanvasController {
     this.camera.lookAt(target);
     cameraLight.target.position.copy(target);
 
+    this.reticleHandler = new ReticleHandler(this.renderer, this.scene);
+
     this.controls = classifai3DControls(this);
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -158,10 +162,15 @@ export default class Classifai3D extends CanvasController {
     this.forceRender();
   }
 
-  private animate = () => {
+  private animate = (timestamp: number, frame?: THREE.XRFrame) => {
     this.keyEventHandler.tick();
 
-    if (this.arActive) this.spriteHandler.updateRenderOrder();
+    if (this.arActive) {
+      this.spriteHandler.updateRenderOrder();
+      if (frame) {
+        this.reticleHandler.update(frame);
+      }
+    }
 
     if (this.renderDirty || this.arActive) this.forceRender();
   };
@@ -182,7 +191,7 @@ export default class Classifai3D extends CanvasController {
     if (!("xr" in navigator)) return;
 
     (navigator as THREE.Navigator)
-      .xr!.requestSession("immersive-ar")
+      .xr!.requestSession("immersive-ar", { requiredFeatures: ["hit-test"] })
       .then((session) => {
         this.arActive = true;
         this.removeHoveredStructure();
@@ -190,7 +199,21 @@ export default class Classifai3D extends CanvasController {
         this.renderer.xr.setReferenceSpaceType("local");
         this.renderer.xr.setSession(session);
 
+        this.reticleHandler.activate();
+
         this.updateUI();
+
+        const controller = this.renderer.xr.getController(0);
+        controller.addEventListener("select", () => {
+          if (this.reticleHandler.reticleActive) {
+            this.meshGroup.position.setFromMatrixPosition(
+              this.reticleHandler.reticleMatrix,
+            );
+            this.meshGroup.translateX(-scanSize.x / 2);
+            this.meshGroup.translateY(-scanSize.y / 2);
+          }
+        });
+        this.scene.add(controller);
       })
       .catch(() => {});
   };
