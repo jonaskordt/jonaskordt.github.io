@@ -1,5 +1,7 @@
 import * as THREE from "three";
 
+import { scanSize } from "../staticScan";
+
 export const createMeshes = (geometries: THREE.BufferGeometry[]) => {
   const material = new THREE.MeshPhongMaterial({
     color: "red",
@@ -20,6 +22,11 @@ export const getMaterials = (meshes: THREE.Mesh[]) =>
 export const createMeshGroup = () => {
   const meshGroup = new THREE.Group();
   meshGroup.rotateX(Math.PI / -2);
+  meshGroup.rotateZ(Math.PI);
+  meshGroup.translateX(-scanSize.x / 2);
+  meshGroup.translateY(-scanSize.y / 2);
+  meshGroup.translateZ(-scanSize.z / 2);
   meshGroup.updateMatrix();
+  meshGroup.updateMatrixWorld();
   return meshGroup;
 };

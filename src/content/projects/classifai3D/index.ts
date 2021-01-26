@@ -41,6 +41,7 @@ export default class Classifai3D extends CanvasController {
   private pickingScene = new THREE.Scene();
   private pickingTexture = new THREE.WebGLRenderTarget(1, 1);
   private pickingMeshes!: THREE.Mesh[];
+  public meshGroup: THREE.Group;
 
   public meshes!: THREE.Mesh[];
   private materials!: THREE.MeshPhongMaterial[];
@@ -76,12 +77,16 @@ export default class Classifai3D extends CanvasController {
     const cameraLight = createCameraLight(this.camera);
     this.scene.add(cameraLight, cameraLight.target);
 
+    this.meshGroup = createMeshGroup();
+
     document.addEventListener("click", this.handleClick);
     document.addEventListener("mousemove", this.handleMouseMove);
     canvas.addEventListener("wheel", this.handleWheel);
     canvas.addEventListener("touchstart", this.fakeClickOnTouchStart);
 
     this.spriteHandler = new SpriteHandler(this);
+    this.meshGroup.add(this.spriteHandler.spriteGroup);
+
     this.navigator = new NavigationHandler(
       this,
       this.canvas,
@@ -89,17 +94,20 @@ export default class Classifai3D extends CanvasController {
       cameraLight,
     );
 
-    this.camera.position.set(
-      -0.25 * scanSize.x,
-      1.25 * scanSize.z,
-      -1.25 * scanSize.y,
+    this.camera.position.copy(
+      this.meshGroup.localToWorld(
+        new THREE.Vector3(
+          -0.25 * scanSize.x,
+          1.25 * scanSize.y,
+          1.25 * scanSize.z,
+        ),
+      ),
     );
-    this.camera.lookAt(scanSize.x / 2, scanSize.z / 2, -scanSize.y / 2);
-    cameraLight.target.position.set(
-      scanSize.x / 2,
-      scanSize.z / 2,
-      -scanSize.y / 2,
+    const target = this.meshGroup.localToWorld(
+      this.spriteHandler.spriteGroup.position.clone(),
     );
+    this.camera.lookAt(target);
+    cameraLight.target.position.copy(target);
 
     this.controls = classifai3DControls(this);
 
@@ -108,13 +116,10 @@ export default class Classifai3D extends CanvasController {
       this.meshes = createMeshes(geometries);
       this.materials = getMaterials(this.meshes);
 
-      const meshGroup = createMeshGroup();
+      this.meshGroup.add(...this.meshes);
 
-      meshGroup.add(...this.meshes);
-      meshGroup.add(this.spriteHandler.spriteGroup);
-
-      this.scene.add(meshGroup);
-      meshGroup.updateMatrixWorld(true);
+      this.scene.add(this.meshGroup);
+      this.meshGroup.updateMatrixWorld(true);
 
       this.pickingMeshes = createPickingMeshes(geometries);
       const pickingGroup = createMeshGroup();

@@ -36,7 +36,14 @@ export default class NavigationHandler implements IDisposable {
       this.camera,
       this.canvas.parentElement!,
     );
-    this.orbitControls = createOrbitControls(this.renderer.camera, canvas);
+    const target = this.renderer.meshGroup.localToWorld(
+      this.spriteHandler.spriteGroup.position.clone(),
+    );
+    this.orbitControls = createOrbitControls(
+      this.renderer.camera,
+      canvas,
+      target,
+    );
 
     document.addEventListener("mousemove", this.saveMouseEvent);
     this.pointerControls.addEventListener("change", this.onCameraMove);
@@ -46,7 +53,7 @@ export default class NavigationHandler implements IDisposable {
       this.spriteHandler.updateRenderOrder,
     );
     // Block wheel events from reaching the orbit controls.
-    // We don't was to disable zoom completely to keept it on touch devices.
+    // We don't want to disable zoom completely to keep it on touch devices.
     this.canvas.addEventListener("wheel", this.stopPropergation);
 
     this.spriteHandler.updateRenderOrder();
@@ -74,7 +81,7 @@ export default class NavigationHandler implements IDisposable {
   private getCameraTarget = () => {
     const targetPoint = new THREE.Vector3().copy(this.camera.position);
     this.camera.getWorldDirection(this.direction);
-    targetPoint.addScaledVector(this.direction, 150);
+    targetPoint.addScaledVector(this.direction, 0.15);
     return targetPoint;
   };
 
