@@ -185,6 +185,8 @@ export default class Classifai3D extends CanvasController {
       .xr!.requestSession("immersive-ar")
       .then((session) => {
         this.arActive = true;
+        this.removeHoveredStructure();
+
         this.renderer.xr.setReferenceSpaceType("local");
         this.renderer.xr.setSession(session);
 
@@ -235,7 +237,7 @@ export default class Classifai3D extends CanvasController {
   };
 
   private updateHover = () => {
-    if (!this.lastMouseEvent) return;
+    if (!this.lastMouseEvent || this.arActive) return;
 
     let pointer: Pixel;
     if (this.pointerLocked) {
