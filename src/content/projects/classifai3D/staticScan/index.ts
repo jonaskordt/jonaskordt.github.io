@@ -9,10 +9,11 @@ export const voxelCount: Voxel = {
   z: 216,
 };
 
+// in meters
 export const voxelDimensions: Voxel = {
-  x: 0.9999985694885254,
-  y: 1,
-  z: 1,
+  x: 0.0009999985694885254,
+  y: 0.001,
+  z: 0.001,
 };
 
 export const atlasGrid: Pixel = {
@@ -31,7 +32,7 @@ export const getConnectedStructureGeometries: () => Promise<
         geometryLoader.load(
           preGeneratedGeometries[geometryIndex],
           (geometry) => {
-            resolve(geometry);
+            resolve(geometry.scale(0.001, 0.001, 0.001));
           },
           () => {},
           () => {

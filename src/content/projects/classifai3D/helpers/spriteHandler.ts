@@ -73,8 +73,8 @@ export default class SpriteHandler {
 
     this.sprites = viewTypes.map((viewType) => {
       const axes = getPlaneAxes(viewType);
-      const width = voxelCount[axes[0]];
-      const height = voxelCount[axes[1]];
+      const width = voxelCount[axes[0]] * voxelDimensions[axes[0]];
+      const height = voxelCount[axes[1]] * voxelDimensions[axes[1]];
 
       const sprite = getSplitPlane(this.materials[viewType]);
       sprite.forEach((spritePart) => {
@@ -161,12 +161,11 @@ export default class SpriteHandler {
   };
 
   private positionSpriteGroup = () => {
-    const scanSizeX = voxelCount.x * voxelDimensions.x;
     this.spriteGroup.position.set(
       // x axis of texture atlas is inverted ...
-      scanSizeX - this.selectedVoxel.x - 1,
-      this.selectedVoxel.y,
-      this.selectedVoxel.z,
+      (voxelCount.x - this.selectedVoxel.x - 1) * voxelDimensions.x,
+      this.selectedVoxel.y * voxelDimensions.y,
+      this.selectedVoxel.z * voxelDimensions.z,
     );
   };
 
@@ -219,23 +218,27 @@ export default class SpriteHandler {
     const yAxis = planeAxes[1];
 
     sprite[0].scale.set(
-      voxelCount[xAxis] - this.selectedVoxel[xAxis] - 0.5,
-      this.selectedVoxel[yAxis] + 0.5,
+      (voxelCount[xAxis] - this.selectedVoxel[xAxis] - 0.5) *
+        voxelDimensions[xAxis],
+      (this.selectedVoxel[yAxis] + 0.5) * voxelDimensions[yAxis],
       1,
     );
     sprite[1].scale.set(
-      this.selectedVoxel[xAxis] + 0.5,
-      this.selectedVoxel[yAxis] + 0.5,
+      (this.selectedVoxel[xAxis] + 0.5) * voxelDimensions[xAxis],
+      (this.selectedVoxel[yAxis] + 0.5) * voxelDimensions[yAxis],
       1,
     );
     sprite[2].scale.set(
-      voxelCount[xAxis] - this.selectedVoxel[xAxis] - 0.5,
-      voxelCount[yAxis] - this.selectedVoxel[yAxis] - 0.5,
+      (voxelCount[xAxis] - this.selectedVoxel[xAxis] - 0.5) *
+        voxelDimensions[xAxis],
+      (voxelCount[yAxis] - this.selectedVoxel[yAxis] - 0.5) *
+        voxelDimensions[yAxis],
       1,
     );
     sprite[3].scale.set(
-      this.selectedVoxel[xAxis] + 0.5,
-      voxelCount[yAxis] - this.selectedVoxel[yAxis] - 0.5,
+      (this.selectedVoxel[xAxis] + 0.5) * voxelDimensions[xAxis],
+      (voxelCount[yAxis] - this.selectedVoxel[yAxis] - 0.5) *
+        voxelDimensions[yAxis],
       1,
     );
 

@@ -18,9 +18,10 @@ const classifai3DControls: (canvasController: Classifai3D) => Controls = (
       {
         action: "Movement Speed",
         callback: canvasController.navigator.setSpeed,
-        initialValue: 2,
-        min: 0.1,
-        max: 7,
+        initialValue: 0.004,
+        min: 0.001,
+        max: 0.015,
+        step: 0.0001,
       },
       {
         action: "Scan Slice Opacity",

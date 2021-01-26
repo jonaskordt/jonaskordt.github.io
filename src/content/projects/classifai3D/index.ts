@@ -67,17 +67,6 @@ export default class Classifai3D extends CanvasController {
 
     this.crosshair = document.getElementById("crosshairPointer");
 
-    this.scene.scale.set(
-      voxelDimensions.x,
-      voxelDimensions.z,
-      voxelDimensions.y,
-    );
-    this.pickingScene.scale.set(
-      voxelDimensions.x,
-      voxelDimensions.z,
-      voxelDimensions.y,
-    );
-
     this.renderer = createRenderer(canvas);
     this.camera = createCamera(canvas, voxelCount, voxelDimensions);
 
@@ -197,10 +186,6 @@ export default class Classifai3D extends CanvasController {
       .xr!.requestSession("immersive-ar")
       .then((session) => {
         this.arActive = true;
-        this.scene.scale.set(0.001, 0.001, 0.001);
-        this.scene.updateMatrixWorld();
-        // this.navigator.pointerControls.enabled = false;
-        // this.camera.position.set(100, 125, -150);
         this.renderer.xr.setReferenceSpaceType("local");
         this.renderer.xr.setSession(session);
 
