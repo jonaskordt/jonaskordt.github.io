@@ -18,8 +18,8 @@ import NavigationHandler from "./helpers/navigationHandler";
 import SpriteHandler from "./helpers/spriteHandler";
 import {
   getConnectedStructureGeometries,
+  scanSize,
   voxelCount,
-  voxelDimensions,
 } from "./staticScan";
 import {
   defaultStructureColor,
@@ -68,7 +68,7 @@ export default class Classifai3D extends CanvasController {
     this.crosshair = document.getElementById("crosshairPointer");
 
     this.renderer = createRenderer(canvas);
-    this.camera = createCamera(canvas, voxelCount, voxelDimensions);
+    this.camera = createCamera(canvas, scanSize);
 
     const [lights, lightTargets] = createLights(voxelCount);
     this.scene.add(...lights, ...lightTargets);
@@ -88,12 +88,6 @@ export default class Classifai3D extends CanvasController {
       this.spriteHandler,
       cameraLight,
     );
-
-    const scanSize = {
-      x: voxelCount.x * voxelDimensions.x,
-      y: voxelCount.y * voxelDimensions.y,
-      z: voxelCount.z * voxelDimensions.z,
-    };
 
     this.camera.position.set(
       -0.25 * scanSize.x,

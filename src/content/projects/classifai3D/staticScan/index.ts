@@ -16,6 +16,12 @@ export const voxelDimensions: Voxel = {
   z: 0.001,
 };
 
+export const scanSize = {
+  x: voxelCount.x * voxelDimensions.x,
+  y: voxelCount.y * voxelDimensions.y,
+  z: voxelCount.z * voxelDimensions.z,
+};
+
 export const atlasGrid: Pixel = {
   x: 18,
   y: 12,

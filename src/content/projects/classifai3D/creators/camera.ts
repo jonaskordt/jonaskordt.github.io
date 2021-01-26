@@ -2,23 +2,13 @@ import * as THREE from "three";
 
 import { Voxel } from "../types";
 
-const createCamera = (
-  canvas: HTMLCanvasElement,
-  voxelCount: Voxel,
-  voxelDimensions: Voxel,
-) => {
+const createCamera = (canvas: HTMLCanvasElement, scanSize: Voxel) => {
   const camera = new THREE.PerspectiveCamera(
     60,
     canvas.width / canvas.height,
     0.0001,
     6,
   );
-
-  const scanSize = {
-    x: voxelCount.x * voxelDimensions.x,
-    y: voxelCount.y * voxelDimensions.y,
-    z: voxelCount.z * voxelDimensions.z,
-  };
 
   camera.position.set(
     -0.25 * scanSize.x,
