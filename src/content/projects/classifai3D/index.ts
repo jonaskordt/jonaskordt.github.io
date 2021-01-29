@@ -220,10 +220,14 @@ export default class Classifai3D extends CanvasController {
 
         this.reticleHandler.activate();
 
+        this.meshGroup.visible = false;
+
         this.updateUI();
 
         const controller = this.renderer.xr.getController(0);
         controller.addEventListener("select", () => {
+          this.meshGroup.visible = true;
+
           if (this.reticleHandler.active) {
             if (this.reticleHandler.reticleActive) {
               this.meshGroup.position.setFromMatrixPosition(
