@@ -8,7 +8,7 @@ export default class ReticleHandler {
   private hitTestSourceRequested = false;
   private hitTestSource: THREE.XRHitTestSource | null = null;
 
-  private active = false;
+  public active = false;
 
   constructor(private renderer: THREE.WebGLRenderer, scene: THREE.Scene) {
     this.reticle = createReticle();
@@ -25,8 +25,8 @@ export default class ReticleHandler {
     return this.reticle.visible;
   }
 
-  public activate = () => {
-    this.active = true;
+  public activate = (active = true) => {
+    this.active = active;
   };
 
   public update = (frame: THREE.XRFrame) => {

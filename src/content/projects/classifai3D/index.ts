@@ -224,12 +224,18 @@ export default class Classifai3D extends CanvasController {
 
         const controller = this.renderer.xr.getController(0);
         controller.addEventListener("select", () => {
-          if (this.reticleHandler.reticleActive) {
-            this.meshGroup.position.setFromMatrixPosition(
-              this.reticleHandler.reticleMatrix,
-            );
-            this.meshGroup.translateX(-scanSize.x / 2);
-            this.meshGroup.translateY(-scanSize.y / 2);
+          if (this.reticleHandler.active) {
+            if (this.reticleHandler.reticleActive) {
+              this.meshGroup.position.setFromMatrixPosition(
+                this.reticleHandler.reticleMatrix,
+              );
+              this.meshGroup.translateX(-scanSize.x / 2);
+              this.meshGroup.translateY(-scanSize.y / 2);
+
+              this.reticleHandler.activate(false);
+            }
+          } else {
+            this.reticleHandler.activate();
           }
         });
         this.scene.add(controller);
