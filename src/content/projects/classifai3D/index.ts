@@ -43,6 +43,7 @@ export default class Classifai3D extends CanvasController {
   private pickingTexture = new THREE.WebGLRenderTarget(1, 1);
   private pickingMeshes!: THREE.Mesh[];
   public meshGroup: THREE.Group;
+  public meshAnimationGroup: THREE.Group;
 
   public meshes!: THREE.Mesh[];
   private materials!: THREE.MeshPhongMaterial[];
@@ -54,6 +55,7 @@ export default class Classifai3D extends CanvasController {
 
   private renderDirty = true;
   public arActive = false;
+  private lastTimestamp = 0;
 
   public pointerLocked = false;
   private hoveredStructureIndex?: number;
@@ -80,6 +82,8 @@ export default class Classifai3D extends CanvasController {
     this.scene.add(cameraLight, cameraLight.target);
 
     this.meshGroup = createMeshGroup();
+    this.meshAnimationGroup = new THREE.Group();
+    this.meshGroup.add(this.meshAnimationGroup);
 
     document.addEventListener("click", this.handleClick);
     document.addEventListener("mousemove", this.handleMouseMove);
@@ -87,7 +91,7 @@ export default class Classifai3D extends CanvasController {
     canvas.addEventListener("touchstart", this.fakeClickOnTouchStart);
 
     this.spriteHandler = new SpriteHandler(this);
-    this.meshGroup.add(this.spriteHandler.spriteGroup);
+    this.meshAnimationGroup.add(this.spriteHandler.spriteGroup);
 
     this.navigator = new NavigationHandler(
       this,
@@ -120,7 +124,7 @@ export default class Classifai3D extends CanvasController {
       this.meshes = createMeshes(geometries);
       this.materials = getMaterials(this.meshes);
 
-      this.meshGroup.add(...this.meshes);
+      this.meshAnimationGroup.add(...this.meshes);
 
       this.scene.add(this.meshGroup);
       this.meshGroup.updateMatrixWorld(true);
@@ -163,10 +167,25 @@ export default class Classifai3D extends CanvasController {
   }
 
   private animate = (timestamp: number, frame?: THREE.XRFrame) => {
+    const delta = timestamp - this.lastTimestamp;
+    this.lastTimestamp = timestamp;
+
     this.keyEventHandler.tick();
 
     if (this.arActive) {
       this.spriteHandler.updateRenderOrder();
+
+      // up/down animation
+      this.meshAnimationGroup.position.z =
+        (Math.sin(timestamp / 1000) + 1) / 80;
+
+      // rotation animation
+      this.meshAnimationGroup.translateX(scanSize.x / 2);
+      this.meshAnimationGroup.translateY(scanSize.y / 2);
+      this.meshAnimationGroup.rotateZ(delta / 5000);
+      this.meshAnimationGroup.translateX(-scanSize.x / 2);
+      this.meshAnimationGroup.translateY(-scanSize.y / 2);
+
       if (frame) {
         this.reticleHandler.update(frame);
       }
