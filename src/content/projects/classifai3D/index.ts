@@ -69,11 +69,12 @@ export default class Classifai3D extends CanvasController {
 
   private activeXRSession?: THREE.XRSession;
   private canvasContainer: HTMLDivElement;
-  private domOverlay?: HTMLDivElement;
+  private domOverlay: HTMLElement;
 
   constructor(canvas: HTMLCanvasElement, updateUI: () => void) {
     super(canvas, updateUI);
     this.canvasContainer = canvas.parentElement! as HTMLDivElement;
+    this.domOverlay = document.getElementById("ar-overlay")!;
 
     this.crosshair = document.getElementById("crosshairPointer");
 
@@ -214,23 +215,7 @@ export default class Classifai3D extends CanvasController {
   public enterAR = () => {
     if (!("xr" in navigator)) return;
 
-    this.domOverlay = document.createElement("div");
-    document.body.appendChild(this.domOverlay);
-
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("width", "38");
-    svg.setAttribute("height", "38");
-    svg.style.position = "absolute";
-    svg.style.right = "20px";
-    svg.style.top = "20px";
-    svg.addEventListener("click", this.exitAR);
-    this.domOverlay.appendChild(svg);
-
-    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute("d", "M 12,12 L 28,28 M 28,12 12,28");
-    path.setAttribute("stroke", "#fff");
-    path.setAttribute("stroke-width", "2");
-    svg.appendChild(path);
+    this.domOverlay.style.display = "";
 
     const sessionInit = {
       requiredFeatures: ["hit-test"],
@@ -277,13 +262,12 @@ export default class Classifai3D extends CanvasController {
       .catch(() => {});
   };
 
-  private exitAR = () => {
+  public exitAR = () => {
     this.activeXRSession
       ?.end()
       .then(() => {
         if (this.domOverlay) {
           this.domOverlay.style.display = "none";
-          this.domOverlay = undefined;
         }
 
         // The XR session steals the canvas, so we have to steal it back.

@@ -8,6 +8,7 @@ import Heading from "../../components/shared/heading";
 import Screen from "../../components/shared/screen";
 import { customControls, projects } from "../../content";
 import Classifai3D from "../../content/projects/classifai3D";
+import Classifai3DDomOverlay from "../../content/projects/classifai3D/domOverlay";
 import { CrosshairIcon } from "../../content/projects/classifai3D/theme";
 import CanvasController from "../../content/projects/default";
 import { noControls } from "../../lib/types/controls";
@@ -98,45 +99,57 @@ const Project: React.FC = () => {
     <Screen preset="fullHeight">
       <Header preset="thin" />
       {project ? (
-        <div className={presets.container}>
-          <Heading preset="centered" text={project.name} />
-          <div className={presets.grid}>
-            <div
-              className={
-                fullScreen ? presets.fullScreen : presets.canvasContainer
-              }
-            >
-              <WebGLCanvas
-                ref={canvasRef}
-                preset={noCanvasBorder ? "noBorder" : undefined}
-              />
-              {projectId === "classifai3D" && (
-                <div className={presets.crosshairPointer} id="crosshairPointer">
-                  <CrosshairIcon />
-                </div>
-              )}
-              {fullScreen && (
-                <div
-                  className={presets.xIcon}
-                  onClick={toggleFullScreen}
-                  onTouchStartCapture={toggleFullScreen}
-                  role="button"
-                >
-                  <XIcon />
-                </div>
-              )}
-            </div>
-            <div className={presets.controlsContainer}>
-              <Controls
-                toggleFullScreen={toggleFullScreen}
-                controls={canvasController?.controls || noControls}
+        <>
+          <div className={presets.container}>
+            <Heading preset="centered" text={project.name} />
+            <div className={presets.grid}>
+              <div
+                className={
+                  fullScreen ? presets.fullScreen : presets.canvasContainer
+                }
               >
-                {CustomControls && <CustomControls {...customControlsProps} />}
-              </Controls>
+                <WebGLCanvas
+                  ref={canvasRef}
+                  preset={noCanvasBorder ? "noBorder" : undefined}
+                />
+                {projectId === "classifai3D" && (
+                  <div
+                    className={presets.crosshairPointer}
+                    id="crosshairPointer"
+                  >
+                    <CrosshairIcon />
+                  </div>
+                )}
+                {fullScreen && (
+                  <div
+                    className={presets.xIcon}
+                    onClick={toggleFullScreen}
+                    onTouchStartCapture={toggleFullScreen}
+                    role="button"
+                  >
+                    <XIcon />
+                  </div>
+                )}
+              </div>
+              <div className={presets.controlsContainer}>
+                <Controls
+                  toggleFullScreen={toggleFullScreen}
+                  controls={canvasController?.controls || noControls}
+                >
+                  {CustomControls && (
+                    <CustomControls {...customControlsProps} />
+                  )}
+                </Controls>
+              </div>
+              {project.summary}
             </div>
-            {project.summary}
           </div>
-        </div>
+          {projectId === "classifai3D" && canvasController && (
+            <Classifai3DDomOverlay
+              classifai3D={canvasController as Classifai3D}
+            />
+          )}
+        </>
       ) : (
         <div className={presets.container}>
           <p>Project {projectId} doesn&apos;t exist yet.</p>
