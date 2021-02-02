@@ -67,8 +67,13 @@ export default class Classifai3D extends CanvasController {
 
   private lastMouseEvent?: MouseEvent;
 
+  private activeXRSession?: THREE.XRSession;
+  private canvasContainer: HTMLDivElement;
+  private domOverlay?: HTMLDivElement;
+
   constructor(canvas: HTMLCanvasElement, updateUI: () => void) {
     super(canvas, updateUI);
+    this.canvasContainer = canvas.parentElement! as HTMLDivElement;
 
     this.crosshair = document.getElementById("crosshairPointer");
 
@@ -209,10 +214,35 @@ export default class Classifai3D extends CanvasController {
   public enterAR = () => {
     if (!("xr" in navigator)) return;
 
+    this.domOverlay = document.createElement("div");
+    document.body.appendChild(this.domOverlay);
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", "38");
+    svg.setAttribute("height", "38");
+    svg.style.position = "absolute";
+    svg.style.right = "20px";
+    svg.style.top = "20px";
+    svg.addEventListener("click", this.exitAR);
+    this.domOverlay.appendChild(svg);
+
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", "M 12,12 L 28,28 M 28,12 12,28");
+    path.setAttribute("stroke", "#fff");
+    path.setAttribute("stroke-width", "2");
+    svg.appendChild(path);
+
+    const sessionInit = {
+      requiredFeatures: ["hit-test"],
+      optionalFeatures: ["dom-overlay"],
+      domOverlay: { root: this.domOverlay },
+    };
+
     (navigator as THREE.Navigator)
-      .xr!.requestSession("immersive-ar", { requiredFeatures: ["hit-test"] })
+      .xr!.requestSession("immersive-ar", sessionInit)
       .then((session) => {
         this.arActive = true;
+        this.activeXRSession = session;
         this.removeHoveredStructure();
 
         this.renderer.xr.setReferenceSpaceType("local");
@@ -243,6 +273,46 @@ export default class Classifai3D extends CanvasController {
           }
         });
         this.scene.add(controller);
+      })
+      .catch(() => {});
+  };
+
+  private exitAR = () => {
+    this.activeXRSession
+      ?.end()
+      .then(() => {
+        if (this.domOverlay) {
+          this.domOverlay.style.display = "none";
+          this.domOverlay = undefined;
+        }
+
+        // The XR session steals the canvas, so we have to steal it back.
+        this.canvasContainer.appendChild(this.canvas);
+        this.activeXRSession = undefined;
+        this.arActive = false;
+
+        // The XR session hides everything else. So we have to show it again.
+        document.getElementById("root")?.setAttribute("style", "");
+
+        this.reticleHandler.hide();
+
+        this.meshGroup.visible = true;
+
+        // Reset the animation state of the scan.
+        this.meshGroup.position.set(0, 0, 0);
+        this.meshGroup.translateX(-scanSize.x / 2);
+        this.meshGroup.translateY(-scanSize.y / 2);
+        this.meshGroup.translateZ(-scanSize.z / 2);
+
+        this.meshAnimationGroup.position.set(0, 0, 0);
+        this.meshAnimationGroup.rotation.set(0, 0, 0);
+
+        this.meshGroup.updateMatrixWorld(true);
+        this.spriteHandler.updateRenderOrder();
+
+        this.render();
+
+        this.updateUI();
       })
       .catch(() => {});
   };

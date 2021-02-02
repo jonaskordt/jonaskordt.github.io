@@ -29,6 +29,11 @@ export default class ReticleHandler {
     this.active = active;
   };
 
+  public hide = () => {
+    this.activate(false);
+    this.reticle.visible = false;
+  };
+
   public update = (frame: THREE.XRFrame) => {
     if (!this.active) return;
 
