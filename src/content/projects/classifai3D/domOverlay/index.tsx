@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import classNames from "../../../../styling";
+import { ClearIcon } from "../customControls/icons";
 import presets from "./classifai3DDomOverlay.module.scss";
 import Classifai3DDomOverlayProps from "./classifai3DDomOverlay.props";
 
@@ -16,14 +17,14 @@ const Classifai3DDomOverlay: React.FC<Classifai3DDomOverlayProps> = (props) => {
 
   return (
     <OverlayPortal>
-      <button
+      <div
         {...rest}
         className={classNames(presets[preset], className)}
         onClick={classifai3D.exitAR}
-        type="button"
+        role="button"
       >
-        Exit AR
-      </button>
+        <ClearIcon />
+      </div>
     </OverlayPortal>
   );
 };
