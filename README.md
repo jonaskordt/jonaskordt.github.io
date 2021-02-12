@@ -1,4 +1,4 @@
-# jonaskordt.com
+# [jonaskordt.com](jonaskordt.com)
 
 This repository contains the code for my personal website.
 
