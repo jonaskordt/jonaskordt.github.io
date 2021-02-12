@@ -1,4 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# jonaskordt.com
+
+This repository contains the code for my personal website.
+
+It shows some of my projects and my CV.
+
+The code for my projects (and this webiste) does not reflect any best practices. The projects are mainly demo-ready prototypes, but nowhere near production-ready. The website is built in React, but as the free hosting on GitHub pages is not that flexible, I had to break with some best practices to keep the effort low.
 
 ## Available Scripts
 
