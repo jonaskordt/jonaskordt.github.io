@@ -5,7 +5,7 @@ const work: CVEntryData[] = [
     heading: "Research Assistant",
     organization: "Chair for Digital Health and Machine Learning at HPI",
     details: [
-      "full stack development of Classifai (web based medical annotation system relying on active machine learning)",
+      "full stack development of VISIAN (web based medical segmentation system relying on active machine learning, formerly named Classifai)",
       "focus on graphics using WebGL through Three.js",
       "active machine learning research in the medical field",
     ],

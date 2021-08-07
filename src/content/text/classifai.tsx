@@ -20,7 +20,7 @@ const classifaiBlog = (
       check out our final project presentation.
     </p>
     <div>
-      <YouTube id="Z8s3fdrzI7c" appendSrc="?start=7900&end=8507" />
+      <YouTube id="Z8s3fdrzI7c" appendSrc="?start=6625&end=7310" />
     </div>
     <p>
       Classifai introduces an active learning workflow and brings an entirely
@@ -51,6 +51,17 @@ const classifaiBlog = (
     <div>
       <YouTube id="OfchCyHBAII" appendSrc="?start=2" />
     </div>
+    <p>
+      After the bachelor project we have continued to develop Classifai at the
+      chair for Digital Health and Machine Learning at HPI. Classifai has now
+      been renamed to VISIAN and can be tried and tested{" "}
+      <a href="http://visian.org" target="_blank" rel="noopener noreferrer">
+        here
+      </a>
+      . We have since added new tools and a whole new 3D view which uses ray
+      tracing (or, to be exact, ray marching) for direct volume rendering to
+      display MRI scans and segmentations in 3D.
+    </p>
   </div>
 );
 
