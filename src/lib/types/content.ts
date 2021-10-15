@@ -1,6 +1,6 @@
 import CanvasController from "../../content/projects/default";
 
-export interface Content {
+export interface IContent {
   name: string;
   shortName: string;
   quickSummary: string;
@@ -8,11 +8,13 @@ export interface Content {
   img: string;
 }
 
-export interface Blog extends Content {
+export interface IBlog extends IContent {
   content: JSX.Element;
 }
 
-export interface Project extends Content {
+export interface IProject extends IContent {
   CanvasController: typeof CanvasController;
   summary: JSX.Element;
 }
+
+export type IPaper = IContent;

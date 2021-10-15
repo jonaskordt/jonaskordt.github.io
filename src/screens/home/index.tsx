@@ -7,8 +7,8 @@ import Heading from "../../components/shared/heading";
 import Screen from "../../components/shared/screen";
 import SocialMedia from "../../components/shared/socialMedia";
 import Summary from "../../components/shared/summary";
-import { blogs, homeOrder, projects } from "../../content";
-import { Content } from "../../lib/types/content";
+import { blogs, ContentType, homeOrder, papers, projects } from "../../content";
+import { IContent } from "../../lib/types/content";
 import presets from "./home.module.scss";
 
 const Home: React.FC = () => {
@@ -28,14 +28,20 @@ const Home: React.FC = () => {
         </div>
         <div className={presets.projectContainer}>
           {homeOrder.map((c) => {
-            const content: Content = c.isBlog ? blogs[c.id] : projects[c.id];
+            const content: IContent =
+              // eslint-disable-next-line no-nested-ternary
+              c.type === ContentType.Paper
+                ? papers[c.id]
+                : c.type === ContentType.Blog
+                ? blogs[c.id]
+                : projects[c.id];
             return (
               <ProjectCard
                 className={presets.projectCard}
                 name={content.shortName}
                 text={content.quickSummary}
                 projectId={c.id}
-                isBlog={c.isBlog}
+                type={c.type}
                 isPreview={content.isPreview}
                 image={content.img}
                 key={content.name}

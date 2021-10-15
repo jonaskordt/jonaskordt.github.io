@@ -1,6 +1,7 @@
-import { Blog, Project } from "../lib/types/content";
+import { IBlog, IPaper, IProject } from "../lib/types/content";
 import animatedGoldIMG from "./images/animatedGold.png";
 import bachelorThesisIMG from "./images/bachelorThesis.png";
+import regionGrowingIMG from "./images/regionGrowing.png";
 import classifaiIMG from "./images/classifai.png";
 import classifai3DIMG from "./images/classifai3D.png";
 import planesIMG from "./images/planes.png";
@@ -23,7 +24,13 @@ import {
 import { planesQuickSummary, planesSummary } from "./text/planes";
 import { sphereDotsQuickSummary, sphereDotsSummary } from "./text/sphereDots";
 
-export const blogs: { [id: string]: Blog } = {
+export enum ContentType {
+  Blog = 0,
+  Project = 1,
+  Paper = 2,
+}
+
+export const blogs: { [id: string]: IBlog } = {
   classifai: {
     name: "Classifai",
     shortName: "Classifai",
@@ -42,7 +49,7 @@ export const blogs: { [id: string]: Blog } = {
   },
 };
 
-export const projects: { [id: string]: Project } = {
+export const projects: { [id: string]: IProject } = {
   planes: {
     name: "Intersecting Transparent Planes",
     shortName: "Planes",
@@ -81,16 +88,29 @@ export const projects: { [id: string]: Project } = {
   },
 };
 
+export const papers: { [id: string]: IPaper } = {
+  regionGrowing: {
+    name:
+      "Interactive Volumetric Region Growing for Brain Tumor Segmentation on MRI using WebGL",
+    shortName: "Region Growing",
+    quickSummary:
+      '"Interactive Volumetric Region Growing for Brain Tumor Segmentation on MRI using WebGL" to be published at Web3D 2021.',
+    isPreview: true,
+    img: regionGrowingIMG,
+  },
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const customControls: { [id: string]: React.FC<any> } = {
   classifai3D: Classifai3DControls,
 };
 
-export const homeOrder: { isBlog: boolean; id: string }[] = [
-  { isBlog: false, id: "classifai3D" },
-  { isBlog: true, id: "classifai" },
-  { isBlog: false, id: "sphereDots" },
-  { isBlog: true, id: "bachelorThesis" },
-  { isBlog: false, id: "planes" },
-  { isBlog: false, id: "animation" },
+export const homeOrder: { type: ContentType; id: string }[] = [
+  { type: ContentType.Paper, id: "regionGrowing" },
+  { type: ContentType.Project, id: "classifai3D" },
+  { type: ContentType.Blog, id: "classifai" },
+  { type: ContentType.Project, id: "sphereDots" },
+  { type: ContentType.Blog, id: "bachelorThesis" },
+  { type: ContentType.Project, id: "planes" },
+  { type: ContentType.Project, id: "animation" },
 ];

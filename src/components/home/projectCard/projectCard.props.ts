@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react";
+import { ContentType } from "../../../content";
 
 export default interface ProjectCardProps extends HTMLAttributes<HTMLElement> {
   preset?: string;
@@ -6,7 +7,7 @@ export default interface ProjectCardProps extends HTMLAttributes<HTMLElement> {
   name: string;
   text: string;
   projectId: string;
-  isBlog?: boolean;
+  type: ContentType;
   image?: string;
   isPreview?: boolean;
 }

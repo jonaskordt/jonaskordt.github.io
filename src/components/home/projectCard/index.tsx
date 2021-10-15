@@ -1,4 +1,5 @@
 import React from "react";
+import { ContentType } from "../../../content";
 
 import Card from "../../shared/card";
 import Heading from "../../shared/heading";
@@ -6,17 +7,15 @@ import presets from "./projectCard.module.scss";
 import ProjectCardProps from "./projectCard.props";
 
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
-  const {
-    name,
-    text,
-    projectId,
-    isBlog = false,
-    image,
-    isPreview,
-    ...rest
-  } = props;
+  const { name, text, projectId, type, image, isPreview, ...rest } = props;
 
-  const link = isBlog ? `/blogs/${projectId}` : `/projects/${projectId}`;
+  const link =
+    // eslint-disable-next-line no-nested-ternary
+    type === ContentType.Paper
+      ? `/papers/${projectId}`
+      : type === ContentType.Blog
+      ? `/blogs/${projectId}`
+      : `/projects/${projectId}`;
 
   return (
     <Card
@@ -33,7 +32,16 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
             <div className={presets.backgroundBlend} />
           </div>
         )}
-        <p className={presets.type}>{isBlog ? "Blog" : "Project"}</p>
+        <p className={presets.type}>
+          {
+            // eslint-disable-next-line no-nested-ternary
+            type === ContentType.Paper
+              ? "Paper"
+              : type === ContentType.Blog
+              ? "Blog"
+              : "Project"
+          }
+        </p>
       </div>
     </Card>
   );
