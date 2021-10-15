@@ -1,7 +1,7 @@
 @import "../../../theme";
 
 .default {
-  @include shadow;
+  @include border;
 
   align-items: flex-start;
   border-radius: 20px;
@@ -19,13 +19,13 @@
 }
 
 .default:hover {
-  @include hover-shadow;
+  @include hover-border;
 
   cursor: pointer;
 }
 
 .default:active {
-  @include active-shadow;
+  @include active-border;
 }
 
 .soonTag {

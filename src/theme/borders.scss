@@ -1,0 +1,11 @@
+@mixin border {
+  box-shadow: 1px 1px 1px $border-color, -1px -1px 1px $border-color, 1px -1px 1px $border-color, -1px 1px 1px $border-color;
+}
+
+@mixin hover-border {
+  box-shadow: 2px 2px 1px $border-color, -2px -2px 1px $border-color, 2px -2px 1px $border-color, -2px 2px 1px $border-color;
+}
+
+@mixin active-border {
+  box-shadow: 1px 1px 1px #777777, -1px -1px 1px #777777, 1px -1px 1px #777777, -1px 1px 1px #777777;
+}
