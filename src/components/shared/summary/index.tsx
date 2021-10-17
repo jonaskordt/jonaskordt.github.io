@@ -15,7 +15,7 @@ const Summary: React.FC<SummaryProps> = (props) => {
   return (
     <div className={classNames(presets[preset], className)} {...rest}>
       <Heading text={summaryHeading} />
-      <p>{summaryText}</p>
+      {summaryText}
       {isCV || <p className={presets.finisher}>{summaryFinisher}</p>}
     </div>
   );
