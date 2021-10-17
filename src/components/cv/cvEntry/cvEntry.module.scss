@@ -1,10 +1,14 @@
-@import "../../../theme/colors.scss";
+@import "../../../theme";
 
 .default {
   background-color: $cv_background;
   border-radius: 10px;
   display: flex;
   padding: 10px;
+
+  @include for-phone-only {
+    flex-direction: column;
+  }
 }
 
 .active {
@@ -27,6 +31,16 @@
   > p {
     font-weight: 600;
     padding-top: 3px;
+
+    @include for-phone-only { 
+      padding-right: 3px;
+    }
+  }
+
+  @include for-phone-only {
+    flex-direction: row;
+    padding-bottom: 10px;
+    width: 100%;
   }
 }
 
