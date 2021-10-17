@@ -1,6 +1,6 @@
-import CVEntryData from "../../lib/types/cvEntryData";
+import { CVEntryData } from "../../lib";
 
-const work: CVEntryData[] = [
+export const work: CVEntryData[] = [
   {
     heading: "Research Assistant",
     organization: "Chair for Digital Health and Machine Learning at HPI",
@@ -51,5 +51,3 @@ const work: CVEntryData[] = [
     end: new Date(2013, 5, 14),
   },
 ];
-
-export default work;

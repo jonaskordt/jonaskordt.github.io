@@ -1,6 +1,6 @@
-import CVEntryData from "../../lib/types/cvEntryData";
+import { CVEntryData } from "../../lib";
 
-const volunteering: CVEntryData[] = [
+export const volunteering: CVEntryData[] = [
   {
     heading: "Table-Tennis Coach",
     organization: "TuS Lichterfelde Berlin e.V.",
@@ -15,5 +15,3 @@ const volunteering: CVEntryData[] = [
     organizationLink: "https://www.sportjugendreisen.de",
   },
 ];
-
-export default volunteering;

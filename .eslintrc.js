@@ -32,5 +32,6 @@ module.exports = {
     "no-bitwise": "off",
     "no-plusplus": "off",
     "default-case": "off",
+    "import/prefer-default-export": "off",
   },
 };

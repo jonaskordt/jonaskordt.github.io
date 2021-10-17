@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react";
 
-export default interface NameProps extends HTMLAttributes<HTMLElement> {
+export interface HeadingProps extends HTMLAttributes<HTMLElement> {
   preset?: string;
 
   text: string;

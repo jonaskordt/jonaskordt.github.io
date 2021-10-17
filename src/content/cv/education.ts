@@ -1,6 +1,6 @@
-import CVEntryData from "../../lib/types/cvEntryData";
+import { CVEntryData } from "../../lib";
 
-const education: CVEntryData[] = [
+export const education: CVEntryData[] = [
   {
     heading: "Aspiring Master of Science: IT System Engineering",
     organization: "Hasso-Plattner-Institute at the University of Potsdam",
@@ -32,5 +32,3 @@ const education: CVEntryData[] = [
     organizationLink: "http://rbhs.lexington1.net",
   },
 ];
-
-export default education;

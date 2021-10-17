@@ -1,12 +1,10 @@
 import { HTMLAttributes } from "react";
 
-import Controls from "../../../lib/types/controls";
+import { Controls } from "../../../lib";
 
-interface ControlsProps extends HTMLAttributes<HTMLElement> {
+export interface ControlsProps extends HTMLAttributes<HTMLElement> {
   preset?: string;
 
   toggleFullScreen: () => void;
   controls: Controls;
 }
-
-export default ControlsProps;

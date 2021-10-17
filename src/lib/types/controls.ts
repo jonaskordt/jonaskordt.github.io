@@ -33,7 +33,7 @@ export interface IMouseControl extends IControl {
 
 export type ITouchControl = IMouseControl;
 
-type Controls = [
+export type Controls = [
   IUIToggleControl[],
   IUISliderControl[],
   [IMouseControl[], ITouchControl[]],
@@ -41,5 +41,3 @@ type Controls = [
 ];
 
 export const noControls: Controls = [[], [], [[], []], []];
-
-export default Controls;

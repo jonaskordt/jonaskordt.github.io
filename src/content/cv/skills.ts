@@ -1,4 +1,4 @@
-import SkillData from "../../lib/types/skillData";
+import { SkillData } from "../../lib";
 
 export const languages: SkillData[] = [
   { name: "German", level: 1, comment: "Mother Tongue" },

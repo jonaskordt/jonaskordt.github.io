@@ -1,12 +1,9 @@
 import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
-import Blog from "./screens/blog";
-import CV from "./screens/cv";
-import Home from "./screens/home";
-import Project from "./screens/project";
+import { Blog, CV, Home, Project } from "./screens";
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   return (
     <Router>
       <Switch>
@@ -26,5 +23,3 @@ const App: React.FC = () => {
     </Router>
   );
 };
-
-export default App;

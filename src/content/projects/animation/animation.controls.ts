@@ -1,6 +1,6 @@
-import Controls from "../../../lib/types/controls";
+import { Controls } from "../../../lib";
 
-const animationControls = [
+export const animationControls = [
   [],
   [],
   [
@@ -27,5 +27,3 @@ const animationControls = [
   ],
   [],
 ] as Controls;
-
-export default animationControls;

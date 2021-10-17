@@ -1,4 +1,4 @@
-import classNames from ".";
+import { classNames } from "./class-names";
 
 describe("classNames", () => {
   it("should return undefined if no class name is given", () => {

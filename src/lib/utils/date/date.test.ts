@@ -1,4 +1,4 @@
-import { formatDate, padToTwo } from ".";
+import { formatDate, padToTwo } from "./date";
 
 describe("padToTwo", () => {
   it("should pad single digit numbers with a 0 on the left", () => {

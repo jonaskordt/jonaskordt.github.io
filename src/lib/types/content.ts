@@ -1,4 +1,4 @@
-import CanvasController from "../../content/projects/default";
+import { CanvasController } from "../../content";
 
 export interface IContent {
   name: string;

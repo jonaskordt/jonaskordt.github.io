@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react";
 
-export default interface CardProps extends HTMLAttributes<HTMLElement> {
+export interface CardProps extends HTMLAttributes<HTMLElement> {
   preset?: string;
 
   to?: string;
