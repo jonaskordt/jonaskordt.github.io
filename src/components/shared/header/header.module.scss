@@ -41,4 +41,11 @@
 
 .portrait_container {
   @extend .container;
+  margin-bottom: 20px;
+  margin-top: 20px;
+
+  @include for-tiny-screens {
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
 }
