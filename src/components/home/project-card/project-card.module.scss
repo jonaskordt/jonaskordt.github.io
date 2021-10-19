@@ -8,6 +8,7 @@
   flex-direction: column;
   height: 150px;
   position: relative;
+  user-select: none;
   width: 300px;
 }
 
@@ -34,7 +35,9 @@ img {
 }
 
 .text {
-  max-width: 200px;
+  font-size: 16.1px;
+  line-height: 20px;
+  max-width: 203px;
   position: relative;
   z-index: 20;
 }
@@ -51,6 +54,7 @@ img {
 
 .heading {
   font-size: 30px;
+  line-height: 35px;
   margin-bottom: 15px;
   z-index: 20;
 }
