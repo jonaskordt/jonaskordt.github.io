@@ -8,7 +8,7 @@ export const classifaiQuickSummary =
 
 export const classifaiBlog = (
   <div>
-    <Heading text="Classifai" />
+    <Heading text="Classifai" preset="centered" />
     <p>
       During my studies in IT-Systems Engineering at Hasso Plattner Institute at
       the University of Potsdam, I was part of a bachelor project team at the
@@ -59,8 +59,8 @@ export const classifaiBlog = (
         here
       </a>
       . We have since added new tools and a whole new 3D view which uses ray
-      tracing (or, to be exact, ray marching) for direct volume rendering to
-      display MRI scans and segmentations in 3D.
+      tracing for direct volume rendering to display MRI scans and segmentations
+      in 3D.
     </p>
   </div>
 );

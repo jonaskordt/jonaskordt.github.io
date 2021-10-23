@@ -10,7 +10,7 @@ export const bachelorThesisQuickSummary = `My bachelor thesis on the topic "${ba
 
 export const bachelorThesisBlog = (
   <div>
-    <Heading text={bachelorThesisTitle} />
+    <Heading text={bachelorThesisTitle} preset="centered" />
     <p>
       In this thesis, I present Classifai’s 3D Toolkit, a new 3D annotation tool
       for medical image analysis, which allows modifying segmentations in 3D. In

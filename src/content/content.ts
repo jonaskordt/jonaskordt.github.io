@@ -7,6 +7,7 @@ import {
   classifai3DImage,
   planesImage,
   sphereDotsImage,
+  volumeRenderingImage,
 } from "./images";
 import {
   Animation,
@@ -29,6 +30,9 @@ import {
   planesSummary,
   sphereDotsQuickSummary,
   sphereDotsSummary,
+  volumeRenderingQuickSummary,
+  volumeRenderingBlog,
+  volumeRenderingTitle,
 } from "./text";
 
 export enum ContentType {
@@ -53,6 +57,14 @@ export const blogs: { [id: string]: IBlog } = {
     content: bachelorThesisBlog,
     isPreview: false,
     img: bachelorThesisImage,
+  },
+  volumeRendering: {
+    name: volumeRenderingTitle,
+    shortName: "Volume Rendering",
+    quickSummary: volumeRenderingQuickSummary,
+    content: volumeRenderingBlog,
+    isPreview: false,
+    img: volumeRenderingImage,
   },
 };
 
@@ -114,6 +126,7 @@ export const customControls: { [id: string]: React.FC<any> } = {
 
 export const homeOrder: { type: ContentType; id: string }[] = [
   { type: ContentType.Paper, id: "regionGrowing" },
+  { type: ContentType.Blog, id: "volumeRendering" },
   { type: ContentType.Project, id: "classifai3D" },
   { type: ContentType.Blog, id: "classifai" },
   { type: ContentType.Project, id: "sphereDots" },
