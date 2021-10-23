@@ -47,7 +47,7 @@ export const volumeRenderingBlog = (
     </p>
     <Image
       image={volumeRenderingEdgesImage}
-      subtitle="The edges transfer function shows the edges of the brain ventricle on the left and the segmentations fills those bounds on the right."
+      subtitle="The edges transfer function shows the edges of the brain ventricles on the left and the segmentation fills those bounds on the right."
     />
     <p>
       As VISIAN is a segmentation editor it is usually important to see the
