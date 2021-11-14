@@ -17,4 +17,4 @@ export interface IProject extends IContent {
   summary: JSX.Element;
 }
 
-export type IPaper = IContent;
+export type IPaper = IBlog;

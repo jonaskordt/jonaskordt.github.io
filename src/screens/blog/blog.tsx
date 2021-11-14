@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { Header, Screen } from "../../components";
-import { blogs } from "../../content";
+import { blogs, papers } from "../../content";
 import presets from "./blog.module.scss";
 
 interface IBlogParams {
@@ -11,7 +11,7 @@ interface IBlogParams {
 
 export const Blog: React.FC = () => {
   const { blogId } = useParams<IBlogParams>();
-  const blog = blogs[blogId];
+  const blog = blogs[blogId] || papers[blogId];
 
   return (
     <Screen preset="thin">

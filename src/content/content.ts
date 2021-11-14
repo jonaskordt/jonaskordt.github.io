@@ -33,6 +33,9 @@ import {
   volumeRenderingQuickSummary,
   volumeRenderingBlog,
   volumeRenderingTitle,
+  regionGrowingPaper,
+  regionGrowingTitle,
+  regionGrowingQuickSummary,
 } from "./text";
 
 export enum ContentType {
@@ -109,13 +112,12 @@ export const projects: { [id: string]: IProject } = {
 
 export const papers: { [id: string]: IPaper } = {
   regionGrowing: {
-    name:
-      "Interactive Volumetric Region Growing for Brain Tumor Segmentation on MRI using WebGL",
+    name: regionGrowingTitle,
     shortName: "Region Growing",
-    quickSummary:
-      '"Interactive Volumetric Region Growing for Brain Tumor Segmentation on MRI using WebGL" to be published at Web3D 2021.',
-    isPreview: true,
+    quickSummary: regionGrowingQuickSummary,
+    isPreview: false,
     img: regionGrowingImage,
+    content: regionGrowingPaper,
   },
 };
 

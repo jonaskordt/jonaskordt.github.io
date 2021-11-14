@@ -15,3 +15,19 @@
 
   text-align: center;
 }
+
+.small {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 20px;
+
+  @include for-tiny-screens {
+    font-size: 18px;
+  }
+}
+
+.small-centered {
+  @extend .small;
+
+  text-align: center;
+}

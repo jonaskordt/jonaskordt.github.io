@@ -13,6 +13,9 @@ export const App: React.FC = () => {
         <Route path="/blogs/:blogId">
           <Blog />
         </Route>
+        <Route path="/papers/:blogId">
+          <Blog />
+        </Route>
         <Route path="/cv">
           <CV />
         </Route>
