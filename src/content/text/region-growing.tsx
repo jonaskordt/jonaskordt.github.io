@@ -12,7 +12,7 @@ export const regionGrowingQuickSummary = `"${regionGrowingTitle}" published at W
 export const regionGrowingPaper = (
   <div>
     <Heading text={regionGrowingTitle} preset="centered" />
-    <PdfLink pdfName="regionGrowing" />
+    <PdfLink pdfName="region-growing" />
     <Heading text="Citation" preset="small-centered" />
     <p>
       Jonas Kordt, Paul Brachmann, Daniel Limberger, and Christoph Lippert.
