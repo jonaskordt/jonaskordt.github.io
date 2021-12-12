@@ -1,0 +1,21 @@
+@import "../../../theme";
+
+.default {
+  color: inherit;
+}
+
+.default:link {
+  text-decoration: none;
+}
+
+.default:visited {
+  text-decoration: none;
+}
+
+.default:hover {
+  text-decoration: underline;
+}
+
+.default:active {
+  text-decoration: underline;
+}

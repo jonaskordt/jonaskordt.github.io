@@ -1,7 +1,8 @@
 import React from "react";
 import YouTube from "react-youtube-embed";
 
-import { PdfLink } from "../../components/blog/pdf-link";
+import { PaperLinks } from "../../components/blog/paper-links";
+import { CitationLink } from "../../components/blog/citation-link";
 import { Heading } from "../../components/shared/heading";
 
 export const regionGrowingTitle =
@@ -12,7 +13,9 @@ export const regionGrowingQuickSummary = `"${regionGrowingTitle}" published at W
 export const regionGrowingPaper = (
   <div>
     <Heading text={regionGrowingTitle} preset="centered" />
-    <PdfLink pdfName="region-growing" />
+    <div>
+      <PaperLinks pdfName="region-growing" doi="10.1145/3485444.3487640" />
+    </div>
     <Heading text="Citation" preset="small-centered" />
     <p>
       Jonas Kordt, Paul Brachmann, Daniel Limberger, and Christoph Lippert.
@@ -21,7 +24,8 @@ export const regionGrowingPaper = (
         The 26th International Conference on 3D Web Technology (Web3D ’21),
         November 8–12, 2021, Pisa, Italy
       </i>
-      . ACM, New York, NY, USA, 8 pages.
+      . ACM, New York, NY, USA, 8 pages.{" "}
+      <CitationLink link="https://doi.org/10.1145/3485444.3487640" />
     </p>
     <Heading text="Abstract" preset="small-centered" />
     <p>
