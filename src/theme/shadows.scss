@@ -1,5 +1,5 @@
 $offset: 5px;
-$half-offset: ($offset / 2);
+$half-offset: math.div($offset, 2);
 
 $blur: 5px;
 
