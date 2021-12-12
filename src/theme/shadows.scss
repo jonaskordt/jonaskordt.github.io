@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $offset: 5px;
 $half-offset: math.div($offset, 2);
 
