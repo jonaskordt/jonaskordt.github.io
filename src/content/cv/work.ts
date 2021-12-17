@@ -18,6 +18,7 @@ export const work: CVEntryData[] = [
       "full stack development of VISIAN (web based medical segmentation system relying on active machine learning, formerly named Classifai)",
       "focus on graphics using WebGL through Three.js",
       "active machine learning research in the medical field",
+      "supervision of bachelor students",
     ],
     start: new Date(2020, 10, 1),
     organizationLink:
