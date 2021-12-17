@@ -36,7 +36,7 @@ export const getConnectedStructureGeometries: () => Promise<
     (geometryIndex) => {
       return new Promise<THREE.BufferGeometry>((resolve) => {
         geometryLoader.load(
-          preGeneratedGeometries[geometryIndex],
+          preGeneratedGeometries[geometryIndex].default,
           (geometry) => {
             resolve(geometry.scale(0.001, 0.001, 0.001));
           },
