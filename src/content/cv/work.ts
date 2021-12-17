@@ -2,6 +2,16 @@ import { CVEntryData } from "../../lib";
 
 export const work: CVEntryData[] = [
   {
+    heading: "Software Engineer",
+    organization: "Immunkarte",
+    details: [
+      "frontend development using React",
+      "consulting on machine learning solutions",
+    ],
+    start: new Date(2021, 11, 1),
+    organizationLink: "https://immunkarte.de",
+  },
+  {
     heading: "Research Assistant",
     organization: "Chair for Digital Health and Machine Learning at HPI",
     details: [
