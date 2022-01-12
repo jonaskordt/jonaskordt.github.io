@@ -7,16 +7,9 @@
   min-height: 100vh;
 }
 
-.home {
-  @extend .default;
-
-  margin: 0 auto;
-  max-width: 1590px;
-}
-
 .thin {
   margin: 0px auto;
-  max-width: 1140px;
+  max-width: 1220px;
 }
 
 .fullHeight {

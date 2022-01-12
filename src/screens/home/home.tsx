@@ -15,7 +15,7 @@ import presets from "./home.module.scss";
 
 export const Home: React.FC = () => {
   return (
-    <Screen preset="home">
+    <Screen preset="thin">
       <Header />
       <div className={presets.upperContainer}>
         <Summary className={presets.upperItem} />
