@@ -8,8 +8,6 @@ import { mediaQuery } from "../../../theme";
 const StyledCard = styled(Card)`
   border-radius: 10px;
   height: 30px;
-  margin-left: 7px;
-  margin-right: 7px;
   padding: 5px;
   width: 30px;
   display: flex;
@@ -18,7 +16,6 @@ const StyledCard = styled(Card)`
 
   ${mediaQuery("tinyScreens")} {
     height: 20px;
-    margin-left: 10px;
     width: 20px;
   }
 `;

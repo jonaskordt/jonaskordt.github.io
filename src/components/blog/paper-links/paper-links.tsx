@@ -7,6 +7,7 @@ import { PdfLink } from "../pdf-link";
 import { FlexRow } from "../../shared";
 
 const Container = styled(FlexRow)`
+  gap: 14px;
   justify-content: center;
 `;
 
