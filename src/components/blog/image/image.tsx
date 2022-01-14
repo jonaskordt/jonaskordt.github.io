@@ -1,16 +1,30 @@
 import React from "react";
-import { classNames } from "../../../styling";
 
+import styled from "styled-components";
 import { ImageProps } from "./image.props";
-import presets from "./image.module.scss";
+import { FlexColumn } from "../../shared";
+
+const StyledImg = styled.img`
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 15px;
+`;
+
+const Subtitle = styled.p`
+  text-align: center;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 18px;
+`;
 
 export const Image: React.FC<ImageProps> = (props) => {
-  const { className, preset = "default", image, subtitle, ...rest } = props;
+  const { image, subtitle, ...rest } = props;
 
   return (
-    <div {...rest} className={classNames(presets[preset], className)}>
-      <img className={presets.image} src={image} alt="" />
-      {subtitle && <p className={presets.subtitle}>{subtitle}</p>}
-    </div>
+    <FlexColumn {...rest}>
+      <StyledImg src={image} alt="" />
+      {subtitle && <Subtitle>{subtitle}</Subtitle>}
+    </FlexColumn>
   );
 };

@@ -1,19 +1,22 @@
 import React from "react";
+import styled from "styled-components";
 
 import { PaperLinksProps } from "./paper-links.props";
 import { DoiLink } from "../doi-link";
 import { PdfLink } from "../pdf-link";
-import { classNames } from "../../../styling";
+import { FlexRow } from "../../shared";
 
-import presets from "./paper-links.module.scss";
+const Container = styled(FlexRow)`
+  justify-content: center;
+`;
 
 export const PaperLinks: React.FC<PaperLinksProps> = (props) => {
-  const { doi, pdfName, preset = "default", className } = props;
+  const { doi, pdfName } = props;
 
   return (
-    <div className={classNames(presets[preset], className)}>
+    <Container>
       {doi && <DoiLink doi={doi} />}
       {pdfName && <PdfLink pdfName={pdfName} />}
-    </div>
+    </Container>
   );
 };

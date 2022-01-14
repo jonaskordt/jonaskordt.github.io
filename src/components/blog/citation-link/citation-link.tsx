@@ -1,21 +1,31 @@
 import React from "react";
-import { classNames } from "../../../styling";
+import styled from "styled-components";
 
 import { CiatationLinkProps } from "./ciatation-link.props";
-import presets from "./citation-link.module.scss";
+
+const StyledLink = styled.a`
+  color: inherit;
+
+  :link {
+    text-decoration: none;
+  }
+  :visited {
+    text-decoration: none;
+  }
+  :hover {
+    text-decoration: underline;
+  }
+  :active {
+    text-decoration: underline;
+  }
+`;
 
 export const CitationLink: React.FC<CiatationLinkProps> = (props) => {
-  const { className, preset = "default", link, ...rest } = props;
+  const { link, ...rest } = props;
 
   return (
-    <a
-      className={classNames(presets[preset], className)}
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      {...rest}
-    >
+    <StyledLink href={link} target="_blank" rel="noopener noreferrer" {...rest}>
       {link}
-    </a>
+    </StyledLink>
   );
 };
