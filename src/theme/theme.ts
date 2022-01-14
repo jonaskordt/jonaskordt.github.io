@@ -37,23 +37,18 @@ export const theme = {
     hugeScreens: "@media (min-width: 2200px)",
   },
   shadows: {
-    normal: `box-shadow: ${shadowOffset} ${shadowOffset} ${shadowBlur} #d1d9e6, (-${shadowOffset}) (-${shadowOffset}) ${shadowBlur} white, -1px -1px 1px white;`,
-    hover: `box-shadow: ${halfShadowOffset} ${halfShadowOffset} ${shadowBlur} #d1d9e6, (-${halfShadowOffset}) (-${halfShadowOffset}) ${shadowBlur} white;`,
-    active: `box-shadow: ${halfShadowOffset} ${halfShadowOffset} ${shadowBlur} #d1d9e6 inset, (-${halfShadowOffset}) (-${halfShadowOffset}) ${shadowBlur} white inset;`,
-    progress:
-      "box-shadow: 1px 1px 2px #a1a9b6 inset, (-1px) (-1px) 2px #eeeeee inset;",
-    keyCard: `box-shadow: ${shadowOffset} ${shadowOffset} ${shadowBlur} #bac1cc, (-${shadowOffset}) (-${shadowOffset}) ${shadowBlur} #edeff3, -1px -1px 1px white;`,
-    keyCardHover: `box-shadow: ${halfShadowOffset} ${halfShadowOffset} ${shadowBlur} #bac1cc, (-${halfShadowOffset}) (-${halfShadowOffset}) ${shadowBlur} #edeff3;`,
-    keyCardActive: `box-shadow: ${halfShadowOffset} ${halfShadowOffset} ${shadowBlur} #bac1cc inset, (-${halfShadowOffset}) (-${halfShadowOffset}) ${shadowBlur} #edeff3 inset;`,
-    slider:
-      "box-shadow: 3px 3px 3px #aab1bb, -3px -3px 3px #e5e8ec, -1px -1px 1px white;",
-    sliderHover: "box-shadow: 2px 2px 3px #aab1bb, -2px -2px 3px #e5e8ec;",
-    toggle:
-      "box-shadow: 1px 1px 2px #a1a9b6 inset, (-1px) (-1px) 2px #eeeeee inset;",
-    toggleGreen:
-      "box-shadow: 2px 2px 2px #688b88 inset, (-2px) (-2px) 2px #b7cfcd inset;",
-    scroll:
-      "box-shadow: 1px 1px 2px #a1a9b6 inset, (-1px) (-1px) 2px white inset;",
+    normal: `${shadowOffset} ${shadowOffset} ${shadowBlur} #d1d9e6, -${shadowOffset} -${shadowOffset} ${shadowBlur} white, -1px -1px 1px white`,
+    hover: `${halfShadowOffset} ${halfShadowOffset} ${shadowBlur} #d1d9e6, (-${halfShadowOffset}) (-${halfShadowOffset}) ${shadowBlur} white`,
+    active: `${halfShadowOffset} ${halfShadowOffset} ${shadowBlur} #d1d9e6 inset, (-${halfShadowOffset}) (-${halfShadowOffset}) ${shadowBlur} white inset`,
+    progress: "1px 1px 2px #a1a9b6 inset, -1px -1px 2px #eeeeee inset",
+    keyCard: `${shadowOffset} ${shadowOffset} ${shadowBlur} #bac1cc, -${shadowOffset} -${shadowOffset} ${shadowBlur} #edeff3, -1px -1px 1px white`,
+    keyCardHover: `${halfShadowOffset} ${halfShadowOffset} ${shadowBlur} #bac1cc, (-${halfShadowOffset}) (-${halfShadowOffset}) ${shadowBlur} #edeff3`,
+    keyCardActive: `${halfShadowOffset} ${halfShadowOffset} ${shadowBlur} #bac1cc inset, (-${halfShadowOffset}) (-${halfShadowOffset}) ${shadowBlur} #edeff3 inset`,
+    slider: "3px 3px 3px #aab1bb, -3px -3px 3px #e5e8ec, -1px -1px 1px white",
+    sliderHover: "2px 2px 3px #aab1bb, -2px -2px 3px #e5e8ec",
+    toggle: "1px 1px 2px #a1a9b6 inset, -1px -1px 2px #eeeeee inset",
+    toggleGreen: "2px 2px 2px #688b88 inset, -2px -2px 2px #b7cfcd inset",
+    scroll: "1px 1px 2px #a1a9b6 inset, -1px -1px 2px white inset",
   },
 };
 

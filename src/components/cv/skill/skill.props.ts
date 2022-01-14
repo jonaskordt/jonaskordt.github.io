@@ -2,6 +2,4 @@ import { HTMLAttributes } from "react";
 
 import { SkillData } from "../../../lib";
 
-export interface SkillProps extends HTMLAttributes<HTMLElement>, SkillData {
-  preset?: string;
-}
+export type SkillProps = HTMLAttributes<HTMLElement> & SkillData;

@@ -1,41 +1,98 @@
 import React from "react";
+import styled from "styled-components";
 
 import { generalSkills, languages, techSkills } from "../../../content";
-import { classNames } from "../../../styling";
-import { Heading } from "../../shared";
+import { color, mediaQuery } from "../../../theme";
+import { FlexRow, Heading } from "../../shared";
 import { Skill } from "../skill";
-import presets from "./quick-info.module.scss";
 import { QuickInfoProps } from "./quick-info.props";
 
+const Container = styled(FlexRow)`
+  border-radius: 10px;
+
+  ${mediaQuery("smallerScreens")} {
+    flex-direction: column;
+  }
+`;
+
+const Section = styled.div`
+  background-color: ${color("cvBackground")};
+  border-radius: 10px;
+  padding: 15px;
+  padding-bottom: 0px;
+`;
+
+const WideSection = styled(Section)`
+  flex-grow: 2;
+`;
+
+const GeneralSkillsSection = styled(Section)`
+  flex-shrink: 0;
+  margin: 0px 20px;
+  padding-bottom: 5px;
+
+  ${mediaQuery("smallerScreens")} {
+    margin: 20px 0px;
+  }
+`;
+
+const SectionHeading = styled(Heading)`
+  font-size: 20px;
+  margin-bottom: 0;
+  margin-bottom: 20px;
+`;
+
+const GeneralSkillsContainer = styled.div`
+  margin: 0 !important;
+
+  ${mediaQuery("smallerScreens")} {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+`;
+
+const GeneralSkill = styled.p`
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+
+  ${mediaQuery("smallerScreens")} {
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: 213px;
+  }
+`;
+
+const BarSkill = styled(Skill)`
+  margin-bottom: 15px;
+`;
+
 export const QuickInfo: React.FC<QuickInfoProps> = (props) => {
-  const { className, preset = "default", ...rest } = props;
-
   return (
-    <div className={classNames(presets[preset], className)} {...rest}>
-      <div className={presets.languages}>
-        <Heading className={presets.heading} text="Languages" />
+    <Container {...props}>
+      <WideSection>
+        <SectionHeading text="Languages" />
         {languages.map((s) => (
-          <Skill className={presets.barSkill} key={s.name} {...s} />
+          <BarSkill key={s.name} {...s} />
         ))}
-      </div>
+      </WideSection>
 
-      <div className={presets.generalSkills}>
-        <Heading className={presets.heading} text="Skills" />
-        <div className={presets.generalSkillContainer}>
+      <GeneralSkillsSection>
+        <SectionHeading text="Skills" />
+        <GeneralSkillsContainer>
           {generalSkills.map((s) => (
-            <p className={presets.generalSkill} key={s}>
-              {s}
-            </p>
+            <GeneralSkill key={s}>{s}</GeneralSkill>
           ))}
-        </div>
-      </div>
+        </GeneralSkillsContainer>
+      </GeneralSkillsSection>
 
-      <div className={presets.tech}>
-        <Heading className={presets.heading} text="Tech" />
+      <WideSection>
+        <SectionHeading text="Tech" />
         {techSkills.map((s) => (
-          <Skill className={presets.barSkill} key={s.name} {...s} />
+          <BarSkill key={s.name} {...s} />
         ))}
-      </div>
-    </div>
+      </WideSection>
+    </Container>
   );
 };
