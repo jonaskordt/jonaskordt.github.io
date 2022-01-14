@@ -1,15 +1,18 @@
 import React from "react";
+import styled from "styled-components";
 
-import { classNames } from "../../../styling";
-import presets from "./name.module.scss";
+import { mediaQuery } from "../../../theme";
 import { NameProps } from "./name.props";
 
-export const Name: React.FC<NameProps> = (props) => {
-  const { className, preset = "default", ...rest } = props;
+const NameDiv = styled.div`
+  font-size: 50px;
+  font-weight: 700;
 
-  return (
-    <div {...rest} className={classNames(presets[preset], className)}>
-      Jonas Kordt
-    </div>
-  );
+  ${mediaQuery("tinyScreens")} {
+    font-size: 45px;
+  }
+`;
+
+export const Name: React.FC<NameProps> = (props) => {
+  return <NameDiv {...props}>Jonas Kordt</NameDiv>;
 };
