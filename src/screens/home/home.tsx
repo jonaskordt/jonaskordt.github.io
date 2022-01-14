@@ -5,9 +5,9 @@ import {
   ProjectCard,
   Header,
   Heading,
-  Screen,
   SocialMedia,
   Summary,
+  ThinScreen,
 } from "../../components";
 import { blogs, ContentType, homeOrder, papers, projects } from "../../content";
 import { IContent } from "../../lib";
@@ -15,7 +15,7 @@ import presets from "./home.module.scss";
 
 export const Home: React.FC = () => {
   return (
-    <Screen preset="thin">
+    <ThinScreen>
       <Header />
       <div className={presets.upperContainer}>
         <Summary className={presets.upperItem} />
@@ -52,6 +52,6 @@ export const Home: React.FC = () => {
           })}
         </div>
       </div>
-    </Screen>
+    </ThinScreen>
   );
 };

@@ -6,7 +6,7 @@ import {
   WebGLCanvas,
   Header,
   Heading,
-  Screen,
+  FullHeightScreen,
 } from "../../components";
 import {
   customControls,
@@ -101,7 +101,7 @@ export const Project: React.FC = () => {
   /* Canvas Border End */
 
   return (
-    <Screen preset="fullHeight">
+    <FullHeightScreen>
       <Header preset="thin" />
       {project ? (
         <>
@@ -160,6 +160,6 @@ export const Project: React.FC = () => {
           <p>Project {projectId} doesn&apos;t exist yet.</p>
         </div>
       )}
-    </Screen>
+    </FullHeightScreen>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import { Header, Screen } from "../../components";
+import { Header, ThinScreen } from "../../components";
 import { blogs, papers } from "../../content";
 import presets from "./blog.module.scss";
 
@@ -14,7 +14,7 @@ export const Blog: React.FC = () => {
   const blog = blogs[blogId] || papers[blogId];
 
   return (
-    <Screen preset="thin">
+    <ThinScreen>
       <Header />
       {blog ? (
         <div className={presets.container}>{blog.content}</div>
@@ -23,6 +23,6 @@ export const Blog: React.FC = () => {
           <p>Blog {blogId} doesn&apos;t exist yet.</p>
         </div>
       )}
-    </Screen>
+    </ThinScreen>
   );
 };

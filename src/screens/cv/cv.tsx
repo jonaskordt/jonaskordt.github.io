@@ -5,16 +5,16 @@ import {
   QuickInfo,
   Header,
   Heading,
-  Screen,
   SocialMedia,
   Summary,
+  ThinScreen,
 } from "../../components";
 import { education, scholarships, volunteering, work } from "../../content";
 import presets from "./cv.module.scss";
 
 export const CV: React.FC = () => {
   return (
-    <Screen preset="thin">
+    <ThinScreen>
       <Header />
       <div className={presets.container}>
         <SocialMedia className={presets.socialMedia} />
@@ -50,6 +50,6 @@ export const CV: React.FC = () => {
           );
         })}
       </div>
-    </Screen>
+    </ThinScreen>
   );
 };
