@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Heading } from "../../components/shared/heading";
-import { Image } from "../../components/blog/image";
+import { RoundedImage } from "../../components/blog/image";
 import {
   volumeRenderingEdgesImage,
   volumeRenderingFilteringImage,
@@ -31,7 +31,7 @@ export const volumeRenderingBlog = (
       </a>
       .
     </p>
-    <Image
+    <RoundedImage
       image={volumeRenderingTeaserImage}
       subtitle="Brain MRI rendered with 3 different transfer functions. Left: MRI intensities. Middle: Cutting a cone into the MRI to reveal an occluded tumor segmentation. Right: Prominent edges in the MRI for context around the tumor segmentation."
     />
@@ -45,7 +45,7 @@ export const volumeRenderingBlog = (
       detected based on gradient magnitude and can be filtered from top and
       bottom.
     </p>
-    <Image
+    <RoundedImage
       image={volumeRenderingEdgesImage}
       subtitle="The edges transfer function shows the edges of the brain ventricles on the left and the segmentation fills those bounds on the right."
     />
@@ -56,7 +56,7 @@ export const volumeRenderingBlog = (
       segmentations are tri-linearly filtered because the resulting volume is
       smoother.
     </p>
-    <Image
+    <RoundedImage
       image={volumeRenderingFilteringImage}
       subtitle="The cone-clipping transfer function showing a white matter segmentation. On the left the segmentation is rendered voxel-exact, on the right it is smoothed."
     />
