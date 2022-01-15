@@ -2,7 +2,7 @@ import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 import { Blog, CV, Home, Project } from "./screens";
-import { GlobalStyles } from "./theme/global-styles";
+import { GlobalStyles } from "./theme";
 
 export const App: React.FC = () => {
   return (
