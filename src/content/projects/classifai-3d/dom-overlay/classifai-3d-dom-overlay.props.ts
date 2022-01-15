@@ -4,7 +4,5 @@ import { Classifai3D } from "../classifai-3d";
 
 export interface Classifai3DDomOverlayProps
   extends HTMLAttributes<HTMLElement> {
-  preset?: string;
-
   classifai3D: Classifai3D;
 }

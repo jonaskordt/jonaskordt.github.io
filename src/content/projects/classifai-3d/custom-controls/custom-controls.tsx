@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
+import styled, { css } from "styled-components";
 
-import { Card } from "../../../../components";
-import { classNames } from "../../../../styling";
+import { Card } from "../../../../components/shared/card";
+import { color, shadow } from "../../../../theme";
 import { Tool } from "../types";
-import presets from "./classifai-3d-controls.module.scss";
 import { Classifai3DControlsProps } from "./classifai-3d-controls.props";
 import {
   ClearIcon,
@@ -15,13 +15,68 @@ import {
   UndoIcon,
 } from "./icons";
 
+const Container = styled.div`
+  background-color: ${color("controlBackground")};
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 15px;
+  width: 250px;
+  gap: 20px;
+`;
+
+const ToolBarContainer = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const toolBarStyling = css`
+  box-shadow: ${shadow("keyCard")};
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  height: 20px;
+  padding: 10px;
+
+  :hover {
+    box-shadow: ${shadow("keyCardHover")};
+  }
+`;
+
+const ToolBar = styled.div`
+  ${toolBarStyling}
+`;
+
+const ToolBarCard = styled(Card)`
+  ${toolBarStyling}
+`;
+
+const StyledTool = styled.div<{ selected?: boolean }>`
+  align-items: center;
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  margin: 5px;
+  width: 20px;
+
+  * {
+    fill: ${(props) => (props.selected ? "black" : "gray")};
+  }
+
+  :active {
+  * {
+    fill: darkgray;
+  }
+`;
+
 const tools = [Tool.Selection, Tool.Eraser];
 const ToolIcons = [SelectIcon, EraserIcon];
 
 export const Classifai3DControls: React.FC<Classifai3DControlsProps> = (
   props,
 ) => {
-  const { classifai3D, className, preset = "default" } = props;
+  const { classifai3D, ...rest } = props;
 
   const [activeTool, setActiveTool] = useState<Tool>(Tool.Selection);
 
@@ -56,61 +111,54 @@ export const Classifai3DControls: React.FC<Classifai3DControlsProps> = (
   }, [setActiveTool, classifai3D]);
 
   return (
-    <div className={classNames(presets[preset], className)}>
-      <div className={presets.toolBarContainer}>
+    <Container {...rest}>
+      <ToolBarContainer>
         {classifai3D && (
-          <div className={presets.toolBar}>
-            <div className={presets.tool}>
+          <ToolBar>
+            <StyledTool>
               <UndoIcon onClick={classifai3D.undo} />
-            </div>
-            <div className={presets.tool}>
+            </StyledTool>
+            <StyledTool>
               <RedoIcon onClick={classifai3D.redo} />
-            </div>
-          </div>
+            </StyledTool>
+          </ToolBar>
         )}
-      </div>
-      <div className={presets.toolBarContainer}>
+      </ToolBarContainer>
+      <ToolBarContainer>
         {classifai3D && (
-          <div className={presets.toolBar}>
+          <ToolBar>
             {tools.map((tool, index) => {
               const Icon = ToolIcons[index];
               return (
-                <div
-                  className={
-                    tool === activeTool ? presets.activeTool : presets.tool
-                  }
-                  key={tool}
-                >
+                <StyledTool selected={tool === activeTool} key={tool}>
                   <Icon
                     onClick={() => {
                       classifai3D.setActiveTool(tool);
                       setActiveTool(tool);
                     }}
                   />
-                </div>
+                </StyledTool>
               );
             })}
-          </div>
+          </ToolBar>
         )}
         {classifai3D && activeTool === Tool.Selection && (
-          <div className={presets.selectionToolBar}>
-            <div className={presets.tool}>
+          <ToolBar>
+            <StyledTool>
               <InvertSelectionIcon onClick={classifai3D.invertSelection} />
-            </div>
-            <div className={presets.tool}>
+            </StyledTool>
+            <StyledTool>
               <DeleteIcon onClick={classifai3D.deleteSelection} />
-            </div>
-            <div className={presets.tool}>
+            </StyledTool>
+            <StyledTool>
               <ClearIcon onClick={classifai3D.clearSelection} />
-            </div>
-          </div>
+            </StyledTool>
+          </ToolBar>
         )}
-      </div>
+      </ToolBarContainer>
       {classifai3D && aRAvailable && (
-        <Card className={presets.toolBar} clickCallback={classifai3D.enterAR}>
-          Enter AR
-        </Card>
+        <ToolBarCard clickCallback={classifai3D.enterAR}>Enter AR</ToolBarCard>
       )}
-    </div>
+    </Container>
   );
 };
