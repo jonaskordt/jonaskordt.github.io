@@ -1,9 +1,8 @@
 import React from "react";
-
-import presets from "../../screens/project/project.module.scss";
+import { ProjectSummary } from "../../screens/project";
 
 export const classifai3DSummary = (
-  <p className={presets.text}>
+  <ProjectSummary>
     This is my bachelor thesis project called &quot;Classifai&apos;s 3D
     Toolkit&quot;. It allows correcting segmentations of MRI scans in 3D by
     erasing isolated connected structures of the segmentation. It brings an
@@ -13,7 +12,7 @@ export const classifai3DSummary = (
     persists the changes (here you can just reload the page to start again). To
     learn more about the project, check out my{" "}
     <a href="/#/blogs/bachelorThesis">demo video</a>.
-  </p>
+  </ProjectSummary>
 );
 
 export const classifai3DQuickSummary =

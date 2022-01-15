@@ -1,15 +1,14 @@
 import React from "react";
-
-import presets from "../../screens/project/project.module.scss";
+import { ProjectSummary } from "../../screens/project";
 
 export const sphereDotsSummary = (
-  <p className={presets.text}>
+  <ProjectSummary>
     This project showcases evenly distributed points on a sphere. They are
     created by continuously subdividing the faces of an octahedron. The points
     can be used as ray direction in progressive local ambient occlusion for
     volume ray tracing. There it is imortant that rays are distributed evenly at
     every step in progressive local ambient occlusion.
-  </p>
+  </ProjectSummary>
 );
 
 export const sphereDotsQuickSummary =

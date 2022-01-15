@@ -1,9 +1,8 @@
 import React from "react";
-
-import presets from "../../screens/project/project.module.scss";
+import { ProjectSummary } from "../../screens/project";
 
 export const planesSummary = (
-  <p className={presets.text}>
+  <ProjectSummary>
     In computer graphics it is usually not possible to see object A through
     object B if you can also see object B through object A. This usually is not
     a problem because if said object A is further away from the camera than
@@ -14,7 +13,7 @@ export const planesSummary = (
     results in 12 plane parts and then position them seamlessly. Together with a
     custom rendering order for those 12 slices based on the position of the
     camera, this produces the perfect transparency effect seen here.
-  </p>
+  </ProjectSummary>
 );
 
 export const planesQuickSummary =
