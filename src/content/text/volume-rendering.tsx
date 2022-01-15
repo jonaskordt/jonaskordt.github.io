@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Heading } from "../../components/shared/heading";
+import { CenteredHeading } from "../../components/shared/heading";
 import { RoundedImage } from "../../components/blog/image";
 import {
   volumeRenderingEdgesImage,
@@ -15,7 +15,7 @@ export const volumeRenderingQuickSummary =
 
 export const volumeRenderingBlog = (
   <div>
-    <Heading text={volumeRenderingTitle} preset="centered" />
+    <CenteredHeading text={volumeRenderingTitle} />
     <p>
       As part of developing{" "}
       <a href="https://visian.org" target="_blank" rel="noopener noreferrer">

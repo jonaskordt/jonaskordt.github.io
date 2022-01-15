@@ -5,8 +5,8 @@ import {
   Controls,
   WebGLCanvas,
   Header,
-  Heading,
   FullHeightScreen,
+  CenteredHeading,
 } from "../../components";
 import {
   customControls,
@@ -106,17 +106,14 @@ export const Project: React.FC = () => {
       {project ? (
         <>
           <div className={presets.container}>
-            <Heading preset="centered" text={project.name} />
+            <CenteredHeading text={project.name} />
             <div className={presets.grid}>
               <div
                 className={
                   fullScreen ? presets.fullScreen : presets.canvasContainer
                 }
               >
-                <WebGLCanvas
-                  ref={canvasRef}
-                  preset={noCanvasBorder ? "noBorder" : undefined}
-                />
+                <WebGLCanvas ref={canvasRef} border={!noCanvasBorder} />
                 {projectId === "classifai3D" && (
                   <div
                     className={presets.crosshairPointer}

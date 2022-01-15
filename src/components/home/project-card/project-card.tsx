@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { ContentType } from "../../../content";
 
-import { Card, Heading } from "../../shared";
+import { Card } from "../../shared";
+import { Heading } from "../../shared/heading";
 import { ProjectCardProps } from "./project-card.props";
 
 const Container = styled.div`

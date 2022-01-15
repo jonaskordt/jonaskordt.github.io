@@ -1,14 +1,14 @@
 import React from "react";
 import YouTube from "react-youtube-embed";
 
-import { Heading } from "../../components/shared/heading";
+import { CenteredHeading } from "../../components/shared/heading";
 
 export const classifaiQuickSummary =
   "World first usable active learning system for medical image segmentation. Developed as a bachelor’s project at HPI.";
 
 export const classifaiBlog = (
   <div>
-    <Heading text="Classifai" preset="centered" />
+    <CenteredHeading text="Classifai" />
     <p>
       During my studies in IT-Systems Engineering at Hasso Plattner Institute at
       the University of Potsdam, I was part of a bachelor project team at the

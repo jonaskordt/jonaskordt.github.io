@@ -1,25 +1,98 @@
 import React, { useState } from "react";
+import styled, { css } from "styled-components";
 
 import { ControlMode } from "../../../lib";
-import { classNames } from "../../../styling";
-import { MouseIcon, TouchIcon } from "../../../theme";
-import { Heading } from "../../shared";
+import { color, MouseIcon, shadow, TouchIcon } from "../../../theme";
+import { FlexColumn, FlexRow, Heading } from "../../shared";
 import { ControlInfo } from "../control-info";
 import { KeyControl } from "../key-control";
 import { SliderControl } from "../slider-control";
 import { ToggleControl } from "../toggle-control";
-import presets from "./controls.module.scss";
 import { ControlsProps } from "./controls.props";
 
+const Container = styled(FlexColumn)`
+  max-height: 100%;
+
+  // Firefox scrollbar
+  scrollbar-color: ${color("controlBackground")} ${color("background")};
+  scrollbar-width: thin;
+
+  user-select: none;
+`;
+
+const ScrollableContainer = styled(FlexColumn)`
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 20px;
+  gap: 15px;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: ${color("background")};
+    border-radius: 5px;
+
+    box-shadow: ${shadow("scroll")};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${color("controlBackground")};
+    border-radius: 5px;
+  }
+`;
+
+const ControlHeadingContainer = styled(FlexRow)`
+  align-items: stretch;
+  min-height: 60px;
+`;
+
+const ControlModeContainer = styled(FlexRow)`
+  flex-grow: 1;
+  justify-content: flex-end;
+  padding-right: 20px;
+  padding-top: 5px;
+`;
+
+const IconContainer = styled(FlexRow)`
+  align-items: center;
+  height: 25px;
+  justify-content: center;
+  margin: 5px;
+  width: 25px;
+`;
+
+const ActivatableMouseIcon = styled(MouseIcon)<{ selected?: boolean }>`
+  * {
+    fill: ${(props) => (props.selected ? "black" : "darkgray")};
+  }
+`;
+const ActivatableTouchIcon = styled(TouchIcon)<{ selected?: boolean }>`
+  * {
+    fill: ${(props) => (props.selected ? "black" : "darkgray")};
+  }
+`;
+
+const controlStyles = css`
+  flex-shrink: 0;
+  width: 250px;
+`;
+const StyledKeyControl = styled(KeyControl)`
+  ${controlStyles}
+`;
+const StyledControlInfo = styled(ControlInfo)`
+  ${controlStyles}
+`;
+const StyledToggleControl = styled(ToggleControl)`
+  ${controlStyles}
+`;
+const StyledSliderControl = styled(SliderControl)`
+  ${controlStyles}
+`;
+
 export const Controls: React.FC<ControlsProps> = (props) => {
-  const {
-    className,
-    preset = "default",
-    toggleFullScreen,
-    controls,
-    children,
-    ...rest
-  } = props;
+  const { toggleFullScreen, controls, children, ...rest } = props;
 
   const [
     toggleControls,
@@ -33,33 +106,26 @@ export const Controls: React.FC<ControlsProps> = (props) => {
   );
 
   return (
-    <div {...rest} className={classNames(presets[preset], className)}>
-      <div className={presets.controlHeadingContainer}>
+    <Container {...rest}>
+      <ControlHeadingContainer>
         <Heading text="Controls" />
-        <div className={presets.controlModeContainer}>
-          <div
-            className={
-              controlMode === ControlMode.MOUSE
-                ? presets.activeIcon
-                : presets.icon
-            }
-          >
-            <MouseIcon onClick={() => setControlMode(ControlMode.MOUSE)} />
-          </div>
-          <div
-            className={
-              controlMode === ControlMode.TOUCH
-                ? presets.activeIcon
-                : presets.icon
-            }
-          >
-            <TouchIcon onClick={() => setControlMode(ControlMode.TOUCH)} />
-          </div>
-        </div>
-      </div>
-      <div className={presets.scrollableContainer}>
-        <KeyControl
-          className={presets.control}
+        <ControlModeContainer>
+          <IconContainer>
+            <ActivatableMouseIcon
+              selected={controlMode === ControlMode.MOUSE}
+              onClick={() => setControlMode(ControlMode.MOUSE)}
+            />
+          </IconContainer>
+          <IconContainer>
+            <ActivatableTouchIcon
+              selected={controlMode === ControlMode.TOUCH}
+              onClick={() => setControlMode(ControlMode.TOUCH)}
+            />
+          </IconContainer>
+        </ControlModeContainer>
+      </ControlHeadingContainer>
+      <ScrollableContainer>
+        <StyledKeyControl
           keys={["f"]}
           action="toggle fullscreen"
           callback={toggleFullScreen}
@@ -70,21 +136,21 @@ export const Controls: React.FC<ControlsProps> = (props) => {
           ? mouseControls
           : touchControls
         ).map((c) => (
-          <ControlInfo className={presets.control} key={c.action} {...c} />
+          <StyledControlInfo key={c.action} {...c} />
         ))}
         {toggleControls.map((c) => (
-          <ToggleControl className={presets.control} key={c.action} {...c} />
+          <StyledToggleControl key={c.action} {...c} />
         ))}
         {sliderControls.map((c) => (
-          <SliderControl className={presets.control} key={c.action} {...c} />
+          <StyledSliderControl key={c.action} {...c} />
         ))}
         {keyControls.map(
           (c) =>
             (controlMode === ControlMode.MOUSE || c.touchEnabled) && (
-              <KeyControl className={presets.control} key={c.action} {...c} />
+              <StyledKeyControl key={c.action} {...c} />
             ),
         )}
-      </div>
-    </div>
+      </ScrollableContainer>
+    </Container>
   );
 };

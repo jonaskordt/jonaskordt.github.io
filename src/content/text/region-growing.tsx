@@ -3,7 +3,10 @@ import YouTube from "react-youtube-embed";
 
 import { PaperLinks } from "../../components/blog/paper-links";
 import { CitationLink } from "../../components/blog/citation-link";
-import { Heading } from "../../components/shared/heading";
+import {
+  CenteredHeading,
+  SmallCenteredHeading,
+} from "../../components/shared/heading";
 
 export const regionGrowingTitle =
   "Interactive Volumetric Region Growing for Brain Tumor Segmentation on MRI using WebGL";
@@ -12,11 +15,11 @@ export const regionGrowingQuickSummary = `"${regionGrowingTitle}" published at W
 
 export const regionGrowingPaper = (
   <div>
-    <Heading text={regionGrowingTitle} preset="centered" />
+    <CenteredHeading text={regionGrowingTitle} />
     <div>
       <PaperLinks pdfName="region-growing" doi="10.1145/3485444.3487640" />
     </div>
-    <Heading text="Citation" preset="small-centered" />
+    <SmallCenteredHeading text="Citation" />
     <p>
       Jonas Kordt, Paul Brachmann, Daniel Limberger, and Christoph Lippert.
       2021. {regionGrowingTitle}. In{" "}
@@ -27,7 +30,7 @@ export const regionGrowingPaper = (
       . ACM, New York, NY, USA, 8 pages.{" "}
       <CitationLink link="https://doi.org/10.1145/3485444.3487640" />
     </p>
-    <Heading text="Abstract" preset="small-centered" />
+    <SmallCenteredHeading text="Abstract" />
     <p>
       Volumetric segmentation of medical images is an essential tool in
       treatment planning and many longitudinal studies. While machine learning
@@ -41,7 +44,7 @@ export const regionGrowingPaper = (
       visualization uses adaptive resolution scaling and progressive,
       asynchronous shading computation to maintain a stable 60 Hz refresh rate.
     </p>
-    <Heading text="Presentation" preset="small-centered" />
+    <SmallCenteredHeading text="Presentation" />
     <div>
       <YouTube id="isNfZmr5XNw" />
     </div>

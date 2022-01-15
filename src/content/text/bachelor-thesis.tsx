@@ -1,7 +1,7 @@
 import React from "react";
 import YouTube from "react-youtube-embed";
 
-import { Heading } from "../../components/shared/heading";
+import { CenteredHeading } from "../../components/shared/heading";
 
 export const bachelorThesisTitle =
   "Classifai’s 3D Toolkit: Correcting Segmentation Errors in 3D Medical Image Analysis";
@@ -10,7 +10,7 @@ export const bachelorThesisQuickSummary = `My bachelor thesis on the topic "${ba
 
 export const bachelorThesisBlog = (
   <div>
-    <Heading text={bachelorThesisTitle} preset="centered" />
+    <CenteredHeading text={bachelorThesisTitle} />
     <p>
       In this thesis, I present Classifai’s 3D Toolkit, a new 3D annotation tool
       for medical image analysis, which allows modifying segmentations in 3D. In

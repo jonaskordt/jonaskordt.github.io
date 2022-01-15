@@ -1,20 +1,72 @@
 import React, { useCallback, useRef, useState } from "react";
+import styled from "styled-components";
 
 import { preventDefault } from "../../../lib";
-import { classNames } from "../../../styling";
-import presets from "./slider-control.module.scss";
+import { FlexColumn } from "../../shared";
+import { color, shadow } from "../../../theme";
 import { SliderControlProps } from "./slider-control.props";
+
+const Container = styled(FlexColumn)`
+  background-color: ${color("controlBackground")};
+  border-radius: 10px;
+  padding: 15px;
+`;
+
+const Text = styled.p`
+  font-size: 20px;
+  margin-right: 10px;
+`;
+
+const Track = styled.div`
+  background-color: ${color("background")};
+  border-radius: 4px;
+  cursor: pointer;
+  height: 8px;
+  margin-top: 10px;
+  position: relative;
+  transition: box-shadow linear 0.1s;
+  box-shadow: ${shadow("slider")};
+
+  hover: {
+    box-shadow: ${shadow("sliderHover")};
+  }
+`;
+
+const TrackFiller = styled.div<{ normalizedValue: number }>`
+  background-color: ${color("green")};
+  border-radius: inherit;
+  bottom: 0;
+  left: 0;
+  right: ${(props) => `${(1 - props.normalizedValue) * 100}`}%;
+  position: absolute;
+  top: 0;
+`;
+
+const KnubWrapper = styled.div<{ normalizedValue: number }>`
+  position: absolute;
+  top: 50%;
+  right: ${(props) => `${(1 - props.normalizedValue) * 100}`}%;
+`;
+
+const Knub = styled.div`
+  background-color: ${color("background")};
+  border: solid ${color("green")} 3px;
+  border-radius: 10px;
+  height: 14px;
+  left: -10px;
+  position: absolute;
+  top: -10px;
+  width: 14px;
+`;
 
 export const SliderControl: React.FC<SliderControlProps> = (props) => {
   const {
     action,
     callback,
-    className,
     min = 0,
     max = 1,
     step = 0.01,
     initialValue,
-    preset = "default",
     logarithmic = false,
     ...rest
   } = props;
@@ -84,10 +136,9 @@ export const SliderControl: React.FC<SliderControlProps> = (props) => {
   );
 
   return (
-    <div {...rest} className={classNames(presets[preset], className)}>
-      <p className={presets.text}>{action}</p>
-      <div
-        className={presets.track}
+    <Container {...rest}>
+      <Text>{action}</Text>
+      <Track
         role="button"
         onPointerDown={
           (onStart as unknown) as (
@@ -96,17 +147,11 @@ export const SliderControl: React.FC<SliderControlProps> = (props) => {
         }
         ref={trackRef}
       >
-        <div
-          className={presets.trackFiller}
-          style={{ right: `${(1 - normalizedValue) * 100}%` }}
-        />
-        <div
-          className={presets.knubWrapper}
-          style={{ left: `${normalizedValue * 100}%` }}
-        >
-          <div className={presets.knub} />
-        </div>
-      </div>
-    </div>
+        <TrackFiller normalizedValue={normalizedValue} />
+        <KnubWrapper normalizedValue={normalizedValue}>
+          <Knub />
+        </KnubWrapper>
+      </Track>
+    </Container>
   );
 };
