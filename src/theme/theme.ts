@@ -13,9 +13,9 @@ const shadowBlur = "5px";
  */
 export const theme = {
   borders: {
-    normal: `box-shadow: 0px 0px 0px 1px ${borderColor};`,
-    hover: `box-shadow: 0px 0px 0px 2px ${borderColor};`,
-    active: "box-shadow: 0px 0px 0px 1px #777777;",
+    normal: `0px 0px 0px 1px ${borderColor}`,
+    hover: `0px 0px 0px 2px ${borderColor}`,
+    active: "0px 0px 0px 1px #777777",
   },
   colors: {
     background: "#e9edf0",

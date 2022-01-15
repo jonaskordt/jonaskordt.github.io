@@ -102,7 +102,7 @@ export const Project: React.FC = () => {
 
   return (
     <FullHeightScreen>
-      <Header preset="thin" />
+      <Header thin />
       {project ? (
         <>
           <div className={presets.container}>

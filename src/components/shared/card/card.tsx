@@ -1,20 +1,60 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
-import { classNames } from "../../../styling";
-import presets from "./card.module.scss";
+import { FlexColumn } from "../flex";
+import { border, color, mediaQuery } from "../../../theme";
 import { CardProps } from "./card.props";
 
+const Container = styled(FlexColumn)`
+  box-shadow: ${border("normal")};
+  align-items: flex-start;
+  border-radius: 20px;
+  max-width: 600px;
+  overflow: hidden;
+  padding: 20px;
+  position: relative;
+  transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s;
+  cursor: pointer;
+
+  ${mediaQuery("tinyScreens")} {
+    padding: 10px;
+  }
+
+  :hover {
+    box-shadow: ${border("hover")};
+  }
+  :active {
+    box-shadow: ${border("active")};
+  }
+`;
+
+const SoonTag = styled.p`
+  background-color: ${color("blue")};
+  font-size: 18px;
+  font-weight: 700;
+  height: 30px;
+  letter-spacing: 1px;
+  padding-top: 50px;
+  position: absolute;
+  right: -92px;
+  text-align: center;
+  top: -28px;
+  transform: rotate(45deg);
+  width: 200px;
+  z-index: 30;
+
+  ${mediaQuery("tinyScreens")} {
+    font-size: 16px;
+    height: 25px;
+    letter-spacing: unset;
+    right: -95px;
+    top: -30px;
+  }
+`;
+
 export const Card: React.FC<CardProps> = (props) => {
-  const {
-    className,
-    children,
-    to,
-    clickCallback,
-    preset = "default",
-    displaySoonTag,
-    ...rest
-  } = props;
+  const { children, to, clickCallback, displaySoonTag, ...rest } = props;
 
   const history = useHistory();
 
@@ -26,14 +66,9 @@ export const Card: React.FC<CardProps> = (props) => {
   }, [history, to]);
 
   return (
-    <div
-      {...rest}
-      onClick={clickCallback || clickHandler}
-      role="link"
-      className={classNames(presets[preset], className)}
-    >
-      {displaySoonTag && <p className={presets.soonTag}>Soon</p>}
+    <Container {...rest} onClick={clickCallback || clickHandler} role="link">
+      {displaySoonTag && <SoonTag>Soon</SoonTag>}
       {children}
-    </div>
+    </Container>
   );
 };

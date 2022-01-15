@@ -1,5 +1,3 @@
 import { HTMLAttributes } from "react";
 
-export interface SocialMediaProps extends HTMLAttributes<HTMLElement> {
-  preset?: string;
-}
+export type SocialMediaProps = HTMLAttributes<HTMLElement>;

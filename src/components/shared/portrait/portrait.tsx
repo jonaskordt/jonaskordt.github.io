@@ -1,16 +1,37 @@
 import React from "react";
+import styled from "styled-components";
 
 import { portraitImage } from "../../../content";
-import { classNames } from "../../../styling";
-import presets from "./portrait.module.scss";
+import { color, mediaQuery } from "../../../theme";
 import { PortraitProps } from "./portrait.props";
 
-export const Portrait: React.FC<PortraitProps> = (props) => {
-  const { className, children, preset = "default", ...rest } = props;
+const Container = styled.div<{ small?: boolean }>`
+  height: ${(props) => (props.small ? "100px" : "150px")};
+  width: ${(props) => (props.small ? "100px" : "150px")};
 
+  ${mediaQuery("tinyScreens")} {
+    height: 100px;
+    width: 100px;
+  }
+`;
+
+const StyledImg = styled.img<{ small?: boolean }>`
+  border: 1px solid ${color("border")};
+  border-radius: 50%;
+  height: ${(props) => (props.small ? "100px" : "150px")};
+  width: ${(props) => (props.small ? "100px" : "150px")};
+
+  ${mediaQuery("tinyScreens")} {
+    height: 100px;
+    width: 100px;
+  }
+`;
+
+export const Portrait: React.FC<PortraitProps> = (props) => {
+  const { small = false, ...rest } = props;
   return (
-    <div {...rest} className={classNames(presets[preset], className)}>
-      <img src={portraitImage} alt="" />
-    </div>
+    <Container small={small} {...rest}>
+      <StyledImg small={small} src={portraitImage} alt="" />
+    </Container>
   );
 };
