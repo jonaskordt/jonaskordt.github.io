@@ -15,7 +15,7 @@ export const work: CVEntryData[] = [
     heading: "Research Assistant",
     organization: "Chair for Digital Health and Machine Learning at HPI",
     details: [
-      "full stack development of VISIAN (web based medical segmentation system relying on active machine learning, originated as Classifai)",
+      "full stack development of VISIAN (web based medical segmentation system)",
       "focus on graphics using WebGL through Three.js",
       "active machine learning research in the medical field",
       "supervision of bachelor students",

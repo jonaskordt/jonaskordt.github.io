@@ -8,7 +8,7 @@ export const languages: SkillData[] = [
 
 export const techSkills: SkillData[] = [
   { name: "WebGL", level: 0.93 },
-  { name: "React", level: 0.85 },
+  { name: "React", level: 0.95 },
   { name: "TypeScript", level: 0.9 },
   { name: "Python", level: 0.85 },
   { name: "Java", level: 0.75 },
