@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { FlexRow } from "../flex";
 import { Card } from "../card";
-import { gitHubIcon, twitterIcon } from "./icons";
+import { gitHubIcon, linkedInIcon, twitterIcon } from "./icons";
 import { SocialMediaProps } from "./social-media.props";
 import { mediaQuery } from "../../../theme";
 
@@ -46,8 +46,15 @@ export const SocialMedia: React.FC<SocialMediaProps> = (props) => {
     window.location.href = "https://twitter.com/oJonasss";
   }, []);
 
+  const linkedInLink = useCallback(() => {
+    window.location.href = "https://www.linkedin.com/in/jonas-kordt-2aa902232/";
+  }, []);
+
   return (
     <Container {...props}>
+      <StyledCard clickCallback={linkedInLink}>
+        <StyledImg src={linkedInIcon} alt="" />
+      </StyledCard>
       <StyledCard clickCallback={gitHubLink}>
         <StyledImg src={gitHubIcon} alt="" />
       </StyledCard>
