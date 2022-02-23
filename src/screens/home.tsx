@@ -20,7 +20,7 @@ const Container = styled.div`
   margin: 0px 50px 0px;
 
   ${mediaQuery("tinyScreens")} {
-    margin: 0px 10px 0px;
+    margin: 0;
   }
 `;
 
@@ -36,6 +36,14 @@ const UpperContainer = styled(Container)`
 
   ${mediaQuery("smallScreens")} {
     flex-direction: column;
+  }
+
+  ${mediaQuery("tinyScreens")} {
+    padding-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
   }
 `;
 
@@ -84,10 +92,6 @@ const ProjectContainer = styled.div`
 
 const StyledHeading = styled(Heading)`
   padding-left: 15px;
-
-  ${mediaQuery("smallScreens")} {
-    padding-left: 10px;
-  }
 `;
 
 export const Home: React.FC = () => {
