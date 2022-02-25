@@ -29,7 +29,7 @@ const Container = styled.div`
 const StyledSocialMedia = styled(SocialMedia)`
   position: absolute;
   right: 0;
-  top: -10px;
+  top: -6px;
 
   ${mediaQuery("tinyScreens")} {
     top: -5px;

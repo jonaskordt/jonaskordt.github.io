@@ -61,7 +61,7 @@ const CVContainer = styled.div`
 const StyledSocialMedia = styled(SocialMedia)`
   position: absolute;
   right: 20px;
-  top: 20px;
+  top: 24px;
 
   ${mediaQuery("tinyScreens")} {
     right: 10px;

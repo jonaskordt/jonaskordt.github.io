@@ -8,7 +8,7 @@ import { SocialMediaProps } from "./social-media.props";
 import { mediaQuery } from "../../../theme";
 
 const Container = styled(FlexRow)`
-  height: 50px;
+  height: 45px;
   justify-content: flex-end;
 
   ${mediaQuery("tinyScreens")} {
@@ -18,20 +18,20 @@ const Container = styled(FlexRow)`
 
 const StyledCard = styled(Card)`
   border-radius: 10px;
-  height: 30px;
-  margin-left: 15px;
+  height: 25px;
+  margin-left: 10px;
   padding: 10px;
-  width: 30px;
+  width: 25px;
 
   ${mediaQuery("tinyScreens")} {
     height: 20px;
-    margin-left: 10px;
     width: 20px;
   }
 `;
 
 const StyledImg = styled.img`
-  height: 30px;
+  height: 25px;
+
   ${mediaQuery("tinyScreens")} {
     height: 20px;
   }
