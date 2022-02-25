@@ -47,7 +47,7 @@ export const SocialMedia: React.FC<SocialMediaProps> = (props) => {
   }, []);
 
   const linkedInLink = useCallback(() => {
-    window.location.href = "https://www.linkedin.com/in/jonas-kordt-2aa902232/";
+    window.location.href = "https://www.linkedin.com/in/jonaskordt/";
   }, []);
 
   return (
