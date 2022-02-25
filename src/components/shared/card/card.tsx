@@ -54,16 +54,21 @@ const SoonTag = styled.p`
 `;
 
 export const Card: React.FC<CardProps> = (props) => {
-  const { children, to, clickCallback, displaySoonTag, ...rest } = props;
+  const { children, to, link, clickCallback, displaySoonTag, ...rest } = props;
 
   const history = useHistory();
 
   const clickHandler = useCallback(() => {
+    if (link) {
+      window.location.href = link;
+      return;
+    }
+
     if (to) {
       history.push(to);
       window.scrollTo(0, 0);
     }
-  }, [history, to]);
+  }, [history, to, link]);
 
   return (
     <Container {...rest} onClick={clickCallback || clickHandler} role="link">

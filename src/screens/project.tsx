@@ -173,7 +173,7 @@ export const Project: React.FC = () => {
   }, [forceUpdateHelper]);
 
   useEffect(() => {
-    if (canvasRef.current && project) {
+    if (canvasRef.current && project?.CanvasController) {
       canvasController = new project.CanvasController(
         canvasRef.current,
         forceUpdate,

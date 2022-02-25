@@ -6,6 +6,7 @@ export { default as planesImage } from "./planes.png";
 export { default as portraitImage } from "./portrait.png";
 export { default as regionGrowingImage } from "./region-growing.png";
 export { default as sphereDotsImage } from "./sphere-dots.png";
+export { default as visianImage } from "./visian.png";
 export { default as volumeRenderingImage } from "./volume-rendering.png";
 export { default as volumeRenderingEdgesImage } from "./volume-rendering-edges.png";
 export { default as volumeRenderingFilteringImage } from "./volume-rendering-filtering.png";

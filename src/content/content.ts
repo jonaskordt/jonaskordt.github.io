@@ -8,6 +8,7 @@ import {
   planesImage,
   sphereDotsImage,
   volumeRenderingImage,
+  visianImage,
 } from "./images";
 import {
   Animation,
@@ -81,6 +82,14 @@ export const projects: { [id: string]: IProject } = {
     isPreview: false,
     img: planesImage,
   },
+  visian: {
+    name: "VISIAN",
+    shortName: "VISIAN",
+    quickSummary:
+      "A web-based 2D and 3D image annotation suite with a focus on machine learning in the medical domain developed at HPI.",
+    isPreview: false,
+    img: visianImage,
+  },
   classifai3D: {
     name: "Classifai's 3D Toolkit",
     shortName: "Classifai3D",
@@ -126,7 +135,8 @@ export const customControls: { [id: string]: React.FC<any> } = {
   classifai3D: Classifai3DControls,
 };
 
-export const homeOrder: { type: ContentType; id: string }[] = [
+export const homeOrder: { type: ContentType; id: string; link?: string }[] = [
+  { type: ContentType.Project, id: "visian", link: "https://visian.org" },
   { type: ContentType.Paper, id: "regionGrowing" },
   { type: ContentType.Blog, id: "volumeRendering" },
   { type: ContentType.Project, id: "classifai3D" },

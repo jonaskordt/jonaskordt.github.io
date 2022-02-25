@@ -13,8 +13,8 @@ export interface IBlog extends IContent {
 }
 
 export interface IProject extends IContent {
-  CanvasController: typeof CanvasController;
-  summary: JSX.Element;
+  CanvasController?: typeof CanvasController;
+  summary?: JSX.Element;
 }
 
 export type IPaper = IBlog;

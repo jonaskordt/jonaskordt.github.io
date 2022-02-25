@@ -68,9 +68,18 @@ const StyledHeading = styled(Heading)`
 `;
 
 export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
-  const { name, text, projectId, type, image, isPreview, ...rest } = props;
+  const {
+    name,
+    text,
+    projectId,
+    link,
+    type,
+    image,
+    isPreview,
+    ...rest
+  } = props;
 
-  const link =
+  const route =
     // eslint-disable-next-line no-nested-ternary
     type === ContentType.Paper
       ? `/papers/${projectId}`
@@ -80,7 +89,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
 
   return (
     <Card
-      to={isPreview ? undefined : link}
+      to={isPreview ? undefined : route}
+      link={link}
       displaySoonTag={isPreview}
       {...rest}
     >

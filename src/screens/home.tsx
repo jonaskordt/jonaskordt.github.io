@@ -119,6 +119,7 @@ export const Home: React.FC = () => {
             return (
               <ProjectCard
                 name={content.shortName}
+                link={c.link}
                 text={content.quickSummary}
                 projectId={c.id}
                 type={c.type}
