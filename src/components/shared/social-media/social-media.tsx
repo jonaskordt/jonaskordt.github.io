@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { FlexRow } from "../flex";
@@ -38,27 +38,15 @@ const StyledImg = styled.img`
 `;
 
 export const SocialMedia: React.FC<SocialMediaProps> = (props) => {
-  const gitHubLink = useCallback(() => {
-    window.location.href = "https://github.com/jonaskordt";
-  }, []);
-
-  const twitterLink = useCallback(() => {
-    window.location.href = "https://twitter.com/oJonasss";
-  }, []);
-
-  const linkedInLink = useCallback(() => {
-    window.location.href = "https://www.linkedin.com/in/jonaskordt/";
-  }, []);
-
   return (
     <Container {...props}>
-      <StyledCard clickCallback={linkedInLink}>
+      <StyledCard link="https://www.linkedin.com/in/jonaskordt/">
         <StyledImg src={linkedInIcon} alt="" />
       </StyledCard>
-      <StyledCard clickCallback={gitHubLink}>
+      <StyledCard link="https://github.com/jonaskordt">
         <StyledImg src={gitHubIcon} alt="" />
       </StyledCard>
-      <StyledCard clickCallback={twitterLink}>
+      <StyledCard link="https://twitter.com/oJonasss">
         <StyledImg src={twitterIcon} alt="" />
       </StyledCard>
     </Container>

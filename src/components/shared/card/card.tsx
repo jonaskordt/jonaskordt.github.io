@@ -16,6 +16,7 @@ const Container = styled(FlexColumn)`
   position: relative;
   transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s;
   cursor: pointer;
+  text-decoration: none;
 
   ${mediaQuery("tinyScreens")} {
     padding: 10px;
@@ -26,6 +27,9 @@ const Container = styled(FlexColumn)`
   }
   :active {
     box-shadow: ${border("active")};
+  }
+  :visited {
+    color: unset;
   }
 `;
 
@@ -59,19 +63,20 @@ export const Card: React.FC<CardProps> = (props) => {
   const history = useHistory();
 
   const clickHandler = useCallback(() => {
-    if (link) {
-      window.location.href = link;
-      return;
-    }
-
     if (to) {
       history.push(to);
       window.scrollTo(0, 0);
     }
-  }, [history, to, link]);
+  }, [history, to]);
 
   return (
-    <Container {...rest} onClick={clickCallback || clickHandler} role="link">
+    <Container
+      {...rest}
+      as={link ? "a" : undefined}
+      href={link}
+      onClick={link ? undefined : clickCallback || clickHandler}
+      role="link"
+    >
       {displaySoonTag && <SoonTag>Soon</SoonTag>}
       {children}
     </Container>
