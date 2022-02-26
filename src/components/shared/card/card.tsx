@@ -72,8 +72,9 @@ export const Card: React.FC<CardProps> = (props) => {
   return (
     <Container
       {...rest}
-      as={link ? "a" : undefined}
+      as={link && "a"}
       href={link}
+      target={link && "_blank"}
       onClick={link ? undefined : clickCallback || clickHandler}
       role="link"
     >
