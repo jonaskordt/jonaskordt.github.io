@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/static/js/main.66c78dea.chunk.js",
-    "main.js.map": "/static/js/main.66c78dea.chunk.js.map",
+    "main.js": "/static/js/main.c75f4e4b.chunk.js",
+    "main.js.map": "/static/js/main.c75f4e4b.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.1fdf2a33.js",
     "runtime-main.js.map": "/static/js/runtime-main.1fdf2a33.js.map",
     "static/js/2.1dc9bbb6.chunk.js": "/static/js/2.1dc9bbb6.chunk.js",
@@ -57,7 +57,7 @@
     "static/media/sphere-dots.f84ec4f6.png": "/static/media/sphere-dots.f84ec4f6.png",
     "static/media/touch.28d57726.svg": "/static/media/touch.28d57726.svg",
     "static/media/undo.9680e8f0.svg": "/static/media/undo.9680e8f0.svg",
-    "static/media/visian.d100bb88.png": "/static/media/visian.d100bb88.png",
+    "static/media/visian.ddb6a135.png": "/static/media/visian.ddb6a135.png",
     "static/media/volume-rendering-edges.d57be671.png": "/static/media/volume-rendering-edges.d57be671.png",
     "static/media/volume-rendering-filtering.435de878.png": "/static/media/volume-rendering-filtering.435de878.png",
     "static/media/volume-rendering-teaser.03868f76.png": "/static/media/volume-rendering-teaser.03868f76.png",
@@ -67,6 +67,6 @@
   "entrypoints": [
     "static/js/runtime-main.1fdf2a33.js",
     "static/js/2.1dc9bbb6.chunk.js",
-    "static/js/main.66c78dea.chunk.js"
+    "static/js/main.c75f4e4b.chunk.js"
   ]
 }
