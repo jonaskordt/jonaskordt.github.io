@@ -32,7 +32,7 @@ const UpperContainer = styled(Container)`
   padding-right: 20px;
   padding-left: 20px;
   position: relative;
-  gap: 40px;
+  gap: 20px;
 
   ${mediaQuery("smallScreens")} {
     flex-direction: column;
@@ -51,7 +51,7 @@ const CVContainer = styled.div`
   align-items: flex-start;
   display: flex;
   flex-grow: 1;
-  margin-top: 70px;
+  margin-top: 55px;
 
   ${mediaQuery("smallScreens")} {
     margin-top: 0px;
@@ -61,7 +61,7 @@ const CVContainer = styled.div`
 const StyledSocialMedia = styled(SocialMedia)`
   position: absolute;
   right: 20px;
-  top: 24px;
+  top: 19px;
 
   ${mediaQuery("tinyScreens")} {
     right: 10px;
@@ -82,8 +82,8 @@ const LowerContainer = styled(Container)`
 const ProjectContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
-  padding: 15px;
+  gap: 20px;
+  padding: 5px 15px 15px;
 
   ${mediaQuery("mediumScreens")} {
     gap: 20px;

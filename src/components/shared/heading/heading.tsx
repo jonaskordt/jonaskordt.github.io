@@ -7,7 +7,7 @@ import { HeadingProps } from "./heading.props";
 const BaseHeading = styled.h1`
   font-size: 35px;
   font-weight: 700;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
   ${mediaQuery("tinyScreens")} {
     font-size: 25px;

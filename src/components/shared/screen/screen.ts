@@ -10,7 +10,7 @@ export const Screen = styled.main`
 
 export const ThinScreen = styled(Screen)`
   margin: 0px auto;
-  max-width: 1220px;
+  max-width: 1200px;
 `;
 
 export const FullHeightScreen = styled(Screen)`

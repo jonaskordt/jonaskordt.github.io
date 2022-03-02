@@ -9,7 +9,7 @@ import { CardProps } from "./card.props";
 const Container = styled(FlexColumn)`
   box-shadow: ${border("normal")};
   align-items: flex-start;
-  border-radius: 20px;
+  border-radius: 10px;
   max-width: 600px;
   overflow: hidden;
   padding: 20px;

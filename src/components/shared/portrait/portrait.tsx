@@ -6,8 +6,8 @@ import { color, mediaQuery } from "../../../theme";
 import { PortraitProps } from "./portrait.props";
 
 const Container = styled.div<{ small?: boolean }>`
-  height: ${(props) => (props.small ? "100px" : "150px")};
-  width: ${(props) => (props.small ? "100px" : "150px")};
+  height: ${(props) => (props.small ? "100px" : "130px")};
+  width: ${(props) => (props.small ? "100px" : "130px")};
 
   ${mediaQuery("tinyScreens")} {
     height: 100px;
@@ -18,8 +18,8 @@ const Container = styled.div<{ small?: boolean }>`
 const StyledImg = styled.img<{ small?: boolean }>`
   border: 1px solid ${color("border")};
   border-radius: 50%;
-  height: ${(props) => (props.small ? "100px" : "150px")};
-  width: ${(props) => (props.small ? "100px" : "150px")};
+  height: ${(props) => (props.small ? "100px" : "130px")};
+  width: ${(props) => (props.small ? "100px" : "130px")};
 
   ${mediaQuery("tinyScreens")} {
     height: 100px;
