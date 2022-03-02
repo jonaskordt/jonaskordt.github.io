@@ -43,9 +43,11 @@ const BackgroundBlend = styled.div`
 `;
 
 const Text = styled.p`
-  font-size: 16.1px;
+  font-size: 16px;
+  letter-spacing: 0;
+  word-spacing: -0.5px;
   line-height: 20px;
-  max-width: 203px;
+  max-width: 207px;
   position: relative;
   z-index: 20;
 `;
