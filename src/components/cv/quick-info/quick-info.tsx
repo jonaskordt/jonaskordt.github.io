@@ -24,6 +24,7 @@ const Section = styled.div`
 
 const WideSection = styled(Section)`
   flex-grow: 2;
+  flex-basis: 1px;
 `;
 
 const GeneralSkillsSection = styled(Section)`
@@ -48,7 +49,7 @@ const GeneralSkillsContainer = styled.div`
   ${mediaQuery("smallerScreens")} {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
   }
 `;
 
