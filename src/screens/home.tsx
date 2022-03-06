@@ -73,10 +73,6 @@ const LowerContainer = styled(Container)`
   align-items: flex-start;
   flex-direction: column;
   padding: 20px 5px;
-
-  ${mediaQuery("tinyScreens")} {
-    padding: 20px 0px;
-  }
 `;
 
 const ProjectContainer = styled.div`
