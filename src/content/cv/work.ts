@@ -5,7 +5,7 @@ export const work: CVEntryData[] = [
     heading: "Software Engineer",
     organization: "Immunkarte",
     details: [
-      "frontend development using React",
+      "frontend development using React and TypeScript",
       "consulting on machine learning solutions",
     ],
     start: new Date(2021, 11, 1),
@@ -21,6 +21,7 @@ export const work: CVEntryData[] = [
       "supervision of bachelor students",
     ],
     start: new Date(2020, 10, 1),
+    end: new Date(2022, 2, 31),
     organizationLink:
       "https://hpi.de/forschung/fachgebiete/digital-health-machine-learning.html",
   },
