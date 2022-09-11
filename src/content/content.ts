@@ -9,6 +9,7 @@ import {
   sphereDotsImage,
   volumeRenderingImage,
   visianImage,
+  activeLearningImage,
 } from "./images";
 import {
   Animation,
@@ -37,6 +38,9 @@ import {
   regionGrowingPaper,
   regionGrowingTitle,
   regionGrowingQuickSummary,
+  activeLearningPaper,
+  activeLearningQuickSummary,
+  activeLearningTitle,
 } from "./text";
 
 export enum ContentType {
@@ -128,6 +132,14 @@ export const papers: { [id: string]: IPaper } = {
     img: regionGrowingImage,
     content: regionGrowingPaper,
   },
+  activeLearning: {
+    name: activeLearningTitle,
+    shortName: "Active Learning",
+    quickSummary: activeLearningQuickSummary,
+    isPreview: false,
+    img: activeLearningImage,
+    content: activeLearningPaper,
+  },
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -138,11 +150,11 @@ export const customControls: { [id: string]: React.FC<any> } = {
 export const homeOrder: { type: ContentType; id: string; link?: string }[] = [
   { type: ContentType.Project, id: "visian", link: "https://visian.org" },
   { type: ContentType.Paper, id: "regionGrowing" },
+  { type: ContentType.Paper, id: "activeLearning" },
   { type: ContentType.Blog, id: "volumeRendering" },
   { type: ContentType.Project, id: "classifai3D" },
   { type: ContentType.Blog, id: "classifai" },
   { type: ContentType.Project, id: "sphereDots" },
   { type: ContentType.Blog, id: "bachelorThesis" },
   { type: ContentType.Project, id: "planes" },
-  { type: ContentType.Project, id: "animation" },
 ];

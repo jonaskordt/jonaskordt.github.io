@@ -1,3 +1,4 @@
+export { default as activeLearningImage } from "./active-learning.png";
 export { default as animatedGoldImage } from "./animated-gold.png";
 export { default as bachelorThesisImage } from "./bachelor-thesis.png";
 export { default as classifai3DImage } from "./classifai-3d.png";

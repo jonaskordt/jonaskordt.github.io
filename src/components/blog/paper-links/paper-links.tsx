@@ -12,12 +12,12 @@ const Container = styled(FlexRow)`
 `;
 
 export const PaperLinks: React.FC<PaperLinksProps> = (props) => {
-  const { doi, pdfName } = props;
+  const { doi, pdfName, link } = props;
 
   return (
     <Container>
       {doi && <DoiLink doi={doi} />}
-      {pdfName && <PdfLink pdfName={pdfName} />}
+      {(pdfName || link) && <PdfLink pdfName={pdfName} link={link} />}
     </Container>
   );
 };

@@ -32,13 +32,17 @@ const StyledText = styled.p`
 `;
 
 export const PdfLink: React.FC<PdfLinkProps> = (props) => {
-  const { pdfName, ...rest } = props;
+  const { pdfName, link: url, ...rest } = props;
 
   const link = useCallback(() => {
-    window.location.href = `${`${
-      window.location.href.split("#")[0]
-    }pdf/${pdfName}`}.pdf`;
-  }, [pdfName]);
+    if (pdfName) {
+      window.location.href = `${`${
+        window.location.href.split("#")[0]
+      }pdf/${pdfName}`}.pdf`;
+    } else if (url) {
+      window.location.href = url;
+    }
+  }, [pdfName, url]);
 
   return (
     <StyledCard {...rest} clickCallback={link}>

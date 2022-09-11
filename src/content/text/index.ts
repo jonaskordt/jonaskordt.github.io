@@ -1,3 +1,4 @@
+export * from "./active-learning";
 export * from "./animation";
 export * from "./bachelor-thesis";
 export * from "./classifai";
