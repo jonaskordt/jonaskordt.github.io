@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/static/js/main.11dbe8c3.chunk.js",
-    "main.js.map": "/static/js/main.11dbe8c3.chunk.js.map",
+    "main.js": "/static/js/main.8a2c5c8d.chunk.js",
+    "main.js.map": "/static/js/main.8a2c5c8d.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.1fdf2a33.js",
     "runtime-main.js.map": "/static/js/runtime-main.1fdf2a33.js.map",
     "static/js/2.1dc9bbb6.chunk.js": "/static/js/2.1dc9bbb6.chunk.js",
@@ -28,6 +28,7 @@
     "static/media/7.txt": "/static/media/7.5ecbd34b.txt",
     "static/media/8.txt": "/static/media/8.87bc70e9.txt",
     "static/media/9.txt": "/static/media/9.7005fcf9.txt",
+    "static/media/active-learning.5763d64c.png": "/static/media/active-learning.5763d64c.png",
     "static/media/animated-gold.bde1cced.png": "/static/media/animated-gold.bde1cced.png",
     "static/media/bachelor-thesis.b4ffe636.png": "/static/media/bachelor-thesis.b4ffe636.png",
     "static/media/blue.8245c108.png": "/static/media/blue.8245c108.png",
@@ -67,6 +68,6 @@
   "entrypoints": [
     "static/js/runtime-main.1fdf2a33.js",
     "static/js/2.1dc9bbb6.chunk.js",
-    "static/js/main.11dbe8c3.chunk.js"
+    "static/js/main.8a2c5c8d.chunk.js"
   ]
 }
