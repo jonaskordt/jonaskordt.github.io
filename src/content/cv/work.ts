@@ -2,10 +2,11 @@ import { CVEntryData } from "../../lib";
 
 export const work: CVEntryData[] = [
   {
-    heading: "Software Engineer",
+    heading: "Software Engineer & Product Owner",
     organization: "Immunkarte",
     details: [
-      "frontend development using React and TypeScript",
+      "project management",
+      "full stack development using React, NestJS, and TypeScript",
       "consulting on machine learning solutions",
     ],
     start: new Date(2021, 11, 1),
