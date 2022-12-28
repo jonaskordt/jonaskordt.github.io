@@ -16,4 +16,4 @@ export const classifai3DSummary = (
 );
 
 export const classifai3DQuickSummary =
-  "My bachelor's thesis project. Enables 3D exploration and modification of MRI scans as an extension to Classifai.";
+  "A try it yourself demo of my bachelor's thesis project. Enables 3D exploration of MRI scans and modification of a corresponding segmentation in 3D as an extension to Classifai.";

@@ -9,7 +9,7 @@ import {
 export const activeLearningTitle =
   "Less Is More: A Comparison of Active Learning Strategies for 3D Medical Image Segmentation";
 
-export const activeLearningQuickSummary = `"${activeLearningTitle}" published at ICML2022.`;
+export const activeLearningQuickSummary = `"${activeLearningTitle}" published at ICML2022 Workshop on Adaptive Experimental Design and Active Learning in the Real World.`;
 
 export const activeLearningPaper = (
   <div>

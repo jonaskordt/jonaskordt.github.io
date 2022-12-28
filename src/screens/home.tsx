@@ -12,33 +12,30 @@ import {
 } from "../components";
 import { blogs, ContentType, homeOrder, papers, projects } from "../content";
 import { IContent } from "../lib";
-import { color, mediaQuery } from "../theme";
+import { mediaQuery } from "../theme";
 
 const Container = styled.div`
   display: flex;
   flex-shrink: 0;
   margin: 0px 50px 0px;
 
-  ${mediaQuery("tinyScreens")} {
+  ${mediaQuery("smallerScreens")} {
     margin: 0;
   }
 `;
 
 const UpperContainer = styled(Container)`
-  border-bottom: 1px solid ${color("border")};
   justify-content: space-between;
-  padding-bottom: 30px;
+  padding-bottom: 100px;
   padding-top: 30px;
   padding-right: 20px;
   padding-left: 20px;
   position: relative;
-  gap: 20px;
+  gap: 60px;
+  flex-direction: column;
+  align-items: center;
 
-  ${mediaQuery("smallScreens")} {
-    flex-direction: column;
-  }
-
-  ${mediaQuery("tinyScreens")} {
+  ${mediaQuery("smallerScreens")} {
     padding-top: 20px;
     margin-right: 10px;
     margin-left: 10px;
@@ -51,11 +48,6 @@ const CVContainer = styled.div`
   align-items: flex-start;
   display: flex;
   flex-grow: 1;
-  margin-top: 55px;
-
-  ${mediaQuery("smallScreens")} {
-    margin-top: 0px;
-  }
 `;
 
 const StyledSocialMedia = styled(SocialMedia)`
@@ -63,7 +55,7 @@ const StyledSocialMedia = styled(SocialMedia)`
   right: 20px;
   top: 19px;
 
-  ${mediaQuery("tinyScreens")} {
+  ${mediaQuery("smallerScreens")} {
     right: 10px;
     top: 15px;
   }
@@ -72,22 +64,37 @@ const StyledSocialMedia = styled(SocialMedia)`
 const LowerContainer = styled(Container)`
   align-items: flex-start;
   flex-direction: column;
-  padding: 20px 5px;
+  padding: 0 5px;
 `;
 
 const ProjectContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
   padding: 5px 15px 15px;
-
-  ${mediaQuery("mediumScreens")} {
-    gap: 20px;
-  }
+  align-items: center;
+  align-self: stretch;
 `;
 
 const StyledHeading = styled(Heading)`
   padding-left: 15px;
+  padding-right: 15px;
+  align-self: stretch;
+  text-align: center;
+
+  @media (max-width: 450px) {
+    text-align: left;
+  }
+`;
+
+const StyledSummary = styled(Summary)`
+  max-width: 630px;
+  align-items: center;
+  text-align: center;
+
+  @media (max-width: 450px) {
+    align-items: flex-start;
+    text-align: justify;
+  }
 `;
 
 export const Home: React.FC = () => {
@@ -95,7 +102,7 @@ export const Home: React.FC = () => {
     <ThinScreen>
       <Header />
       <UpperContainer>
-        <Summary />
+        <StyledSummary />
         <CVContainer>
           <CVCard />
         </CVContainer>
@@ -104,7 +111,7 @@ export const Home: React.FC = () => {
       <LowerContainer>
         <StyledHeading text="Projects" />
         <ProjectContainer>
-          {homeOrder.map((c) => {
+          {homeOrder.map((c, index) => {
             const content: IContent =
               // eslint-disable-next-line no-nested-ternary
               c.type === ContentType.Paper
@@ -122,6 +129,7 @@ export const Home: React.FC = () => {
                 isPreview={content.isPreview}
                 image={content.img}
                 key={content.name}
+                isLast={index === homeOrder.length - 1}
               />
             );
           })}

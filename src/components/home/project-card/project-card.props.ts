@@ -9,4 +9,5 @@ export interface ProjectCardProps extends HTMLAttributes<HTMLElement> {
   type: ContentType;
   image?: string;
   isPreview?: boolean;
+  isLast?: boolean;
 }

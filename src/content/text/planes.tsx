@@ -17,4 +17,4 @@ export const planesSummary = (
 );
 
 export const planesQuickSummary =
-  "A way to have properly transparent intersecting planes with a variable intersection point. Part of Classifai’s 3D Toolkit.";
+  "A way to have properly transparent intersecting planes with a variable intersection point. Developed for Classifai’s 3D Toolkit.";

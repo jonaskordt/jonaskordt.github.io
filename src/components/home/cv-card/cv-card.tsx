@@ -8,7 +8,6 @@ import { CVCardProps } from "./cv-card.props";
 const StyledImg = styled.img`
   height: auto;
   margin-bottom: 10px;
-  margin-right: 35px;
   width: 265px;
 `;
 

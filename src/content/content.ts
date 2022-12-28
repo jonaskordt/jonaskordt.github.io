@@ -90,13 +90,13 @@ export const projects: { [id: string]: IProject } = {
     name: "VISIAN",
     shortName: "VISIAN",
     quickSummary:
-      "A web-based 2D and 3D image annotation suite with a focus on machine learning in the medical domain developed at HPI.",
+      "A web-based 2D and 3D image segmentation and visualization suite with a focus on machine learning in the medical domain developed at HPI.",
     isPreview: false,
     img: visianImage,
   },
   classifai3D: {
     name: "Classifai's 3D Toolkit",
-    shortName: "Classifai3D",
+    shortName: "Classifai 3D",
     CanvasController: Classifai3D,
     summary: classifai3DSummary,
     quickSummary: classifai3DQuickSummary,

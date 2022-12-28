@@ -26,6 +26,10 @@ const Container = styled.div`
   a {
     color: #0c0e1b;
   }
+
+  p {
+    width: 100%;
+  }
 `;
 
 const Finisher = styled.p`

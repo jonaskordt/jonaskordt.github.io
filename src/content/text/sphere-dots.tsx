@@ -12,4 +12,4 @@ export const sphereDotsSummary = (
 );
 
 export const sphereDotsQuickSummary =
-  "A small project showcasing evenly distributed points on a sphere made for local ambient occlusion in volume ray tracing.";
+  "A small project showcasing evenly distributed points on a sphere made for local ambient occlusion rays used for shading in volume ray marching.";

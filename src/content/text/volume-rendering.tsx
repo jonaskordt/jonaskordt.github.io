@@ -11,7 +11,7 @@ import {
 export const volumeRenderingTitle = "Volume Rendering for Medical Images";
 
 export const volumeRenderingQuickSummary =
-  "Using direct volume rendering with ray marching to render volumetric medical images. Implemented in WebGL.";
+  "Using direct volume rendering with ray marching to render volumetric medical images. Taylored for focus and context visualisation. Implemented in WebGL.";
 
 export const volumeRenderingBlog = (
   <div>

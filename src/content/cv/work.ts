@@ -2,7 +2,7 @@ import { CVEntryData } from "../../lib";
 
 export const work: CVEntryData[] = [
   {
-    heading: "Software Engineer & Product Owner",
+    heading: "Software Engineering Team Leader",
     organization: "Immunkarte",
     details: [
       "project management",

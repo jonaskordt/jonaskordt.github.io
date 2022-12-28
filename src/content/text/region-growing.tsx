@@ -11,7 +11,7 @@ import {
 export const regionGrowingTitle =
   "Interactive Volumetric Region Growing for Brain Tumor Segmentation on MRI using WebGL";
 
-export const regionGrowingQuickSummary = `"${regionGrowingTitle}" published at Web3D 2021.`;
+export const regionGrowingQuickSummary = `"${regionGrowingTitle}" published at Web3D 2021. Showcases the semi-automatic volumetric region growing tool of VISIAN.`;
 
 export const regionGrowingPaper = (
   <div>

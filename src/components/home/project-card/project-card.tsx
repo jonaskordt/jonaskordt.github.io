@@ -1,37 +1,51 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { ContentType } from "../../../content";
+import { color } from "../../../theme";
 
-import { Card } from "../../shared";
+import { Card, FlexRow } from "../../shared";
 import { Heading } from "../../shared/heading";
 import { ProjectCardProps } from "./project-card.props";
 
 const Container = styled.div`
-  align-items: flex-start;
+  align-items: center;
   display: flex;
-  flex-direction: column;
-  height: 150px;
+  min-height: 120px;
+  height: 120px;
   position: relative;
   user-select: none;
-  width: 300px;
+  max-width: 100%;
+
+  @media (max-width: 700px) {
+    height: unset;
+  }
 `;
 
-const ImageContainer = styled.div`
-  flex-grow: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
+const ImageContainer = styled(FlexRow)`
+  flex-grow: 1;
+  flex-shrink: 0;
+  position: relative;
+  justify-content: flex-end;
+  align-items: center;
+  height: 115px;
+  min-width: 170px;
+  transition: height 0.15s linear;
+
+  @media (max-width: 450px) {
+    height: 90px;
+    min-width: 130px;
+  }
 `;
 
 const StyledImg = styled.img`
-  height: 115px;
+  height: 100%;
   width: auto;
 `;
 
 const BackgroundBlend = styled.div`
   background-image: linear-gradient(
     to right,
-    rgba(233, 237, 240, 255),
+    rgba(233, 237, 240, 200),
     rgba(233, 237, 240, 0)
   );
   height: 100%;
@@ -40,6 +54,7 @@ const BackgroundBlend = styled.div`
   top: 0;
   width: 100%;
   z-index: 10;
+  transition: opacity 0.15s linear;
 `;
 
 const Text = styled.p`
@@ -47,26 +62,83 @@ const Text = styled.p`
   letter-spacing: 0;
   word-spacing: -0.5px;
   line-height: 20px;
-  max-width: 207px;
-  position: relative;
-  z-index: 20;
 `;
 
 const Type = styled.p`
   bottom: 0;
   color: #bbbbbb;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 700;
   position: absolute;
-  right: 0;
+  left: 0;
   text-align: right;
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 
 const StyledHeading = styled(Heading)`
   font-size: 30px;
-  line-height: 35px;
-  margin-bottom: 15px;
-  z-index: 20;
+  line-height: 25px;
+  margin-bottom: 0;
+  max-width: 150px;
+  width: 150px;
+  flex-shrink: 0;
+`;
+
+const InvisibleCard = styled(Card)<{ isLast?: boolean }>`
+  box-shadow: none;
+  border-radius: 0;
+  padding-bottom: 60px;
+  margin-bottom: 50px;
+  max-width: 630px;
+
+  @media (max-width: 450px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  ${({ isLast }) =>
+    isLast
+      ? ""
+      : css`
+          border-bottom: solid 1px ${color("border")};
+        `}
+
+  :hover {
+    box-shadow: none;
+
+    .image {
+      height: 130px;
+
+      @media (max-width: 450px) {
+        height: 100px;
+      }
+    }
+
+    .overlay {
+      opacity: 0;
+    }
+  }
+
+  :active {
+    box-shadow: none;
+  }
+`;
+
+const TextContainer = styled(FlexRow)`
+  align-items: center;
+  max-width: 460px;
+  gap: 10px;
+  flex-shrink: 0;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    flex-shrink: 1;
+    align-items: flex-start;
+    min-height: 130px;
+  }
 `;
 
 export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
@@ -78,6 +150,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     type,
     image,
     isPreview,
+    isLast,
     ...rest
   } = props;
 
@@ -90,20 +163,25 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       : `/projects/${projectId}`;
 
   return (
-    <Card
+    <InvisibleCard
       to={isPreview ? undefined : route}
       link={link}
       displaySoonTag={isPreview}
+      isLast={isLast}
       {...rest}
     >
       <Container>
-        <StyledHeading text={name} />
-        <Text>{text}</Text>
+        <TextContainer>
+          <StyledHeading text={name} />
+          <Text>{text}</Text>
+        </TextContainer>
         {image && (
-          <ImageContainer>
-            <StyledImg src={image} alt="" />
-            <BackgroundBlend />
-          </ImageContainer>
+          <>
+            <ImageContainer className="image">
+              <StyledImg src={image} alt="" />
+              <BackgroundBlend className="overlay" />
+            </ImageContainer>
+          </>
         )}
         <Type>
           {
@@ -116,6 +194,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = (props) => {
           }
         </Type>
       </Container>
-    </Card>
+    </InvisibleCard>
   );
 };
