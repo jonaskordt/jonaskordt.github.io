@@ -479,7 +479,7 @@ export class Classifai3D extends CanvasController {
     const intersection = intersections.find((i) => i.object.visible);
     if (intersection) {
       const clickedObject = intersection.object;
-      const { index } = clickedObject.userData;
+      const index = clickedObject.userData.index as number;
 
       switch (this.activeTool) {
         case Tool.Eraser:

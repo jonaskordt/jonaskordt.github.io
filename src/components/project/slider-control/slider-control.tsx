@@ -141,9 +141,7 @@ export const SliderControl: React.FC<SliderControlProps> = (props) => {
       <Track
         role="button"
         onPointerDown={
-          (onStart as unknown) as (
-            e: React.PointerEvent<HTMLDivElement>,
-          ) => void
+          onStart as unknown as (e: React.PointerEvent<HTMLDivElement>) => void
         }
         ref={trackRef}
       >

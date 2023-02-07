@@ -147,13 +147,13 @@ export class SpriteHandler {
 
     this.materials.forEach((material) => {
       // eslint-disable-next-line no-param-reassign
-      ((material.uniforms as unknown) as SpriteUniforms).activeSlices.value[0] =
+      (material.uniforms as unknown as SpriteUniforms).activeSlices.value[0] =
         voxel.x;
       // eslint-disable-next-line no-param-reassign
-      ((material.uniforms as unknown) as SpriteUniforms).activeSlices.value[1] =
+      (material.uniforms as unknown as SpriteUniforms).activeSlices.value[1] =
         voxel.y;
       // eslint-disable-next-line no-param-reassign
-      ((material.uniforms as unknown) as SpriteUniforms).activeSlices.value[2] =
+      (material.uniforms as unknown as SpriteUniforms).activeSlices.value[2] =
         voxel.z;
     });
 

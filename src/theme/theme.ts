@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/named
 import { ThemeProps as StyledThemeProps } from "styled-components";
 
 const borderColor = "#c7cad0";

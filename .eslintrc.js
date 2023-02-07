@@ -9,9 +9,10 @@ module.exports = {
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "prettier/@typescript-eslint",
-    "prettier/react",
+    "prettier",
+    "prettier",
     "plugin:prettier/recommended",
+    "plugin:import/recommended"
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -19,7 +20,7 @@ module.exports = {
     project: "./tsconfig.json",
   },
   plugins: ["react", "@typescript-eslint"],
-  ignorePatterns: [".eslintrc.js"],
+  ignorePatterns: [".eslintrc.js", "build"],
   rules: {
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
