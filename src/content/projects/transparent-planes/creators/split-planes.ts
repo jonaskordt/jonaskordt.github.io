@@ -17,10 +17,10 @@ export const applyRotation = (planePart: THREE.Mesh, planeIndex: number) => {
 export const createSplitPlanes = (materials: THREE.Material[][]) => {
   return materials.map((material, index) => {
     const geometries = [
-      new THREE.PlaneBufferGeometry(),
-      new THREE.PlaneBufferGeometry(),
-      new THREE.PlaneBufferGeometry(),
-      new THREE.PlaneBufferGeometry(),
+      new THREE.PlaneGeometry(),
+      new THREE.PlaneGeometry(),
+      new THREE.PlaneGeometry(),
+      new THREE.PlaneGeometry(),
     ];
 
     /*

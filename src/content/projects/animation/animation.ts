@@ -44,7 +44,7 @@ export class Animation extends CanvasController {
 
     this.cameraControls = new OrbitControls(this.camera, this.canvas);
 
-    const torusGeometry = new THREE.TorusBufferGeometry(10, 1, 50, 100);
+    const torusGeometry = new THREE.TorusGeometry(10, 1, 50, 100);
     const phongMaterial = new THREE.MeshPhongMaterial({
       color: "#ffcc33",
       shininess: 95,

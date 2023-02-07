@@ -71,9 +71,7 @@ export const scalePlaneParts = (
 
     const geometryUVs = plane.map(
       (planePart) =>
-        (planePart.geometry as THREE.BufferGeometry).getAttribute(
-          "uv",
-        ) as THREE.BufferAttribute,
+        planePart.geometry.getAttribute("uv") as THREE.BufferAttribute,
     );
 
     // Width and height of plane quadrant 0.

@@ -84,7 +84,7 @@ export const Classifai3DControls: React.FC<Classifai3DControlsProps> = (
 
   useEffect(() => {
     if ("xr" in navigator) {
-      (navigator as THREE.Navigator)
+      navigator
         .xr!.isSessionSupported("immersive-ar")
         .then(setARAvailable)
         .catch(() => {});

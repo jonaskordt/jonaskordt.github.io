@@ -250,9 +250,7 @@ export class SpriteHandler {
 
     const geometryUVs = sprite.map(
       (spritePart) =>
-        (spritePart.geometry as THREE.BufferGeometry).getAttribute(
-          "uv",
-        ) as THREE.BufferAttribute,
+        spritePart.geometry.getAttribute("uv") as THREE.BufferAttribute,
     );
 
     const width0 =

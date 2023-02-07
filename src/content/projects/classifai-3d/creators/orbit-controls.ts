@@ -7,7 +7,6 @@ export const createOrbitControls = (
   target: THREE.Vector3,
 ) => {
   const controls = new OrbitControls(camera, canvas.parentElement!);
-  controls.enableKeys = false;
 
   controls.target = target;
 

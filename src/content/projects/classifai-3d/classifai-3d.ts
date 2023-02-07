@@ -68,7 +68,7 @@ export class Classifai3D extends CanvasController {
 
   private lastMouseEvent?: MouseEvent;
 
-  private activeXRSession?: THREE.XRSession;
+  private activeXRSession?: XRSession;
   private canvasContainer: HTMLDivElement;
   private domOverlay: HTMLElement;
 
@@ -173,7 +173,7 @@ export class Classifai3D extends CanvasController {
     this.forceRender();
   }
 
-  private animate = (timestamp: number, frame?: THREE.XRFrame) => {
+  private animate = (timestamp: number, frame?: XRFrame) => {
     const delta = timestamp - this.lastTimestamp;
     this.lastTimestamp = timestamp;
 
@@ -224,7 +224,7 @@ export class Classifai3D extends CanvasController {
       domOverlay: { root: this.domOverlay },
     };
 
-    (navigator as THREE.Navigator)
+    navigator
       .xr!.requestSession("immersive-ar", sessionInit)
       .then((session) => {
         this.arActive = true;
@@ -232,6 +232,7 @@ export class Classifai3D extends CanvasController {
         this.removeHoveredStructure();
 
         this.renderer.xr.setReferenceSpaceType("local");
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         this.renderer.xr.setSession(session);
 
         this.reticleHandler.activate();

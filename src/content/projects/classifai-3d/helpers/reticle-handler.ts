@@ -6,7 +6,7 @@ export class ReticleHandler {
   private reticle: THREE.Mesh;
 
   private hitTestSourceRequested = false;
-  private hitTestSource: THREE.XRHitTestSource | null = null;
+  private hitTestSource: XRHitTestSource | null = null;
 
   public active = false;
 
@@ -34,24 +34,24 @@ export class ReticleHandler {
     this.reticle.visible = false;
   };
 
-  public update = (frame: THREE.XRFrame) => {
+  public update = (frame: XRFrame) => {
     if (!this.active) return;
 
     if (!this.hitTestSourceRequested) {
       const session = this.renderer.xr.getSession();
       session
-        .requestReferenceSpace("viewer")
+        ?.requestReferenceSpace("viewer")
         .then((referenceSpace) => {
           session
-            .requestHitTestSource({ space: referenceSpace })
-            .then((source) => {
+            .requestHitTestSource?.({ space: referenceSpace })
+            ?.then((source) => {
               this.hitTestSource = source;
             })
             .catch(() => {});
         })
         .catch(() => {});
 
-      session.addEventListener("end", () => {
+      session?.addEventListener("end", () => {
         this.hitTestSourceRequested = false;
         this.hitTestSource = null;
       });
@@ -60,7 +60,7 @@ export class ReticleHandler {
     }
 
     if (this.hitTestSource) {
-      const referenceSpace = this.renderer.xr.getReferenceSpace();
+      const referenceSpace = this.renderer.xr.getReferenceSpace()!;
       const hitTestResults = frame.getHitTestResults(this.hitTestSource);
 
       if (hitTestResults.length) {
