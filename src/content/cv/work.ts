@@ -2,6 +2,24 @@ import { CVEntryData } from "../../lib";
 
 export const work: CVEntryData[] = [
   {
+    heading: "Software Engineer",
+    organization: "cula",
+    details: ["full stack development using Vue, NestJS, and TypeScript"],
+    start: new Date(2023, 10, 1),
+    organizationLink: "https://www.cula.tech",
+  },
+  {
+    heading: "Software Engineer",
+    organization: "mama health",
+    details: [
+      "full stack development using React, NestJS, and TypeScript",
+      "Tableau dashboard extension development",
+    ],
+    start: new Date(2023, 6, 1),
+    end: new Date(2023, 9, 31),
+    organizationLink: "https://www.mamahealth.io",
+  },
+  {
     heading: "Software Engineering Team Leader",
     organization: "Immunkarte",
     details: [
@@ -10,6 +28,7 @@ export const work: CVEntryData[] = [
       "consulting on machine learning solutions",
     ],
     start: new Date(2021, 11, 1),
+    end: new Date(2023, 5, 30),
     organizationLink: "https://immunkarte.de",
   },
   {
@@ -27,13 +46,6 @@ export const work: CVEntryData[] = [
       "https://hpi.de/forschung/fachgebiete/digital-health-machine-learning.html",
   },
   {
-    heading: "Medicine Delivery Driver",
-    organization: "Apotheke 4.0 (pharmacy)",
-    details: ["doing my part to help during the COVID-19 pandemic"],
-    start: new Date(2020, 8, 1),
-    end: new Date(2020, 10, 30),
-  },
-  {
     heading: "Java Developer & Tutor",
     organization: "Chair for System-Analysis and Modeling at HPI",
     details: [
@@ -46,21 +58,5 @@ export const work: CVEntryData[] = [
     end: new Date(2019, 6, 31),
     organizationLink:
       "https://hpi.de/forschung/fachgebiete/systemanalyse-und-modellierung.html",
-  },
-  {
-    heading: "Web Developer (internship)",
-    organization: "Institute for School Quality of Berlin-Brandenburg",
-    details: [
-      "development of web portal for school inspection using PHP, MySQL, jQuery and CSS",
-    ],
-    start: new Date(2017, 7, 7),
-    end: new Date(2017, 8, 15),
-    organizationLink: "https://www.isq-bb.de/wordpress/",
-  },
-  {
-    heading: "Student Intern",
-    organization: "Mercedes Benz AG",
-    start: new Date(2013, 4, 27),
-    end: new Date(2013, 5, 14),
   },
 ];

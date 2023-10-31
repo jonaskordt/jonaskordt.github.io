@@ -6,6 +6,7 @@ export const volunteering: CVEntryData[] = [
     organization: "TuS Lichterfelde Berlin e.V.",
     start: new Date(2013, 9),
     organizationLink: "https://tt.tusli.de",
+    details: ["licensed coach since 2020"],
   },
   {
     heading: "Chaperone in Summer Camps",

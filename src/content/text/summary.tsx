@@ -16,8 +16,8 @@ export const summaryText = (
     </a>{" "}
     at the chair for Digital Health and Machine Learning at HPI and I am now
     working at{" "}
-    <a href="https://immunkarte.de" target="_blank" rel="noopener noreferrer">
-      Immunkarte
+    <a href="https://cula.tech" target="_blank" rel="noopener noreferrer">
+      cula
     </a>
     .
   </p>
