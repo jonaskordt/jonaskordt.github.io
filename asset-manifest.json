@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/static/js/main.8fa2294e.js",
+    "main.js": "/static/js/main.17967cc2.js",
     "static/media/brain-texture-atlas.png": "/static/media/brain-texture-atlas.3b0e39dda6eff09c8b98.png",
     "static/media/8.txt": "/static/media/8.87bc70e933561167dc9e.txt",
     "static/media/9.txt": "/static/media/9.7005fcf973784663f354.txt",
@@ -12,7 +12,7 @@
     "static/media/classifai-3d.png": "/static/media/classifai-3d.c80aeede70ec5717607b.png",
     "static/media/volume-rendering-edges.png": "/static/media/volume-rendering-edges.d57be671b70c40e0d67c.png",
     "static/media/volume-rendering-filtering.png": "/static/media/volume-rendering-filtering.435de87873086307d228.png",
-    "static/media/portrait.png": "/static/media/portrait.371a5de3a89d6f12f511.png",
+    "static/media/portrait.png": "/static/media/portrait.e00b12afc3a1ed8b9276.png",
     "static/media/volume-rendering.png": "/static/media/volume-rendering.232df166867c591998de.png",
     "static/media/sphere-dots.png": "/static/media/sphere-dots.f84ec4f6883612ef497a.png",
     "static/media/15.txt": "/static/media/15.3f306850f2ae4a18e169.txt",
@@ -58,9 +58,9 @@
     "static/media/clear.svg": "/static/media/clear.6d724f4c9329688dff2d6abdc2495dbe.svg",
     "static/media/x.svg": "/static/media/x.6d724f4c9329688dff2d6abdc2495dbe.svg",
     "index.html": "/index.html",
-    "main.8fa2294e.js.map": "/static/js/main.8fa2294e.js.map"
+    "main.17967cc2.js.map": "/static/js/main.17967cc2.js.map"
   },
   "entrypoints": [
-    "static/js/main.8fa2294e.js"
+    "static/js/main.17967cc2.js"
   ]
 }
