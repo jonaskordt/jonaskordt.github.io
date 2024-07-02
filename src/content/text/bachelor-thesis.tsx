@@ -17,7 +17,7 @@ export const bachelorThesisBlog = (
       current tooling, there are usually problems with the workflow, as 3D
       images are annotated in a 2D environment and automatic segmentation often
       produces errors which are time consuming to correct in 2D. With
-      Chassifai’s 3D Toolkit, the time it takes to correct a machine generated
+      Classifai’s 3D Toolkit, the time it takes to correct a machine generated
       segmentation is greatly reduced and the frustrating task of removing the
       same error on many slices is removed, thus increasing usability and making
       the training of a machine learning model much faster. For removing obvious

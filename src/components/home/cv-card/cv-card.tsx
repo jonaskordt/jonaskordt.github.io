@@ -22,7 +22,7 @@ export const CVCard: React.FC<CVCardProps> = (props) => {
     <Card to="/cv" {...props}>
       <StyledImg src={cvImg} alt="" />
       <COHeader>Current Occupation:</COHeader>
-      <p>M.Sc. IT Systems Engineering at HPI</p>
+      <p>Software Engineer at Cula</p>
     </Card>
   );
 };

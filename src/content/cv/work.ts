@@ -3,7 +3,7 @@ import { CVEntryData } from "../../lib";
 export const work: CVEntryData[] = [
   {
     heading: "Software Engineer",
-    organization: "cula",
+    organization: "Cula technologies",
     details: ["full stack development using Vue, NestJS, and TypeScript"],
     start: new Date(2023, 10, 1),
     organizationLink: "https://www.cula.tech",

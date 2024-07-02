@@ -10,6 +10,7 @@ import {
   volumeRenderingImage,
   visianImage,
   activeLearningImage,
+  masterThesisImage,
 } from "./images";
 import {
   Animation,
@@ -42,6 +43,11 @@ import {
   activeLearningQuickSummary,
   activeLearningTitle,
 } from "./text";
+import {
+  masterThesisTitle,
+  masterThesisQuickSummary,
+  masterThesisBlog,
+} from "./text/master-thesis";
 
 export enum ContentType {
   Blog = 0,
@@ -50,6 +56,14 @@ export enum ContentType {
 }
 
 export const blogs: { [id: string]: IBlog } = {
+  masterThesis: {
+    name: masterThesisTitle,
+    shortName: "Master Thesis",
+    quickSummary: masterThesisQuickSummary,
+    content: masterThesisBlog,
+    isPreview: false,
+    img: masterThesisImage,
+  },
   classifai: {
     name: "Classifai",
     shortName: "Classifai",
@@ -149,6 +163,7 @@ export const customControls: { [id: string]: React.FC<any> } = {
 
 export const homeOrder: { type: ContentType; id: string; link?: string }[] = [
   { type: ContentType.Project, id: "visian", link: "https://visian.org" },
+  { type: ContentType.Blog, id: "masterThesis" },
   { type: ContentType.Paper, id: "regionGrowing" },
   { type: ContentType.Paper, id: "activeLearning" },
   { type: ContentType.Blog, id: "volumeRendering" },

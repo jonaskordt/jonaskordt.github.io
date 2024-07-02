@@ -2,9 +2,11 @@ import { CVEntryData } from "../../lib";
 
 export const education: CVEntryData[] = [
   {
-    heading: "Aspiring Master of Science: IT System Engineering",
+    heading: "Master of Science: IT System Engineering",
     organization: "Hasso-Plattner-Institute at the University of Potsdam",
+    details: ['average grade: 1.0 "with distinction" (A)'],
     start: new Date(2020, 9),
+    end: new Date(2024, 5),
     organizationLink: "https://hpi.de",
   },
   {
