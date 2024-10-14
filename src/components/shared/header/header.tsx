@@ -18,7 +18,7 @@ const Container = styled.div`
   margin: 0px 50px;
   padding: 0px 10px;
 
-  ${mediaQuery("tinyScreens")} {
+  ${mediaQuery("smallerScreens")} {
     margin: 0px 10px;
     padding: 0;
   }
@@ -41,7 +41,7 @@ const PortraitContainer = styled(ContentContainer)`
   margin-bottom: 20px;
   margin-top: 20px;
 
-  ${mediaQuery("tinyScreens")} {
+  ${mediaQuery("smallerScreens")} {
     margin-bottom: 15px;
     margin-top: 15px;
   }

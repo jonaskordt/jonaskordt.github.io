@@ -47,7 +47,7 @@ export const CV: React.FC = () => {
       <Header />
       <Container>
         <StyledSocialMedia />
-        <Summary isCV />
+        {/* <Summary isCV /> */}
         <StyledHeading text="Quick Info" />
         <QuickInfo />
         <StyledHeading text="Work Experience" />

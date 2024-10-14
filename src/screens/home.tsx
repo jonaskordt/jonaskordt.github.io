@@ -26,8 +26,7 @@ const Container = styled.div`
 
 const UpperContainer = styled(Container)`
   justify-content: space-between;
-  padding-bottom: 100px;
-  padding-top: 30px;
+  padding-bottom: 20px;
   padding-right: 20px;
   padding-left: 20px;
   position: relative;
@@ -35,8 +34,9 @@ const UpperContainer = styled(Container)`
   flex-direction: column;
   align-items: center;
 
-  ${mediaQuery("smallerScreens")} {
+  ${mediaQuery("tinyScreens")} {
     padding-top: 20px;
+    padding-bottom: 0px;
     margin-right: 10px;
     margin-left: 10px;
     padding-right: 10px;
@@ -44,18 +44,12 @@ const UpperContainer = styled(Container)`
   }
 `;
 
-const CVContainer = styled.div`
-  align-items: flex-start;
-  display: flex;
-  flex-grow: 1;
-`;
-
 const StyledSocialMedia = styled(SocialMedia)`
   position: absolute;
   right: 20px;
   top: 19px;
 
-  ${mediaQuery("smallerScreens")} {
+  ${mediaQuery("tinyScreens")} {
     right: 10px;
     top: 15px;
   }
@@ -86,26 +80,15 @@ const StyledHeading = styled(Heading)`
   }
 `;
 
-const StyledSummary = styled(Summary)`
-  max-width: 630px;
-  align-items: center;
-  text-align: center;
-
-  @media (max-width: 450px) {
-    align-items: flex-start;
-    text-align: justify;
-  }
-`;
-
 export const Home: React.FC = () => {
   return (
     <ThinScreen>
       <Header />
       <UpperContainer>
-        <StyledSummary />
-        <CVContainer>
+        {/* <StyledSummary /> */}
+        {/* <CVContainer>
           <CVCard />
-        </CVContainer>
+        </CVContainer> */}
         <StyledSocialMedia />
       </UpperContainer>
       <LowerContainer>
