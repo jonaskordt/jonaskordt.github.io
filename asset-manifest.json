@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/static/js/main.a7e7d8d6.js",
+    "main.js": "/static/js/main.d4fbf2b8.js",
     "static/media/brain-texture-atlas.png": "/static/media/brain-texture-atlas.3b0e39dda6eff09c8b98.png",
     "static/media/8.txt": "/static/media/8.87bc70e933561167dc9e.txt",
     "static/media/9.txt": "/static/media/9.7005fcf973784663f354.txt",
@@ -59,9 +59,9 @@
     "static/media/clear.svg": "/static/media/clear.6d724f4c9329688dff2d6abdc2495dbe.svg",
     "static/media/x.svg": "/static/media/x.6d724f4c9329688dff2d6abdc2495dbe.svg",
     "index.html": "/index.html",
-    "main.a7e7d8d6.js.map": "/static/js/main.a7e7d8d6.js.map"
+    "main.d4fbf2b8.js.map": "/static/js/main.d4fbf2b8.js.map"
   },
   "entrypoints": [
-    "static/js/main.a7e7d8d6.js"
+    "static/js/main.d4fbf2b8.js"
   ]
 }
