@@ -46,10 +46,10 @@ export const CV: React.FC = () => {
     <ThinScreen>
       <Header />
       <Container>
-        <StyledSocialMedia />
+        <StyledSocialMedia hideCv />
         {/* <Summary isCV /> */}
-        <StyledHeading text="Quick Info" />
-        <QuickInfo />
+        {/* <StyledHeading text="Quick Info" />
+        <QuickInfo /> */}
         <StyledHeading text="Work Experience" />
         {work.map((w) => {
           return <CVEntry key={w.heading} {...w} />;

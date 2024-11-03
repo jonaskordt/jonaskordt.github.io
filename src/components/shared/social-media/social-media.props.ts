@@ -1,3 +1,5 @@
 import { HTMLAttributes } from "react";
 
-export type SocialMediaProps = HTMLAttributes<HTMLElement>;
+export interface SocialMediaProps extends HTMLAttributes<HTMLElement> {
+  hideCv?: boolean;
+}

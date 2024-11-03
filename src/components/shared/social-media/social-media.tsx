@@ -50,12 +50,17 @@ const StyledText = styled.span`
     line-height: 24px;
   }
 `;
-export const SocialMedia: React.FC<SocialMediaProps> = (props) => {
+export const SocialMedia: React.FC<SocialMediaProps> = ({
+  hideCv,
+  ...props
+}) => {
   return (
     <Container {...props}>
-      <StyledCard to="/cv">
-        <StyledText>CV</StyledText>
-      </StyledCard>
+      {!hideCv && (
+        <StyledCard to="/cv">
+          <StyledText>CV</StyledText>
+        </StyledCard>
+      )}
       <StyledCard link="https://www.linkedin.com/in/jonaskordt/">
         <StyledImg src={linkedInIcon} alt="" />
       </StyledCard>
