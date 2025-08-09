@@ -2,6 +2,13 @@ import React from "react";
 
 import { CenteredHeading } from "../../components/shared/heading";
 import { PaperLinks } from "../../components/blog/paper-links";
+import styled from "styled-components";
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
 
 export const masterThesisTitle =
   "Segment Anything Semi-automatically in Volumetric Medical Images Efficiently";
@@ -11,9 +18,10 @@ export const masterThesisQuickSummary = `My master thesis on the topic "${master
 export const masterThesisBlog = (
   <div>
     <CenteredHeading text={masterThesisTitle} />
-    <div>
+    <StyledContainer>
       <PaperLinks pdfName="master-thesis-jonas-kordt" />
-    </div>
+      <PaperLinks doi="10.24132/CSRN.2025-10" pdfName="master-thesis-paper" />
+    </StyledContainer>
     <p>
       Volumetric medical imaging, such as computed tomography (CT) and magnetic
       resonance imaging (MRI), is an important tool in both clinical and
